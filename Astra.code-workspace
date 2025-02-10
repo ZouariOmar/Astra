@@ -1,0 +1,14 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"qprocess": "cpp",
+			"qguiapplication": "cpp",
+			"qqmlapplicationengine": "cpp"
+		}
+	}
+}
