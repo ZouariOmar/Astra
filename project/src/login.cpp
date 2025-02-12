@@ -1,4 +1,12 @@
-// ! Lance the Doxygen file comment Her (in VSC - `/** */`)
+/**
+ * @file login.cpp
+ * @author @ZouariOmar (zouariomar20@gmail.com)
+ * @brief # Login source file
+ * @version 0.1
+ * @date 2025-02-10
+ * @copyright Copyright (c) 2025
+ * @link https://github.com/ZouariOmar/Astra/project/login.cpp @endlink
+ */
 
 //? Include prototype declaration part
 #include "../inc/login.hpp"

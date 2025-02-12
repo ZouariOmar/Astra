@@ -27,12 +27,11 @@ int main(int argc, char *argv[]) {
   QQmlApplicationEngine engine;
 
   // Create Backend instance
-
   Backend backend;
   QQmlContext *context = engine.rootContext();
   context->setContextProperty("backend", &backend); // Correct way to expose backend
 
-  engine.load(QUrl(QStringLiteral("project/qml/main.qml")));
+  engine.load(QUrl::fromLocalFile(QStringLiteral("project/qml/main.qml"))); // Adjust the file path
   if (engine.rootObjects().isEmpty())
     return -1;
 

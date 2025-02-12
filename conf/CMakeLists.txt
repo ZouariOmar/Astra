@@ -1,5 +1,5 @@
 # Set the CMake minimum version
-cmake_minimum_required(VERSION 3.29.3)
+cmake_minimum_required(VERSION 3.31.5)
 
 # Set the project name
 project(Astra VERSION 0.1 LANGUAGES CXX)
@@ -29,7 +29,6 @@ set(HEADERS
 
 # Add the UI file
 set(UI_FILES
-  
 )
 
 # Add the QML file
@@ -37,6 +36,11 @@ set(QML_FILES
   
 )
 
+# Specify the Oracle include and library directories
+include_directories(/usr/local/include/oracle)
+link_directories(/usr/local/lib/oracle)
+
+# Find Qt6 packages
 find_package(Qt6 REQUIRED COMPONENTS Widgets Core Qml)
 
 # Add the executable target
@@ -45,9 +49,11 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${UI_FILES} ${QML_FILES})
 # Link Qt libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Widgets Qt6::Qml)
 
+# Link oracle libraries
+target_link_libraries(${PROJECT_NAME} PRIVATE clntsh occi)
+
 # Add the tests subdirectory
 # add_subdirectory(test)
-
 
 # Make this a GUI application on Windows
 if(WIN32)

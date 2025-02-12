@@ -3,3 +3,6 @@ project/.env
 
 # Ignore build files
 bin/build/*
+
+# Ignore QtDS Project
+project/QtDS/*
