@@ -10,45 +10,56 @@
 
 //? Include prototype declaration part
 #include "../inc/login.hpp"
+#include "../inc/connect.hpp"
 
 //? Function/Class prototype dev part
 
-Backend::Backend(QObject *parent)
-    : QObject(parent) {
+Login::Login(QObject *parent)
+    : QObject(parent), m_username("Username"), m_password("Password") {
 }
 
-QString Backend::username() const {
+QString Login::username() const {
   return m_username;
 }
 
-void Backend::setUsername(const QString &newUsername) {
+void Login::setUsername(const QString &newUsername) {
   if (m_username != newUsername) {
     m_username = newUsername;
     emit usernameChanged();
   }
 }
 
-QString Backend::password() const {
+QString Login::password() const {
   return m_password;
 }
 
-void Backend::setPassword(const QString &newPassword) {
+void Login::setPassword(const QString &newPassword) {
   if (m_password != newPassword) {
     m_password = newPassword;
     emit passwordChanged();
   }
 }
 
-void Backend::login() {
+void Login::login() {
   qDebug() << "Attempting login with:";
   qDebug() << "Username:" << m_username;
   qDebug() << "Password:" << m_password;
+  Database *db = new Database("c##omar", "root", "localhost:1521/orclpdb1");
+  int aff{};
+  vector<vector<string>> res = db->execute("SELECT * FROM Employees WHERE Username = '" +
+                                               m_username.toStdString() + "' AND Password = '" +
+                                               m_password.toStdString() + "'",
+                                           aff);
+  delete db; // Close oracle 1521 port
 
-  // Simple login logic (replace with real authentication)
-  if (m_username == "admin" && m_password == "1234") {
+    if (!res.empty()) { // Verify if given user info (username, password) exists or not
+    // Reset m_password and m_username
+    m_password = "", m_username = "";
     qDebug() << "Login successful!";
     emit loginSuccess();
   } else {
+    // Reset m_password and m_username
+    m_password = "", m_username = "";
     qDebug() << "Login failed!";
     emit loginFailed();
   }

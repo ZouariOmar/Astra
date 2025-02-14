@@ -4,7 +4,8 @@
       "name": "linux-gcc-x64",
       "includePath": [
         "${workspaceFolder}/**",
-        "/usr/include/qt6"
+        "/usr/include/qt6",
+        "/usr/local/include/oracle/"
       ],
       "compilerPath": "/usr/bin/gcc",
       "cStandard": "${default}",

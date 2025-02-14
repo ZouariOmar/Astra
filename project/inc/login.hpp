@@ -23,22 +23,20 @@
 // * Use stander workspace
 using namespace std;
 
-// ? Structure prototype declaration part
-/*
- * struct...
- */
-
-class Backend : public QObject {
+// ? Classes prototype declaration part
+class Login : public QObject {
   Q_OBJECT
   Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
   Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
 
 public:
-  explicit Backend(QObject *parent = nullptr);
-
+  explicit Login(QObject *parent = nullptr);
+  
+  // Username read and write fn
   QString username() const;
   void setUsername(const QString &newUsername);
 
+  // Password read and write fn
   QString password() const;
   void setPassword(const QString &newPassword);
 
@@ -53,6 +51,6 @@ signals:
 private:
   QString m_username;
   QString m_password;
-};
+}; // Login class
 
 #endif // LOGIN_HPP

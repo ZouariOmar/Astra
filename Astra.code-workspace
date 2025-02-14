@@ -8,7 +8,15 @@
 		"files.associations": {
 			"qprocess": "cpp",
 			"qguiapplication": "cpp",
-			"qqmlapplicationengine": "cpp"
+			"qqmlapplicationengine": "cpp",
+			"qqmlcontext": "cpp",
+			"qsqlquery": "cpp",
+			"qsqlerror": "cpp",
+			"qsqldatabase": "cpp",
+			"qtwidgets": "cpp",
+			"quiloader": "cpp",
+			"ostream": "cpp",
+			"iostream": "cpp"
 		}
 	}
 }

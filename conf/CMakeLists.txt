@@ -19,12 +19,14 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall")
 set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/main.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/login.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/connect.cpp
 )
 
 # Add the main window header files
 set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/login.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/inc.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/connect.hpp
 )
 
 # Add the UI file
@@ -41,13 +43,13 @@ include_directories(/usr/local/include/oracle)
 link_directories(/usr/local/lib/oracle)
 
 # Find Qt6 packages
-find_package(Qt6 REQUIRED COMPONENTS Widgets Core Qml)
+find_package(Qt6 REQUIRED COMPONENTS Core Qml Gui)
 
 # Add the executable target
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${UI_FILES} ${QML_FILES})
 
 # Link Qt libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Widgets Qt6::Qml)
+target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Qml Qt6::Gui)
 
 # Link oracle libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE clntsh occi)

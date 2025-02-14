@@ -26,12 +26,13 @@ int main(int argc, char *argv[]) {
   QGuiApplication app(argc, argv);
   QQmlApplicationEngine engine;
 
-  // Create Backend instance
-  Backend backend;
+  // Create Login instance
+  Login login;
   QQmlContext *context = engine.rootContext();
-  context->setContextProperty("backend", &backend); // Correct way to expose backend
+  context->setContextProperty("Login", &login);
 
-  engine.load(QUrl::fromLocalFile(QStringLiteral("project/qml/main.qml"))); // Adjust the file path
+  // Load from `main.qml` file
+  engine.load(QUrl::fromLocalFile(QStringLiteral("project/qml/main.qml")));
   if (engine.rootObjects().isEmpty())
     return -1;
 
