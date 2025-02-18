@@ -12,7 +12,7 @@ ApplicationWindow {
     }
 
     Component.onCompleted: {
-        let loginComponent = Qt.createComponent("login.qml");
+        let loginComponent = Qt.createComponent("template.qml");
         if (loginComponent.status === Component.Ready)
             stackView.push(loginComponent.createObject(stackView));
         else

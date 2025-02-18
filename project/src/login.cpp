@@ -14,14 +14,29 @@
 
 //? Function/Class prototype dev part
 
+/**
+ * @brief ### Construct a new Login::Login object
+ * 
+ * @param parent {QObject *}
+ */
 Login::Login(QObject *parent)
     : QObject(parent), m_username("Username"), m_password("Password") {
 }
 
+/**
+ * @brief ### Get the `username`
+ * 
+ * @return QString 
+ */
 QString Login::username() const {
   return m_username;
 }
 
+/**
+ * @brief ### Set the changed `username`
+ *
+ * @param newUsername {const QString &}
+ */
 void Login::setUsername(const QString &newUsername) {
   if (m_username != newUsername) {
     m_username = newUsername;
@@ -29,10 +44,20 @@ void Login::setUsername(const QString &newUsername) {
   }
 }
 
+/**
+ * @brief ### Get the `password`
+ *
+ * @return QString
+ */
 QString Login::password() const {
   return m_password;
 }
 
+/**
+ * @brief ### Set the changed `password`
+ *
+ * @param newPassword {const QString &}
+ */
 void Login::setPassword(const QString &newPassword) {
   if (m_password != newPassword) {
     m_password = newPassword;
@@ -40,11 +65,14 @@ void Login::setPassword(const QString &newPassword) {
   }
 }
 
+/**
+ * @brief ### Main Login fn
+ * @details Verify if the user given info are exist
+ */
 void Login::login() {
-  qDebug() << "Attempting login with:";
   qDebug() << "Username:" << m_username;
   qDebug() << "Password:" << m_password;
-  Database *db = new Database("c##omar", "root", "localhost:1521/orclpdb1");
+  Database *db = new Database();
   int aff{};
   vector<vector<string>> res = db->execute("SELECT * FROM Employees WHERE Username = '" +
                                                m_username.toStdString() + "' AND Password = '" +
@@ -52,15 +80,6 @@ void Login::login() {
                                            aff);
   delete db; // Close oracle 1521 port
 
-    if (!res.empty()) { // Verify if given user info (username, password) exists or not
-    // Reset m_password and m_username
-    m_password = "", m_username = "";
-    qDebug() << "Login successful!";
-    emit loginSuccess();
-  } else {
-    // Reset m_password and m_username
-    m_password = "", m_username = "";
-    qDebug() << "Login failed!";
-    emit loginFailed();
-  }
+  // Verify if given user info (username, password) exists or not
+  (!res.empty()) ? emit loginSuccess() : emit loginFailed();
 }

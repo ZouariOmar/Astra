@@ -17,18 +17,6 @@ import "file:///home/zouari_omar/Qt/Tools/QtDesignStudio/qt6_design_studio_reduc
 Rectangle {
     width: 1920
     height: 1080
-    radius: 5
-    border.color: "black"
-    border.width: 1
-
-    // Property for hover animation
-    property color hoverColor: "white"
-
-    Behavior on hoverColor {
-        ColorAnimation {
-            duration: 300 // Smooth transition
-        }
-    }
 
     AnimatedImage {
         id: animatedImage
@@ -208,7 +196,7 @@ Rectangle {
                 GroupItem {
                     id: eye
                     x: 306
-                    y: 10
+                    y: 8
                     z: 1
 
                     MouseArea {
@@ -234,7 +222,7 @@ Rectangle {
                         width: 20
                         height: 19
                         visible: true
-                        source: "../assets/login imgs/eye.png"
+                        source: "../assets/login imgs/closedEye.png"
                         fillMode: Image.PreserveAspectFit
                     }
 
@@ -245,7 +233,7 @@ Rectangle {
                         width: 20
                         height: 19
                         visible: false
-                        source: "../assets/login imgs/closedEye.png"
+                        source: "../assets/login imgs/eye.png"
                         fillMode: Image.PreserveAspectFit
                     }
                 }
@@ -307,14 +295,14 @@ Rectangle {
                 y: 141
                 width: 631
                 height: 418
-                source: "../assets/login imgs/animation00.gif"
+                source: "../assets/login imgs/animations/an04.gif"
                 smooth: true
                 opacity: 1
 
                 Timer {
                     id: timer
                     property int i: 0
-                    property var images: ["../assets/login imgs/animation00.gif", "../assets/login imgs/animations/an00.gif", "../assets/login imgs/animations/an01.gif", "../assets/login imgs/animations/an02.gif", "../assets/login imgs/animations/an03.gif"]
+                    property var images: ["../assets/login imgs/animations/an04.gif", "../assets/login imgs/animations/an00.gif", "../assets/login imgs/animations/an01.gif", "../assets/login imgs/animations/an02.gif", "../assets/login imgs/animations/an03.gif"]
                     interval: 5000
                     running: true
                     repeat: true
@@ -454,28 +442,36 @@ Rectangle {
 
     Timer {
         id: delayTimer
-        interval: 2000
-        running: false
+        interval: 1000
         repeat: false
-        onTriggered: statusText.text = ""
+        property bool loginSuccess: false // Track login status
+
+        onTriggered: {
+            if (loginSuccess) {
+                // Only navigate if login was successful
+                stackView.push(Qt.resolvedUrl("employees.qml"));
+                statusText.text = ""; // Reset statusText
+            } else {
+                statusText.text = ""; // Reset statusText
+            }
+        }
     }
 
     Connections {
         target: Login
+
         function onLoginSuccess() {
             statusText.text = "Login Successful!";
             statusText.color = "green";
+            delayTimer.loginSuccess = true; // Mark login as successful
             delayTimer.start();
-
-            // Push employees.qml after delay
-            delayTimer.onTriggered.connect(() => {
-                stackView.push(Qt.resolvedUrl("employees.qml"));
-            });
         }
 
         function onLoginFailed() {
             statusText.text = "Login Failed. Try Again!";
             statusText.color = "red";
+            delayTimer.loginSuccess = false; // Mark login as failed
+            delayTimer.start();
         }
     }
 }

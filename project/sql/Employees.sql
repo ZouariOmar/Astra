@@ -10,7 +10,9 @@ CREATE TABLE Employees (
   JobTitle VARCHAR2(20) DEFAULT NULL,
   Salary NUMBER(10, 2) DEFAULT NULL,
   HireDate DATE DEFAULT SYSDATE,
-  Status VARCHAR2(10) DEFAULT 'Active' CHECK (UPPER(Status) IN ('ACTIVE', 'INACTIVE')),
+  Status VARCHAR2(10) DEFAULT 'Active' CHECK (
+    UPPER(Status) IN ('ACTIVE', 'INACTIVE', 'SUSPENDED')
+  ),
   Password VARCHAR2(255) NOT NULL,
   ProfileImage VARCHAR2(255) DEFAULT NULL,
   PhoneNumber VARCHAR2(20) DEFAULT NULL,
@@ -21,7 +23,7 @@ CREATE TABLE Employees (
   LastPasswordReset TIMESTAMP DEFAULT NULL
 );
 /*
-  Admin info           -  3 omarzouari3 Omar Zouari zouariomar20@gmail.com Admin  14-FEB-25 Active 1234
+ Admin info           -  INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')
  Select Age            - TRUNC(MONTHS_BETWEEN(SYSDATE, BirthDate) / 12) AS Age
  Select YearsOfService - TRUNC(MONTHS_BETWEEN(SYSDATE, HireDate) / 12) AS YearsOfService
  */
