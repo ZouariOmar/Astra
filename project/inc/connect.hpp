@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2025-02-13
  * @copyright Copyright (c) 2025
- *
+ * @link https://www.oracle.com oracle @endlink
  */
 
 // ? Pre-Processor prototype declaration part

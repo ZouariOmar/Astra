@@ -9,10 +9,8 @@
  */
 
 // ? Include prototype declaration part
-#include "../inc/login.hpp"
-#include <qt6/QtGui/QGuiApplication>
-#include <qt6/QtQml/QQmlApplicationEngine>
-#include <qt6/QtQml/QQmlContext>
+#include "../inc/inc.hpp"
+#include "../inc/partenaire.h"
 
 // ? Main int function prototype dev part
 
@@ -22,19 +20,27 @@
  * @param argv char **
  * @return int
  */
-int main(int argc, char *argv[]) {
-  QGuiApplication app(argc, argv);
-  QQmlApplicationEngine engine;
+int main(int argc, char **argv) {
+  QApplication app(argc, argv);
+  QMainWindow mainWin;
+  QStackedWidget *stackedWidget(new QStackedWidget);
 
-  // Create Login instance
-  Login login;
-  QQmlContext *context = engine.rootContext();
-  context->setContextProperty("Login", &login);
+  Login *l(new Login);
+  partenaire *partner(new partenaire); // ! Put islam interface her
 
-  // Load from `main.qml` file
-  engine.load(QUrl::fromLocalFile(QStringLiteral("project/qml/main.qml")));
-  if (engine.rootObjects().isEmpty())
-    return -1;
+  // Add interfaces to `stackWidget`
+  stackedWidget->addWidget(l);
+  stackedWidget->addWidget(partner);
+  stackedWidget->setCurrentWidget(l); // Set login interface as default enter interface
+
+  // Switch to islam interface onLoginSuccessful signal
+  QMainWindow::connect(l, &Login::loginSuccessful, [&]() {
+    stackedWidget->setCurrentWidget(partner);
+  });
+
+  mainWin.setCentralWidget(stackedWidget);
+  mainWin.resize(1920, 1080);
+  mainWin.show();
 
   return app.exec();
 }

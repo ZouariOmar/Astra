@@ -16,7 +16,10 @@
 			"qtwidgets": "cpp",
 			"quiloader": "cpp",
 			"ostream": "cpp",
-			"iostream": "cpp"
+			"iostream": "cpp",
+			"qmessagebox": "cpp",
+			"qmovie": "cpp",
+			"qdebug": "cpp"
 		}
 	}
 }

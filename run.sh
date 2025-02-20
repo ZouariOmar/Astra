@@ -31,11 +31,6 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No color
 
-if [ $1 == "start" -a $2 == "ds" ]; then
-  /home/zouari_omar/Qt/Tools/QtDesignStudio/bin/qtdesignstudio
-  exit 0
-fi
-
 #* Check if at least two arguments are provided
 if [ "$#" -lt 2 ]; then
   echo -e "${RED}Error:${NC} Insufficient arguments."

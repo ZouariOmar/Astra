@@ -3,54 +3,65 @@
  * @author @ZouariOmar (zouariomar20@gmail.com)
  * @brief # Login header file
  * @version 0.1
- * @date 2025-02-10
+ * @date 2025-02-18
  * @copyright Copyright (c) 2025
  * @link https://github.com/ZouariOmar/Astra/project/login.hpp @endlink
  */
 
 // ? Pre-Processor prototype declaration part
-#ifndef LOGIN_HPP
-#define LOGIN_HPP
+#ifndef __LOGIN_HPP__
+#define __LOGIN_HPP__
+#define __LOGIN_GIF_ANIMATION__ 5000 // 5sec
+#define __START_LG_Q_LABEL_X__ 210   // Start l QLabel x position = 210px
+#define __END_LG_Q_LABEL_X__ 330     // End l QLabel x position = 210px
 
 // ? Include prototype declaration part
 // * Include std libs (Qt)
-#include <qt6/QtCore/QDebug>
-#include <qt6/QtCore/QObject>
+#include <QtCore/QDebug>
+#include <QtCore/QPropertyAnimation>
+#include <QtCore/QTimer>
+#include <QtGui/QMovie>
+#include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMessageBox>
 
-// * Include std libs (C++)
-#include <iostream>
+// Include generated .h files
+#include "../ui/ui_login.h"
 
 // * Use stander workspace
 using namespace std;
 
 // ? Classes prototype declaration part
-class Login : public QObject {
+
+QT_BEGIN_NAMESPACE
+namespace Ui {
+class Login;
+}
+QT_END_NAMESPACE
+
+class Login : public QMainWindow {
   Q_OBJECT
-  Q_PROPERTY(QString username READ username WRITE setUsername NOTIFY usernameChanged)
-  Q_PROPERTY(QString password READ password WRITE setPassword NOTIFY passwordChanged)
 
 public:
-  explicit Login(QObject *parent = nullptr);
-  
-  // Username read and write fn
-  QString username() const;
-  void setUsername(const QString &newUsername);
+  explicit Login(QWidget *parent = nullptr);
+  ~Login();
 
-  // Password read and write fn
-  QString password() const;
-  void setPassword(const QString &newPassword);
+private: // ? Private vars
+  Ui::MainWindow *ui;
+  const QStringList gifPaths;
+  int currentGifIndex;
+  QTimer *gifTimer;
+  QMovie *currentMovie;
 
-  Q_INVOKABLE void login(); // Function to process login
+private: // ? Private fns
+  void updateGif();
+  bool eventFilter(QObject *, QEvent *) override;
+
+private slots:
+  void on_pushButton_clicked();
+  // void onLoginSuccessful();
 
 signals:
-  void usernameChanged();
-  void passwordChanged();
-  void loginSuccess();
-  void loginFailed();
-
-private:
-  QString m_username;
-  QString m_password;
+  void loginSuccessful(); // Signal to notify successful login
 }; // Login class
 
-#endif // LOGIN_HPP
+#endif // __LOGIN_HPP__
