@@ -6,3 +6,5 @@ bin/build/*
 
 # Ignore QtDS Project
 project/QtDS/*
+# Ignore the helper doc
+doc/Helper.txt

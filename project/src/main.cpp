@@ -9,8 +9,10 @@
  */
 
 // ? Include prototype declaration part
-#include "../inc/inc.hpp"
-#include "../inc/partenaire.h"
+#include "../inc/MainWindow.hpp"
+
+// * Include std libs (Qt)
+#include <QtWidgets/QApplication>
 
 // ? Main int function prototype dev part
 
@@ -22,25 +24,6 @@
  */
 int main(int argc, char **argv) {
   QApplication app(argc, argv);
-  QMainWindow mainWin;
-  QStackedWidget *stackedWidget(new QStackedWidget);
-
-  Login *l(new Login);
-  partenaire *partner(new partenaire); // ! Put islam interface her
-
-  // Add interfaces to `stackWidget`
-  stackedWidget->addWidget(l);
-  stackedWidget->addWidget(partner);
-  stackedWidget->setCurrentWidget(l); // Set login interface as default enter interface
-
-  // Switch to islam interface onLoginSuccessful signal
-  QMainWindow::connect(l, &Login::loginSuccessful, [&]() {
-    stackedWidget->setCurrentWidget(partner);
-  });
-
-  mainWin.setCentralWidget(stackedWidget);
-  mainWin.resize(1920, 1080);
-  mainWin.show();
-
+  MainWindow mainWin;
   return app.exec();
 }

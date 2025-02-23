@@ -19,7 +19,12 @@
 			"iostream": "cpp",
 			"qmessagebox": "cpp",
 			"qmovie": "cpp",
-			"qdebug": "cpp"
+			"qdebug": "cpp",
+			"qapplication": "cpp",
+			"*.ui": "cpp",
+			"qmainwindow": "cpp",
+			"qpropertyanimation": "cpp",
+			"qgraphicsopacityeffect": "cpp"
 		}
 	}
 }

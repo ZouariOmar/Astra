@@ -20,6 +20,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/main.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/login.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/connect.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
 
   # Islam Part
   ${CMAKE_SOURCE_DIR}/../project/src/partenaire.cpp
@@ -29,7 +30,7 @@ set(SOURCES
 # Add the main window header files
 set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/login.hpp
-  ${CMAKE_SOURCE_DIR}/../project/inc/inc.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/MainWindow.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/connect.hpp
 
   # Islam part

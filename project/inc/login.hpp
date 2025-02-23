@@ -14,6 +14,8 @@
 #define __LOGIN_GIF_ANIMATION__ 5000 // 5sec
 #define __START_LG_Q_LABEL_X__ 210   // Start l QLabel x position = 210px
 #define __END_LG_Q_LABEL_X__ 330     // End l QLabel x position = 210px
+#define __FULL_VISIBLE__ 1.0         // Fully visible (opacity)
+#define __FULL_TRANSPARENT__ 0.0     // Fully transparent (opacity)
 
 // ? Include prototype declaration part
 // * Include std libs (Qt)
@@ -21,6 +23,7 @@
 #include <QtCore/QPropertyAnimation>
 #include <QtCore/QTimer>
 #include <QtGui/QMovie>
+#include <QtWidgets/QGraphicsOpacityEffect>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
 
@@ -46,22 +49,30 @@ public:
   ~Login();
 
 private: // ? Private vars
-  Ui::MainWindow *ui;
+  Ui::Login *ui;
   const QStringList gifPaths;
   int currentGifIndex;
   QTimer *gifTimer;
   QMovie *currentMovie;
 
 private: // ? Private fns
-  void updateGif();
+  // * Events
   bool eventFilter(QObject *, QEvent *) override;
+  bool forget_password_events(QObject *, QEvent *);
+  bool login_btn_events(QObject *, QLabel *, QEvent *);
+
+  // * Effects
+  void updateGif();
+  void QGroupBoxFadeOutEffect(QGroupBox *, QGroupBox *);
+  QPropertyAnimation *FadeEffect(QGroupBox *, const QVariant, const QVariant);
 
 private slots:
   void on_pushButton_clicked();
-  // void onLoginSuccessful();
+  void on_returnBtn_clicked();
 
 signals:
-  void loginSuccessful(); // Signal to notify successful login
+  void
+  loginSuccessful(); // Signal to notify successful login
 }; // Login class
 
 #endif // __LOGIN_HPP__

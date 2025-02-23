@@ -11,34 +11,25 @@
 // ? Pre-Processor prototype declaration part
 #ifndef __INC_HPP__
 #define __INC_HPP__
+#define __SCREEN_WIDTH__ 1920
+#define __SCREEN_HIGHT__ 1080
 
 // ? Include prototype declaration part
-// * Include custom headers
-#include "login.hpp"
-
 // * Include std libs (Qt)
-#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
 #include <QtWidgets/QStackedWidget>
 
 // * Use stander workspace
 using namespace std;
 
-// ? Structure prototype declaration part
-/*
- * struct...
- */
-
-// ? Function prototype declaration part
-/*
- * func...
- */
-
 // ? Class prototype declaration part
+class MainWindow : public QMainWindow {
+public:
+  MainWindow();
+  ~MainWindow();
+  QStackedWidget *stackedWidget;
 
-// class manWindow : public QMainWindow {
-//   Q_OBJECT
-
-//   pu
-// }
+private:
+}; // MainWindow class
 
 #endif // __INC_HPP__
