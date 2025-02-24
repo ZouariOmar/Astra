@@ -18,7 +18,7 @@
 #define __FULL_TRANSPARENT__ 0.0     // Fully transparent (opacity)
 
 // ? Include prototype declaration part
-// * Include std libs (Qt)
+// * Include std headers (Qt)
 #include <QtCore/QDebug>
 #include <QtCore/QPropertyAnimation>
 #include <QtCore/QTimer>

@@ -24,7 +24,8 @@
 			"*.ui": "cpp",
 			"qmainwindow": "cpp",
 			"qpropertyanimation": "cpp",
-			"qgraphicsopacityeffect": "cpp"
+			"qgraphicsopacityeffect": "cpp",
+			"new": "cpp"
 		}
 	}
 }
