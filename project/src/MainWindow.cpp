@@ -1,11 +1,11 @@
 /**
  * @file MainWindow.cpp
  * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief ### The Main interfaces lancer (default: login interface) 
+ * @brief ### The Main interfaces lancer (default: login interface)
  * @version 0.1
  * @date 2025-02-21
  * @copyright Copyright (c) 2025
- *
+ * @link https://github.com/ZouariOmar/Astra/project/src/MainWindow.cpp MainWindow.cpp @endlink
  */
 
 //? Include prototype declaration part

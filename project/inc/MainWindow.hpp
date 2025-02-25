@@ -1,11 +1,11 @@
 /**
- * @file inc.hpp
+ * @file MainWindow.hpp
  * @author @ZouariOmar (zouariomar20@gmail.com)
  * @brief ### Main header file
  * @version 0.1
  * @date 2025-02-20
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/login.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/MainWindow.hpp MainWindow.hpp @endlink
  */
 
 // ? Pre-Processor prototype declaration part

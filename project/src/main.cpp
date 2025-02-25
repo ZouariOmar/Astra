@@ -25,13 +25,6 @@
  */
 int main(int argc, char **argv) {
   QApplication app(argc, argv);
-
-  // ! Email Test
-  Email_ls *email_ls = new Email_ls("Omar.Zouari@esprit.tn", "Hello World!", "Just a simple mail");
-  Email email(*email_ls);
-  email.sendEmail();
-  delete email_ls;
-
   MainWindow mainWin;
   return app.exec();
 }

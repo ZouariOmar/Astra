@@ -5,180 +5,130 @@
  * @version 0.1
  * @date 2025-02-23
  * @copyright Copyright (c) 2025
- * @link https://raw.githubusercontent.com/curl/curl/master/docs/examples/smtp-mail.c @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/smtp-mail.cpp smtp-mail.cpp @endlink
+ * @link https://raw.githubusercontent.com/curl/curl/master/docs/examples/smtp-mail.c smtp-mail.c @endlink
+ * See @link https://curl.se/libcurl/c/curl_mime_type.html "In the absence of a mime type!" @endlink
  */
 
 //? Include prototype declaration part
 #include "../inc/smtp-mail.hpp"
 
+//? Function/Class prototype dev part
+
 /**
- * @brief ### Construct a new Email_ls::Email_ls object
+ * @brief ### Construct a new EmailAuth::EmailAuth object
  *
- * @struct Email_ls
- * @param _from_addr {const char *}
- * @param _from_app_password {const char *}
- * @param _to_addr {const char *}
- * @param _cc_addr {const char *}
- * @param _subject {const char *}
- * @param _body {const char *}
- * @param _mail_server {const char *}
+ * @struct EmailAuth
  */
-Email_ls::Email_ls(const char *_from_addr,
-                   const char *_from_app_password,
-                   const char *_to_addr,
-                   const char *_cc_addr,
-                   const char *_subject,
-                   const char *_body,
-                   const char *_attachment_path,
-                   const char *_mail_server)
+EmailAuth::EmailAuth()
+    : from_addr(getenv("ASTRA_ADDR")),
+      from_app_password(getenv("ASTRA_APP_PASSWORD")),
+      mail_server(getenv("MAIL_SERVER")) {
+}
+
+/**
+ * @brief ### Construct a new EmailAuth::EmailAuth object
+ *
+ * @struct                       EmailAuth
+ * @param _from_addr             {const std::string}
+ * @param _from_app_app_password {const std::string}
+ * @param _mail_server           {const std::string}
+ */
+EmailAuth::EmailAuth(const std::string _from_addr, const std::string _from_app_app_password, const std::string _mail_server)
     : from_addr(_from_addr),
-      from_app_password(_from_app_password),
-      to_addr(_to_addr),
-      cc_addr(_cc_addr),
-      subject(_subject),
-      body(_body),
-      attachment_path(_attachment_path),
+      from_app_password(_from_app_app_password),
       mail_server(_mail_server) {
 }
 
 /**
- * @brief ### Construct a new Email_ls::Email_ls object
+ * @brief ### Construct a new EmailData::EmailData object
  *
- * @struct Email_ls
- * @param _to_addr {const char *}
- * @param _cc_addr {const char *}
- * @param _subject {const char *}
- * @param _body {const char *}
+ * @struct         EmailAuth
+ * @param _to_addr {const std::string}
+ * @param _subject {const std::string}
+ * @param _body    {const std::string}
  */
-Email_ls::Email_ls(const char *_to_addr,
-                   const char *_cc_addr,
-                   const char *_subject,
-                   const char *_body)
-    : from_addr(getenv("ASTRA_ADDR")),
-      from_app_password(getenv("ASTRA_APP_PASSWORD")),
-      mail_server(getenv("MAIL_SERVER")),
-      to_addr(_to_addr),
-      cc_addr(_cc_addr),
+EmailData::EmailData(const std::string _to_addr, const std::string _subject, const std::string _body)
+    : to_addr(_to_addr),
       subject(_subject),
-      body(_body) {
-}
-
-Email_ls::Email_ls(const char *_to_addr,
-                   const char *_subject,
-                   const char *_body)
-    : from_addr(getenv("ASTRA_ADDR")),
-      from_app_password(getenv("ASTRA_APP_PASSWORD")),
-      mail_server(getenv("MAIL_SERVER")),
-      to_addr(_to_addr),
-      cc_addr(nullptr),
-      subject(_subject),
-      body(_body) {
-}
-
-char *Email::payload_text = nullptr;
-
-Email::Email(const Email_ls email_list)
-    : MAIL_SERVER(email_list.mail_server), FROM_ADDR(email_list.from_addr), FROM_APP_PASSWORD(email_list.from_app_password), TO_ADDR(email_list.to_addr), CC_ADDR(email_list.cc_addr) {
-  if (!payload_text) {
-    payload_text = new char[2048];
-  }
-
-  sprintf(payload_text, "Date: " __DATE__ "\r\n"
-                        "To: A Receiver <%s> \r\n"
-                        "From: Sender Person <%s>\r\n"
-                        "Cc: <%s>\r\n"
-                        "Subject: %s\r\n"
-                        "MIME-Version: 1.0\r\n"
-                        "Content-Type: multipart/mixed; boundary=\"boundary\"\r\n\r\n"
-                        "--boundary\r\n"
-                        "Content-Type: text/plain; charset=UTF-8\r\n"
-                        "\r\n" /* empty line to divide headers from body, see RFC 5322 */
-                        "%s\r\n"
-                        "--boundary\r\n"
-                        "Content-Type: application/octet-stream\r\n"
-                        "Content-Transfer-Encoding: base64\r\n"
-                        "Content-Disposition: attachment; filename=%s"
-                        "\r\n"
-                        "--boundary--",
-          email_list.to_addr,
-          email_list.from_addr,
-          email_list.cc_addr,
-          email_list.subject,
-          email_list.body,
-          "");
-
-  std::cout << payload_text << std::endl;
-}
-
-Email::~Email() {
-  delete[] payload_text;
-  payload_text = nullptr;
-}
-
-bool Email::isOnlySpaces(const char *str) {
-  while (*str) { // While we haven't reached the end of the string
-    if (*str != ' ')
-      return false;
-    ++str;
-  }
-
-  return true; // All characters were spaces or the string was empty
+      body(_body), cc_addr({}),
+      attachments({}) {
 }
 
 /**
- * @brief ###
+ * @brief ### Construct a new EmailData::EmailData object
  *
- * @param ptr {char *}
- * @param size size_t
- * @param nmem size_t
- * @param userp {void *} => {struct upload_status *}
- * @return size_t
+ * @struct             EmailAuth
+ * @param _to_addr     {const std::string}
+ * @param _subject     {const std::string}
+ * @param _body        {const std::string}
+ * @param _cc_addr     {const std::vector<std::string>}
+ * @param _attachments {const std::vector<std::string>}
  */
-size_t Email::payload_source(char *ptr, size_t size, size_t nmemb, void *userp) {
-  struct upload_status *upload_ctx = (struct upload_status *)userp;
-  const char *data;
-  size_t room = size * nmemb;
-
-  if ((size == 0) || (nmemb == 0) || ((size * nmemb) < 1))
-    return 0;
-
-  data = &payload_text[upload_ctx->bytes_read];
-
-  if (data) {
-    size_t len = strlen(data);
-    if (room < len)
-      len = room;
-    memcpy(ptr, data, len);
-    upload_ctx->bytes_read += len;
-
-    return len;
-  }
-
-  return 0;
+EmailData::EmailData(const std::string _to_addr, const std::string _subject, const std::string _body, const std::vector<std::string> _cc_addr, const std::vector<std::string> _attachments)
+    : to_addr(_to_addr),
+      subject(_subject),
+      body(_body), cc_addr(_cc_addr),
+      attachments(_attachments) {
 }
 
 /**
- * @brief ### Main sender mail
+ * @brief ### Construct a new EmailSender::EmailSender object
  *
+ * @class            EmailSender
+ * @param _emailAuth EmailAuth
+ */
+EmailSender::EmailSender(const EmailAuth _emailAuth)
+    : auth(new EmailAuth(_emailAuth)) {
+}
+
+/**
+ * @brief ### Send the given data using SMTP protocol (support it with libcurl)
+ *
+ * @class      EmailSender
+ * @param data EmailData
  * @return int
  */
-int Email::sendEmail() {
-  CURL *curl;
-  CURLcode res = CURLE_OK;
-  struct curl_slist *recipients = NULL;
-  struct upload_status upload_ctx = {0};
-
+int EmailSender::send(EmailData data) {
+  // Init part
+  CURL *curl{nullptr};
+  CURLcode res{CURLE_OK};
+  curl_slist *recipients = nullptr;
+  curl_slist *headers = nullptr;
+  curl_mime *mime{nullptr};
+  curl_mimepart *part{nullptr};
+  curl_global_init(CURL_GLOBAL_DEFAULT);
   curl = curl_easy_init();
+
   if (curl) {
+    // ================================================
+    // === Security configuration and debuging part ===
+    // ================================================
+
     /*
      * This is the URL for your mailserver. Note the use of smtps:// rather
      * than smtp:// to request a SSL based connection.
-     * We use Google mailserver */
-    curl_easy_setopt(curl, CURLOPT_URL, MAIL_SERVER); // Using SSL Port
+     * We use Google mailserver
+     */
+    curl_easy_setopt(curl, CURLOPT_URL, auth->mail_server.c_str());
 
     /* Set username and password */
-    curl_easy_setopt(curl, CURLOPT_USERNAME, FROM_ADDR);
-    curl_easy_setopt(curl, CURLOPT_PASSWORD, FROM_APP_PASSWORD);
+    curl_easy_setopt(curl, CURLOPT_USERNAME, auth->from_addr.c_str());
+    curl_easy_setopt(curl, CURLOPT_PASSWORD, auth->from_app_password.c_str());
+    delete auth; // No need for the authorisation data
+    auth = nullptr;
+
+    /*
+   * Note that this option is not strictly required, omitting it results in
+   * libcurl sending the MAIL FROM command with empty sender data. All
+   * autoresponses should have an empty reverse-path, and should be directed
+   * to the address in the reverse-path which triggered them. Otherwise,
+   * they could cause an endless loop. See RFC 5321 Section 4.5.5 for more
+   * details.
+   * Most SMTP servers (especially Gmail) force the "From" address to be the authenticated user for security reasons.
+   ! Gmail forces the "From" field to match this authenticated account. This is a security measure to prevent email spoofing.
+   */
+    // curl_easy_setopt(curl, CURLOPT_MAIL_FROM, from);
 
     // Add SSL security layer
     curl_easy_setopt(curl, CURLOPT_USE_SSL, CURLUSESSL_ALL);
@@ -204,49 +154,69 @@ int Email::sendEmail() {
     curl_easy_setopt(curl, CURLOPT_SSL_VERIFYHOST, 2L);
 
     /*
-     * Note that this option is not strictly required, omitting it results in
-     * libcurl sending the MAIL FROM command with empty sender data. All
-     * autoresponses should have an empty reverse-path, and should be directed
-     * to the address in the reverse-path which triggered them. Otherwise,
-     * they could cause an endless loop. See RFC 5321 Section 4.5.5 for more
-     * details.
-     * Most SMTP servers (especially Gmail) force the "From" address to be the authenticated user for security reasons.
-     ! Gmail forces the "From" field to match this authenticated account. This is a security measure to prevent email spoofing.
-     */
-    // curl_easy_setopt(curl, CURLOPT_MAIL_FROM, FROM_ADDR);
-
-    /* Add two recipients, in this particular case they correspond to the
-     * To: and Cc: addressees in the header, but they could be any kind of
-     * recipient. */
-    recipients = curl_slist_append(recipients, TO_ADDR);
-    if (CC_ADDR && strlen(CC_ADDR) && !isOnlySpaces(CC_ADDR)) // CC_ADDR not nullptr, not empty, doesn't contain only spaces
-      recipients = curl_slist_append(recipients, CC_ADDR);
-    curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
-
-    /* We are using a callback function to specify the payload (the headers and
-     * body of the message). You could just use the CURLOPT_READDATA option to
-     * specify a FILE pointer to read from. */
-    curl_easy_setopt(curl, CURLOPT_READFUNCTION, payload_source);
-    curl_easy_setopt(curl, CURLOPT_READDATA, &upload_ctx);
-    curl_easy_setopt(curl, CURLOPT_UPLOAD, 1L);
-
-    /*
      * Since the traffic is encrypted, it is useful to turn on debug
      * information within libcurl to see what is happening during the
-     * transfer */
+     * transfer
+     */
     curl_easy_setopt(curl, CURLOPT_VERBOSE, 1L);
+
+    // ==================================================
+    // === / Security configuration and debuging part ===
+    // ==================================================
+
+    // ==============================================
+    // === Email Data preparation && holding part ===
+    // ==============================================
+
+    // Add email headers(From & To & Cc & Subject)
+    headers = curl_slist_append(headers, "From: Sender <sender@example.com>");     // !
+    headers = curl_slist_append(headers, "To: Recipient <recipient@example.com>"); // !
+    headers = curl_slist_append(headers, "Cc: <omar@example.com>");                // !
+    headers = curl_slist_append(headers, "Subject: Test Email with Subject");      // !
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+
+    // Add primary recipient
+    recipients = curl_slist_append(recipients, data.to_addr.c_str());
+
+    // Add CC recipients
+    for (std::string &ccRecipient : data.cc_addr)
+      recipients = curl_slist_append(recipients, ccRecipient.c_str());
+    curl_easy_setopt(curl, CURLOPT_MAIL_RCPT, recipients);
+
+    // Initialize MIME structure
+    mime = curl_mime_init(curl);
+
+    // Add body
+    part = curl_mime_addpart(mime);
+    curl_mime_data(part, data.body.c_str(), CURL_ZERO_TERMINATED);
+    curl_mime_type(part, "text/html"); // Set content type to HTML
+
+    // Add attachments
+    for (std::string &attachment : data.attachments) {
+      part = curl_mime_addpart(mime);
+      curl_mime_filedata(part, attachment.c_str());
+      // curl_mime_type(part, "image/png"); 
+      curl_mime_encoder(part, "base64"); // ? Ensures Safe Delivery (Avoids data loss or character misinterpretation because SMTP only supports 7-bit ASCII text)
+      curl_mime_filename(part, attachment.c_str());
+    }
+
+    // Set MIME for the email
+    curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
+
+    // ================================================
+    // === / Email Data preparation && holding part ===
+    // ================================================
 
     /* Send the message */
     res = curl_easy_perform(curl);
 
     /* Check for errors */
-    if (res != CURLE_OK)
-      fprintf(stderr, "curl_easy_perform() failed: %s\n",
-              curl_easy_strerror(res));
+    (res != CURLE_OK) ? std::cerr << "Email send failed: " << curl_easy_strerror(res) << std::endl : std::cout << "Email sent successfully!" << std::endl;
 
-    /* Free the list of recipients */
-    curl_slist_free_all(recipients);
-
+    // Clean up proccess
+    curl_slist_free_all(recipients); /* Free the list of recipients */
+    curl_slist_free_all(headers);
+    curl_mime_free(mime);
     /* curl does not send the QUIT command until you call cleanup, so you
      * should be able to reuse this connection for additional messages
      * (setting CURLOPT_MAIL_FROM and CURLOPT_MAIL_RCPT as required, and
@@ -258,5 +228,7 @@ int Email::sendEmail() {
     curl_easy_cleanup(curl);
   }
 
-  return (int)res;
+  curl_global_cleanup();
+
+  return int(res);
 }
