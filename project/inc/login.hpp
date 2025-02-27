@@ -65,14 +65,22 @@ private: // ? Private fns
   void updateGif();
   void QGroupBoxFadeOutEffect(QGroupBox *, QGroupBox *);
   QPropertyAnimation *FadeEffect(QGroupBox *, const QVariant, const QVariant);
+  void change_hideShowBtnIcon(QLineEdit *, QPushButton *, const QLineEdit::EchoMode mode = QLineEdit::Password, const QString path = "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/closedEye.png");
 
 private slots:
+  // * Login sub-inteface group box slots
   void on_pushButton_clicked();
+  void on_hide_show_btn_clicked();
+
+  // * Forget password sub-inteface group box slots
+  void on_hide_show_btn_2_clicked();
   void on_returnBtn_clicked();
+  void on_sendEmailBtn_clicked();
+
 
 signals:
-  void
-  loginSuccessful(); // Signal to notify successful login
+  // * Login sub-inteface group box signals
+  void loginSuccessful(); // Signal to notify successful login
 }; // Login class
 
 #endif // __LOGIN_HPP__

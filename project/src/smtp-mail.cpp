@@ -43,21 +43,6 @@ EmailAuth::EmailAuth(const std::string _from_addr, const std::string _from_app_a
 /**
  * @brief ### Construct a new EmailData::EmailData object
  *
- * @struct         EmailAuth
- * @param _to_addr {const std::string}
- * @param _subject {const std::string}
- * @param _body    {const std::string}
- */
-EmailData::EmailData(const std::string _to_addr, const std::string _subject, const std::string _body)
-    : to_addr(_to_addr),
-      subject(_subject),
-      body(_body), cc_addr({}),
-      attachments({}) {
-}
-
-/**
- * @brief ### Construct a new EmailData::EmailData object
- *
  * @struct             EmailAuth
  * @param _to_addr     {const std::string}
  * @param _subject     {const std::string}
@@ -164,16 +149,16 @@ int EmailSender::send(EmailData data) {
     // === / Security configuration and debuging part ===
     // ==================================================
 
-    // ==============================================
-    // === Email Data preparation && holding part ===
-    // ==============================================
+    // ==================================================
+    // ===== Email Data preparation && holding part =====
+    // ==================================================
 
     // Add email headers(From & To & Cc & Subject)
-    headers = curl_slist_append(headers, "From: Sender <sender@example.com>");     // !
-    headers = curl_slist_append(headers, "To: Recipient <recipient@example.com>"); // !
-    headers = curl_slist_append(headers, "Cc: <omar@example.com>");                // !
-    headers = curl_slist_append(headers, "Subject: Test Email with Subject");      // !
-    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers);
+    headers = curl_slist_append(headers, "From: Sender <sender@example.com>"); // !
+    headers = curl_slist_append(headers, std::string("To: " + data.to_addr).c_str());
+    headers = curl_slist_append(headers, "Cc: <omar@example.com>"); // !
+    headers = curl_slist_append(headers, std::string("Subject: " + data.subject).c_str());
+    curl_easy_setopt(curl, CURLOPT_HTTPHEADER, headers); // Set the email header
 
     // Add primary recipient
     recipients = curl_slist_append(recipients, data.to_addr.c_str());
@@ -195,7 +180,7 @@ int EmailSender::send(EmailData data) {
     for (std::string &attachment : data.attachments) {
       part = curl_mime_addpart(mime);
       curl_mime_filedata(part, attachment.c_str());
-      // curl_mime_type(part, "image/png"); 
+      // curl_mime_type(part, "image/png");
       curl_mime_encoder(part, "base64"); // ? Ensures Safe Delivery (Avoids data loss or character misinterpretation because SMTP only supports 7-bit ASCII text)
       curl_mime_filename(part, attachment.c_str());
     }
@@ -203,9 +188,9 @@ int EmailSender::send(EmailData data) {
     // Set MIME for the email
     curl_easy_setopt(curl, CURLOPT_MIMEPOST, mime);
 
-    // ================================================
-    // === / Email Data preparation && holding part ===
-    // ================================================
+    // ==================================================
+    // ==== / Email Data preparation && holding part ====
+    // ==================================================
 
     /* Send the message */
     res = curl_easy_perform(curl);
@@ -232,3 +217,73 @@ int EmailSender::send(EmailData data) {
 
   return int(res);
 }
+
+/**
+ * ##################################
+ * #### EmailBody class dev part ####
+ * ##################################
+ */
+
+/**
+ * @brief ### Construct a new EmailBody::EmailBody object
+ *
+ * @note `_param` should be formatted as `"{{PLACEHOLDER}}" : "VALUE"`
+ *
+ * @param path   {const std::string}
+ * @param _param {const std::unordered_map<std::string, std::string>}
+ */
+EmailBody::EmailBody(const std::string path, const std::unordered_map<std::string, const std::string> _param)
+    : param(_param) {
+
+  std::ifstream file(path); // Open the file using
+  if (!file.is_open()) {    // Confirm file opening
+    std::cerr << "Error: Failed to open file!" << std::endl;
+    return;
+  }
+
+  // Read the file line by line into a `inner_html`
+  std::string line;
+  while (getline(file, line))
+    inner_html += line;
+
+  // Close the file
+  file.close();
+}
+
+/**
+ * @brief ### Get the `inner_html` string with/without the new format
+ *
+ * @class  EmailBody
+ * @return std::string
+ */
+std::string EmailBody::get_inner_html() {
+  return format_inner_html(), inner_html;
+}
+
+/**
+ * @brief ### Replaces placeholders in the inner HTML with corresponding values
+ *
+ * @details This function iterates over a set of key-value pairs (`param`)
+ * and replaces occurrences of each key in `inner_html` with its associated value.
+ *
+ * @note Placeholders in `inner_html` should be formatted as `{{PLACEHOLDER}}`
+ * and will be replaced with their corresponding values.
+ *
+ * @class  EmailBody
+ * @return void
+ */
+void EmailBody::format_inner_html() {
+  for (const std::pair<const std::string, const std::string> &format : param) {
+    size_t pos{};
+    while ((pos = inner_html.find(format.first, pos)) != std::string::npos) {
+      inner_html.replace(pos, format.first.length(), format.second);
+      pos += format.second.length(); // Avoid infinite loop
+    }
+  }
+}
+
+/**
+ * ####################################
+ * #### / EmailBody class dev part ####
+ * ####################################
+ */

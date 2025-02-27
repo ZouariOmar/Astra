@@ -10,9 +10,9 @@
 
 // ? Include prototype declaration part
 #include "../inc/MainWindow.hpp"
+#include "../inc/smtp-mail.hpp"
 
 // * Include std libs (Qt)
-#include "../inc/smtp-mail.hpp"
 #include <QtWidgets/QApplication>
 
 // ? Main int function prototype dev part
@@ -20,8 +20,8 @@
 /**
  * @brief # The Main Program Function
  * @param argc int
- * @param argv char **
- * @return int
+ * @param argv {char **}
+ * @return     int
  */
 int main(int argc, char **argv) {
   QApplication app(argc, argv);

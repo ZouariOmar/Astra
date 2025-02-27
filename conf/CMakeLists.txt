@@ -24,8 +24,8 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/smtp-mail.cpp
 
-  # Islam Part
-  ${CMAKE_SOURCE_DIR}/../project/src/partenaire.cpp
+  # Template Part
+  ${CMAKE_SOURCE_DIR}/../project/src/template.cpp
 
 )
 
@@ -37,8 +37,8 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/connect.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/smtp-mail.hpp
 
-  # Islam part
-  ${CMAKE_SOURCE_DIR}/../project/inc/partenaire.h
+  # Template part
+  ${CMAKE_SOURCE_DIR}/../project/inc/template.h
 )
 
 # Add the UI file

@@ -17,7 +17,7 @@
 /**
  * @brief ### Construct a new Login::Login object
  *
- * @class Login
+ * @class        Login
  * @param parent {QWidget *}
  */
 Login::Login(QWidget *parent)
@@ -66,7 +66,7 @@ Login::~Login() {
  *
  *
  * @details This change make a beautiful animation
- * @class Login
+ * @class   Login
  */
 void Login::updateGif() {
   currentGifIndex = (currentGifIndex + 1) % gifPaths.size(); // Cycle through GIFs
@@ -117,22 +117,29 @@ void Login::on_pushButton_clicked() {
  */
 
 /**
- * @brief ### Add the transaction animation in Enter/Leave events fo
+ * @brief ### Manage global events in login interface
  *
- * @param obj {QObject *}
+ * @param obj   {QObject *}
  * @param event {QEvent *}
- * @return bool
+ * @return      bool
  */
 bool Login::eventFilter(QObject *obj, QEvent *event) {
   if (obj == ui->pushButton) // ? Check if the event come form the login btn (login interface)
     return login_btn_events(obj, ui->lg, event);
-  else if (obj == ui->pushButton_2) // ? Check if the event come form the login btn (forget password interface)
+  else if (obj == ui->pushButton_2 && ui->pushButton_2->isEnabled()) // ? Check if the event come form the login btn (forget password interface)
     return login_btn_events(obj, ui->lg_2, event);
   else if (obj == ui->f_pwd) // ? Check if the object is the forget password label
     return forget_password_events(obj, event);
   return QWidget::eventFilter(obj, event);
 }
 
+/**
+ * @brief ### Manage forget password events
+ *
+ * @param obj   {QObject *}
+ * @param event {QEvent *}
+ * @return      bool
+ */
 bool Login::forget_password_events(QObject *obj, QEvent *event) {
   switch (event->type()) {
   case QEvent::Enter:                                                                     // * OnEnter event
@@ -151,6 +158,14 @@ bool Login::forget_password_events(QObject *obj, QEvent *event) {
   return false; // Just to make compiler run
 }
 
+/**
+ * @brief ### Manage login button in the login/forgetPassword QGroups
+ *
+ * @param obj   {QObject *}
+ * @param icon  {QLabel *}
+ * @param event {QEvent *}
+ * @return      bool
+ */
 bool Login::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
   // Create animation object
   QPropertyAnimation *animation(new QPropertyAnimation(icon, "pos", this));
@@ -202,11 +217,11 @@ void Login::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
 /**
  * @brief ### Make fade In/Out for `group`
  *
- * @class Login
- * @param group {QGroupBox *}
+ * @class          Login
+ * @param group    {QGroupBox *}
  * @param startVal {const QVariant}
- * @param endVal {const QVariant}
- * @return {QPropertyAnimation *}
+ * @param endVal   {const QVariant}
+ * @return         {QPropertyAnimation *}
  */
 QPropertyAnimation *Login::FadeEffect(QGroupBox *group, const QVariant startVal, const QVariant endVal) {
   QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(group);
@@ -231,6 +246,45 @@ QPropertyAnimation *Login::FadeEffect(QGroupBox *group, const QVariant startVal,
  */
 void Login::on_returnBtn_clicked() {
   QGroupBoxFadeOutEffect(ui->f_pwd_interface, ui->login);
+}
+
+/**
+ * @brief ### Listen to `hide_show_btn` click action
+ *
+ * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
+ * @class   Login
+ */
+void Login::on_hide_show_btn_clicked() {
+  (ui->charCode->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn) : change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
+}
+
+/**
+ * @brief ### Listen to `hide_show_btn` click action
+ *
+ * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
+ * @class   Login
+ */
+void Login::on_hide_show_btn_2_clicked() {
+  (ui->password->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2) : change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
+}
+
+/**
+ * @brief ### Helper function
+ *
+ * @details        this->on_hide_show_btn_clicked() | this->on_hide_show_btn_clicked()
+ * @class          Login
+ * @param lineEdit {QLineEdit *}
+ * @param btn      {QPushButton *}
+ * @param mode     {const QLineEdit::EchoMode}
+ * @param path     {const QString}
+ */
+void Login::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const QLineEdit::EchoMode mode, const QString path) {
+  btn->setIcon(QIcon(path));
+  lineEdit->setEchoMode(mode);
+}
+
+
+void Login::on_sendEmailBtn_clicked() {
 }
 
 /**

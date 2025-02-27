@@ -31,7 +31,9 @@
 
 // ? Include prototype declaration part
 // * Include std C++ header
+#include <fstream>
 #include <iostream>
+#include <unordered_map>
 #include <vector>
 
 // * Include main libcurl header (.h)
@@ -43,7 +45,7 @@ struct EmailAuth {
       from_app_password,
       mail_server;
   explicit EmailAuth();
-  explicit EmailAuth(const std::string, const std::string, const std::string _mail_server = std::getenv("MAIL_SERVER"));
+  explicit EmailAuth(const std::string _from_addr, const std::string, const std::string _mail_server = std::getenv("MAIL_SERVER"));
 }; // EmailAuth struct
 
 struct EmailData {
@@ -54,8 +56,7 @@ struct EmailData {
   std::vector<std::string>
       cc_addr,
       attachments;
-  explicit EmailData(const std::string, const std::string, const std::string, const std::vector<std::string>, const std::vector<std::string>);
-  explicit EmailData(const std::string, const std::string, const std::string);
+  explicit EmailData(const std::string, const std::string, const std::string, const std::vector<std::string> _cc_addr = {}, const std::vector<std::string> _attachments = {});
 }; // EmailData struct
 
 // ? Classes prototype declaration part
@@ -67,5 +68,16 @@ public:
 private:
   EmailAuth *auth;
 }; // EmailSender class
+
+class EmailBody {
+public:
+  explicit EmailBody(const std::string, const std::unordered_map<std::string, const std::string> _param = {});
+  std::string get_inner_html();
+
+private:
+  void format_inner_html();
+  std::string inner_html;
+  const std::unordered_map<std::string, const std::string> param;
+}; // EmailBody class
 
 #endif // __SMTP_MAIL_HPP__

@@ -11,7 +11,7 @@
 //? Include prototype declaration part
 #include "../inc/MainWindow.hpp"
 #include "../inc/login.hpp"
-#include "../inc/partenaire.h"
+#include "../inc/template.h"
 
 //? Function/Class prototype dev part
 
@@ -25,7 +25,7 @@ MainWindow::MainWindow()
 
   // Declare interfaces objects 
   Login *l(new Login(this));
-  partenaire *partner(new partenaire(this));
+  ModelUi *partner(new ModelUi(this));
 
   // Add interfaces to `stackWidget`
   stackedWidget->addWidget(l);

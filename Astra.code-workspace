@@ -99,7 +99,8 @@
 			"cinttypes": "cpp",
 			"typeinfo": "cpp",
 			"variant": "cpp",
-			"qstackedwidget": "cpp"
+			"qstackedwidget": "cpp",
+			"qpainter": "cpp"
 		}
 	}
 }
