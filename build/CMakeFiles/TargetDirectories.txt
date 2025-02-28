@@ -1,0 +1,5 @@
+/home/zouari_omar/Documents/Daily/Projects/Astra/build/CMakeFiles/Astra.dir
+/home/zouari_omar/Documents/Daily/Projects/Astra/build/CMakeFiles/edit_cache.dir
+/home/zouari_omar/Documents/Daily/Projects/Astra/build/CMakeFiles/rebuild_cache.dir
+/home/zouari_omar/Documents/Daily/Projects/Astra/build/CMakeFiles/Astra_autogen_timestamp_deps.dir
+/home/zouari_omar/Documents/Daily/Projects/Astra/build/CMakeFiles/Astra_autogen.dir

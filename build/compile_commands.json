@@ -1,0 +1,44 @@
+[
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data -o CMakeFiles/Astra.dir/Astra_autogen/mocs_compilation.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/mocs_compilation.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/mocs_compilation.cpp",
+  "output": "CMakeFiles/Astra.dir/Astra_autogen/mocs_compilation.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/connect.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/connect.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/connect.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/connect.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/connect.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/smtp-mail.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/smtp-mail.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/smtp-mail.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/smtp-mail.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/smtp-mail.cpp.o"
+},
+{
+  "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/build",
+  "command": "/usr/bin/clang++ -DQT_CORE_LIB -DQT_GUI_LIB -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets  -Wall -g -std=gnu++20 -fno-direct-access-external-data @CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/template.cpp.o.modmap -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/template.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/template.cpp",
+  "file": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/template.cpp",
+  "output": "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/template.cpp.o"
+}
+]
