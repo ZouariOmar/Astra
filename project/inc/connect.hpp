@@ -22,7 +22,7 @@
 
 // * Use workspaces
 using namespace oracle::occi;
-using namespace std;
+
 
 // ? Classes prototype declaration part
 class Database {
@@ -33,7 +33,8 @@ private:
 public:
   Database();
   Database(const char *, const char *, const char *);
-  vector<vector<string>> execute(const string &query, int &);
+  void execute(const std::string &query, int &affectedRows);
+  std::vector<std::vector<std::string>> execute(const std::string &query);
   ~Database();
 }; // Database class
 

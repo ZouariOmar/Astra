@@ -24,6 +24,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/smtp-mail.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/passwordGen.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/employees.cpp
 
   # Template Part
   ${CMAKE_SOURCE_DIR}/../project/src/template.cpp
@@ -38,6 +39,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/connect.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/smtp-mail.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/passwordGen.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/employees.hpp
 
   # Template part
   ${CMAKE_SOURCE_DIR}/../project/inc/template.h
@@ -60,17 +62,13 @@ find_package(CURL REQUIRED)
 # Add the executable target
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${UI_FILES} ${QML_FILES})
 
-# Link Qt libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE Qt6::Core Qt6::Gui Qt6::Widgets)
 
-# Link oracle libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE clntsh occi)
-
-# Link libcurl libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE CURL::libcurl)
-
-# Link openssl libraries
-target_link_libraries(${PROJECT_NAME} PRIVATE -lssl -lcrypto)
+target_link_libraries(${PROJECT_NAME} PRIVATE 
+Qt6::Core Qt6::Gui Qt6::Widgets # Link Qt libraries
+clntsh occi                     # Link oracle libraries
+CURL::libcurl                   # Link libcurl libraries
+-lssl -lcrypto                  # Link openssl libraries
+)
 
 # Add the tests subdirectory
 # add_subdirectory(test)

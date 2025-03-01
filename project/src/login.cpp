@@ -10,7 +10,7 @@
 
 //? Include prototype declaration part
 #include "../inc/login.hpp"
-#include "../inc/connect.hpp"
+#include "../inc/employees.hpp"
 
 //? Function/Class prototype dev part
 
@@ -67,6 +67,7 @@ Login::~Login() {
  *
  * @details This change make a beautiful animation
  * @class   Login
+ * @return  void
  */
 void Login::updateGif() {
   currentGifIndex = (currentGifIndex + 1) % gifPaths.size(); // Cycle through GIFs
@@ -86,23 +87,26 @@ void Login::updateGif() {
 /**
  * @brief ### Listen to Login button click action
  *
- * @class Login
+ * @class  Login
+ * @return void
  */
 void Login::on_pushButton_clicked() {
-  string _username{ui->username->text().toStdString()},
+  std::string _username{ui->username->text().toStdString()},
       _password{ui->password->text().toStdString()};
 
-  if (_username.empty() || _password.empty())
+  if (_username.empty() || _password.empty()) {
     QMessageBox::warning(
         this, tr("Astra"), tr("Username or password are empty!\n"
                               "Pleas fell the messing parts!"),
         QMessageBox::Ok);
+    return;
+  }
 
   // Verify the validity of the given info
-  Database *db = new Database();
-  int aff{};
-  vector<vector<string>> res = db->execute("SELECT * FROM Employees WHERE Username = '" + _username + "' AND Password = '" + _password + "'", aff);
-  delete db; // Close oracle 1521 port
+  Employees *emp = new Employees;
+  std::vector<std::string> res = emp->select_employee(_username, _password);
+  delete emp;
+  emp = nullptr; 
 
   if (res.empty())
     qDebug() << "User not found";
@@ -283,7 +287,10 @@ void Login::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const 
   lineEdit->setEchoMode(mode);
 }
 
-
+/**
+ * @brief 
+ * 
+ */
 void Login::on_sendEmailBtn_clicked() {
 }
 

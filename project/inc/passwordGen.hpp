@@ -10,6 +10,7 @@
  * @link https://www.geeksforgeeks.org/stdmt19937-class-in-cpp Mersenne twister algorithm @endlink
  * @link https://terminalroot.com/how-to-generate-sha256-hash-with-cpp-and-openssl How to Generate SHA256 Hash with C++ and OpenSSL @endlink
  * @link https://git-ce.rwth-aachen.de/wzl-mq-public/soil/cpp-interface/-/issues/647 SHA256_Init, SHA256_Update and SHA256_Final are depricated in OpenSSL 3.0 @endlink
+ * @link https://docs.huihoo.com/doxygen/openssl/1.0.1c/index.html openssl doxygen @endlink
  */
 
 // ? Pre-Processor prototype declaration part
@@ -33,8 +34,8 @@
 // ? Class prototype declaration part
 class Password {
 public:
-  static std::string generate(const int length = 6, const std::string pattern = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+");
-  static std::string sha256(const std::string str);
+  static std::string generate(const int &length = 6, const std::string &pattern = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+");
+  static std::string sha256sum(const std::string &);
 }; // Password class
 
 #endif // __PASSWORDGEN_HPP__

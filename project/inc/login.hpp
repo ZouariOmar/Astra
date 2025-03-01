@@ -30,9 +30,6 @@
 // Include generated .h files
 #include "../ui/ui_login.h"
 
-// * Use stander workspace
-using namespace std;
-
 // ? Classes prototype declaration part
 
 QT_BEGIN_NAMESPACE

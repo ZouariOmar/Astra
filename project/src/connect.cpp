@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2025-02-13
  * @copyright Copyright (c) 2025
- * @link https://www.oracle.com oracle @endlink
+ * @link https://www.oracle.com oracle @std::endlink
  */
 
 //? Include prototype declaration part
@@ -15,6 +15,8 @@
 
 /**
  * @brief ### Construct a new Database::Database object
+ *
+ * @class   Database
  * @details Use the session export it vars
  */
 Database::Database()
@@ -27,23 +29,26 @@ Database::Database()
 /**
  * @brief Construct a new Database::Database object
  *
- * @param user {const string &}
- * @param pass {const string &}
- * @param db {const string &}
+ * @class      Database
+ * @param user {const std::string &}
+ * @param pass {const std::string &}
+ * @param db   {const std::string &}
  */
 Database::Database(const char *username, const char *password, const char *database) {
   try {
     env = Environment::createEnvironment(Environment::DEFAULT);
     conn = env->createConnection(username, password, database);
-    cout << "Connected to Oracle Database!" << endl;
+    std::cout << "Connected to Oracle Database!" << std::endl;
   } catch (SQLException &e) {
-    cerr << "Connection Error: " << e.getMessage() << endl;
+    std::cerr << "Connection Error: " << e.getMessage() << std::endl;
     throw;
   }
 }
 
 /**
  * @brief Destroy the Database::Database object
+ *
+ * @class   Database
  * @details Cleans up resources
  */
 Database::~Database() {
@@ -51,42 +56,54 @@ Database::~Database() {
     env->terminateConnection(conn);
   if (env)
     Environment::terminateEnvironment(env);
-  cout << "Database connection closed." << endl;
+  std::cout << "Database connection closed." << std::endl;
 }
 
 /**
- * @brief ### Executes any SQL query and returns the result (SELECT) or affected row count (INSERT/UPDATE/DELETE)
+ * @brief ### Executes `INSERT|UPDATE|DELETE` SQL query and update the `affectedRow` count
  *
- * @param query {const string &}
- * @param affectedRows {int &}
- * @return vector<vector<string>>
+ * @class              Database
+ * @param query        {const std::string &}
+ * @param affectedRows {int &} -> Default:0
  */
-vector<vector<string>> Database::execute(const string &query, int &affectedRows) {
-  vector<vector<string>> results;
+void Database::execute(const std::string &query, int &affectedRows) {
   affectedRows = 0; // Default to 0 affected rows
 
   try {
     Statement *stmt = conn->createStatement(query);
+    affectedRows = stmt->executeUpdate(); // For INSERT, UPDATE, DELETE queries
+    conn->terminateStatement(stmt);
+  } catch (SQLException &e) {
+    std::cerr << "Query Error: " << e.getMessage() << std::endl;
+  }
+}
 
-    // Check if it's a SELECT query
-    if (query.find("SELECT") == 0 || query.find("select") == 0) {
-      ResultSet *rs = stmt->executeQuery();
-      int columnCount = rs->getColumnListMetaData().size();
+/**
+ * @brief ### Executes `SELECT` SQL query and return the `results`
+ *
+ * @class       Database
+ * @param query {const std::string &}
+ * @return      std::vector<std::vector<std::string>>
+ */
+std::vector<std::vector<std::string>> Database::execute(const std::string &query) {
+  std::vector<std::vector<std::string>> results;
+  try {
+    Statement *stmt = conn->createStatement(query);
 
-      while (rs->next()) {
-        vector<string> row;
-        for (int i = 1; i <= columnCount; ++i)
-          row.push_back(rs->getString(i));
-        results.push_back(row);
-      }
+    ResultSet *rs = stmt->executeQuery();
+    int columnCount = rs->getColumnListMetaData().size();
 
-      stmt->closeResultSet(rs);
-    } else
-      affectedRows = stmt->executeUpdate(); // For INSERT, UPDATE, DELETE queries
+    while (rs->next()) {
+      std::vector<std::string> row;
+      for (int i = 1; i <= columnCount; ++i)
+        row.push_back(rs->getString(i));
+      results.push_back(row);
+    }
+    stmt->closeResultSet(rs);
 
     conn->terminateStatement(stmt);
   } catch (SQLException &e) {
-    cerr << "Query Error: " << e.getMessage() << endl;
+    std::cerr << "Query Error: " << e.getMessage() << std::endl;
   }
 
   return results;
