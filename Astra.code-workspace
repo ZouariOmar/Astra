@@ -101,6 +101,9 @@
 			"variant": "cpp",
 			"qstackedwidget": "cpp",
 			"qpainter": "cpp"
-		}
+		},
+		"cSpell.words": [
+			"PASSWORDGEN"
+		]
 	}
 }

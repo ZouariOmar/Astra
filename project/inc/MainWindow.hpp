@@ -19,9 +19,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QStackedWidget>
 
-// * Use stander workspace
-using namespace std;
-
 // ? Class prototype declaration part
 class MainWindow : public QMainWindow {
 public:

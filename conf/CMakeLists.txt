@@ -23,6 +23,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/connect.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/smtp-mail.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/passwordGen.cpp
 
   # Template Part
   ${CMAKE_SOURCE_DIR}/../project/src/template.cpp
@@ -36,6 +37,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/MainWindow.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/connect.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/smtp-mail.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/passwordGen.hpp
 
   # Template part
   ${CMAKE_SOURCE_DIR}/../project/inc/template.h
@@ -66,6 +68,9 @@ target_link_libraries(${PROJECT_NAME} PRIVATE clntsh occi)
 
 # Link libcurl libraries
 target_link_libraries(${PROJECT_NAME} PRIVATE CURL::libcurl)
+
+# Link openssl libraries
+target_link_libraries(${PROJECT_NAME} PRIVATE -lssl -lcrypto)
 
 # Add the tests subdirectory
 # add_subdirectory(test)

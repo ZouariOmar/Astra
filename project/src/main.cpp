@@ -9,10 +9,11 @@
  */
 
 // ? Include prototype declaration part
-#include "../inc/MainWindow.hpp"
-#include "../inc/smtp-mail.hpp"
 
-// * Include std libs (Qt)
+// * Include custom headers (@ZouariOmar)
+#include "../inc/MainWindow.hpp"
+
+// * Include std headers (Qt)
 #include <QtWidgets/QApplication>
 
 // ? Main int function prototype dev part
