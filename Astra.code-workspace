@@ -100,7 +100,9 @@
 			"typeinfo": "cpp",
 			"variant": "cpp",
 			"qstackedwidget": "cpp",
-			"qpainter": "cpp"
+			"qpainter": "cpp",
+			"qprogressdialog": "cpp",
+			"qfuturewatcher": "cpp"
 		},
 		"cSpell.words": [
 			"PASSWORDGEN"

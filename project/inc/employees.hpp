@@ -12,11 +12,12 @@
 #ifndef __EMPLOYEES_HPP__
 #define __EMPLOYEES_HPP__
 
-//? Include prototype declaration part
+// ? Include prototype declaration part
 #include "../inc/connect.hpp"
 
-// ? Structure declaration part
-enum EmployeeQueue {
+// ? Namespaces declaration part
+namespace Employees {
+enum EmployeeQueueFlags {
   EMPLOYEE_ID,
   USERNAME,
   FIRSTNAME,
@@ -34,28 +35,52 @@ enum EmployeeQueue {
   DEPARTMENT,
   LAST_LOGIN,
   LAST_PASSWORD_RESET
-}; // EmployeeQueue enum
+}; // EmployeeQueueFlags enum
 
-// ? Include prototype declaration part
-// * Include std C++ headers
+struct EmployeeInfo;
+class Setup;
+class Select;
+class Update;
+} // namespace Employees
 
-class Employees {
-private:
+// ? Structure declaration part
+struct Employees::EmployeeInfo {
+  std::string data;
+  std::string arg;
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags &);
+}; // EmployeeInfo struct
+
+// ? Classes prototype declaration part
+
+class Employees::Setup {
+protected:
   Database *db;
   std::vector<std::vector<std::string>> *result;
 
 public:
-  // Employees Constructor and destructor
-  Employees();
-  ~Employees();
+  Setup();
+  virtual ~Setup();
+}; // Employees::Setup class
 
-  // * Employees `SELECT` functions
-  std::vector<std::string> select_employee(const std::string &);
-  std::vector<std::string> select_employee(const std::string &, const std::string &);
-
-  // * Employees `UPDATE` functions
-
+class Employees::Select : public Employees::Setup {
 public:
-}; // Employees class
+  // Employees::Select Constructor and destructor
+  Select();
+  ~Select() override;
+
+  // * Employees::Select functions
+  std::vector<std::string> selectAll(const Employees::EmployeeInfo &);
+  std::vector<std::string> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+}; // Employees::Select class
+
+class Employees::Update : public Employees::Setup {
+public:
+  // Employees::Update Constructor and destructor
+  Update();
+  ~Update() override;
+
+  // * Employees::Update functions
+  int update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+}; // Employees::Update class
 
 #endif // __EMPLOYEES_HPP__

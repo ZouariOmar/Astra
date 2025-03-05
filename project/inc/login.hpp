@@ -19,6 +19,7 @@
 
 // ? Include prototype declaration part
 // * Include std headers (Qt)
+#include <QtConcurrent/QtConcurrent>
 #include <QtCore/QDebug>
 #include <QtCore/QPropertyAnimation>
 #include <QtCore/QTimer>
@@ -26,8 +27,9 @@
 #include <QtWidgets/QGraphicsOpacityEffect>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMessageBox>
+#include <QtWidgets/QProgressDialog>
 
-// Include generated .h files
+// Include generated .ui files
 #include "../ui/ui_login.h"
 
 // ? Classes prototype declaration part
@@ -51,6 +53,7 @@ private: // ? Private vars
   int currentGifIndex;
   QTimer *gifTimer;
   QMovie *currentMovie;
+  std::string generated_password;
 
 private: // ? Private fns
   // * Events
@@ -64,18 +67,22 @@ private: // ? Private fns
   QPropertyAnimation *FadeEffect(QGroupBox *, const QVariant, const QVariant);
   void change_hideShowBtnIcon(QLineEdit *, QPushButton *, const QLineEdit::EchoMode mode = QLineEdit::Password, const QString path = "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/closedEye.png");
 
-private slots:
+  // * Helpers
+  void enableResetPassword(const bool &);
+  void clearResetPassword();
+
+private slots: // ? Private slots fns
   // * Login sub-inteface group box slots
   void on_pushButton_clicked();
   void on_hide_show_btn_clicked();
+  void on_reset_clicked();
 
   // * Forget password sub-inteface group box slots
   void on_hide_show_btn_2_clicked();
   void on_returnBtn_clicked();
   void on_sendEmailBtn_clicked();
 
-
-signals:
+signals: // ? Signals fns
   // * Login sub-inteface group box signals
   void loginSuccessful(); // Signal to notify successful login
 }; // Login class

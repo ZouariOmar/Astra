@@ -31,11 +31,14 @@ private:
   Connection *conn;
 
 public:
+  // * Database constructors and destructor
   Database();
   Database(const char *, const char *, const char *);
-  void execute(const std::string &query, int &affectedRows);
-  std::vector<std::vector<std::string>> execute(const std::string &query);
   ~Database();
+
+  // * Database functions
+  void execute(const std::string &query, int &affectedRows);
+  std::vector<std::vector<std::string>> execute(const std::string &);
 }; // Database class
 
 #endif // __CONNECT_HPP__

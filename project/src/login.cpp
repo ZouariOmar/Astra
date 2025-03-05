@@ -8,11 +8,17 @@
  * @link https://github.com/ZouariOmar/Astra/project/src/login.cpp @endlink
  */
 
-//? Include prototype declaration part
+// ? Include prototype declaration part
 #include "../inc/login.hpp"
 #include "../inc/employees.hpp"
+#include "../inc/passwordGen.hpp"
+#include "../inc/smtp-mail.hpp"
 
-//? Function/Class prototype dev part
+// ? Function/Class prototype dev part
+
+// * ========================================
+// ? === Login constructor and destructor ===
+// * ========================================
 
 /**
  * @brief ### Construct a new Login::Login object
@@ -32,7 +38,8 @@ Login::Login(QWidget *parent)
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an03.gif",
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an04.gif",
       }),
-      currentMovie(nullptr) {
+      currentMovie(nullptr),
+      generated_password("") {
   ui->setupUi(this);
   setWindowTitle("Astra"); // Set window title
 
@@ -41,11 +48,10 @@ Login::Login(QWidget *parent)
 
   // Install global events (make them detectable)
   ui->pushButton->installEventFilter(this);
-  ui->pushButton_2->installEventFilter(this);
+  ui->reset->installEventFilter(this);
   ui->f_pwd->installEventFilter(this);
 
-  // Hide sub interfaces
-  ui->f_pwd_interface->hide();
+  ui->f_pwd_interface->hide(); // Hide the forget password QGroupBox
 
   updateGif(); // Initialize the first GIF
 }
@@ -60,6 +66,10 @@ Login::~Login() {
   delete gifTimer;
   delete currentMovie;
 }
+
+// * ==========================================
+// ? === / Login constructor and destructor ===
+// * ==========================================
 
 /**
  * @brief ### Update the Gif every `__LOGIN_GIF_ANIMATION__`
@@ -103,10 +113,10 @@ void Login::on_pushButton_clicked() {
   }
 
   // Verify the validity of the given info
-  Employees *emp = new Employees;
-  std::vector<std::string> res = emp->select_employee(_username, _password);
-  delete emp;
-  emp = nullptr; 
+  Employees::Select *sl = new Employees::Select;
+  std::vector<std::string> res = sl->selectAll(Employees::EmployeeInfo(_username, Employees::EmployeeQueueFlags::USERNAME), Employees::EmployeeInfo(_password, Employees::EmployeeQueueFlags::PASSWORD));
+  delete sl;
+  sl = nullptr;
 
   if (res.empty())
     qDebug() << "User not found";
@@ -114,15 +124,14 @@ void Login::on_pushButton_clicked() {
     emit loginSuccessful();
 }
 
-/**
- * ####################################################
- * ########## Events & Effects handling part ##########
- * ####################################################
- */
+// * ======================================
+// ? === Events & Effects handling part ===
+// * ======================================
 
 /**
  * @brief ### Manage global events in login interface
  *
+ * @class       Login
  * @param obj   {QObject *}
  * @param event {QEvent *}
  * @return      bool
@@ -130,7 +139,7 @@ void Login::on_pushButton_clicked() {
 bool Login::eventFilter(QObject *obj, QEvent *event) {
   if (obj == ui->pushButton) // ? Check if the event come form the login btn (login interface)
     return login_btn_events(obj, ui->lg, event);
-  else if (obj == ui->pushButton_2 && ui->pushButton_2->isEnabled()) // ? Check if the event come form the login btn (forget password interface)
+  else if (obj == ui->reset && ui->reset->isEnabled()) // ? Check if the event come form the login btn (forget password interface)
     return login_btn_events(obj, ui->lg_2, event);
   else if (obj == ui->f_pwd) // ? Check if the object is the forget password label
     return forget_password_events(obj, event);
@@ -140,6 +149,7 @@ bool Login::eventFilter(QObject *obj, QEvent *event) {
 /**
  * @brief ### Manage forget password events
  *
+ * @class       Login
  * @param obj   {QObject *}
  * @param event {QEvent *}
  * @return      bool
@@ -165,6 +175,7 @@ bool Login::forget_password_events(QObject *obj, QEvent *event) {
 /**
  * @brief ### Manage login button in the login/forgetPassword QGroups
  *
+ * @class       Login
  * @param obj   {QObject *}
  * @param icon  {QLabel *}
  * @param event {QEvent *}
@@ -197,11 +208,12 @@ bool Login::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
 /**
  * @brief #### Make a "fade out" effect to `group1` using opacity transition from `__FULL_VISIBLE__` to `__FULL_TRANSPARENT__` and hide `group1`, overwise for `group2`
  *
- * @details This effect work only with `QGroupBox`
- * @class Login
- * @include QGraphicsOpacityEffect | QPropertyAnimation
+ * @class        Login
+ * @details      This effect work only with `QGroupBox`
+ * @include      QGraphicsOpacityEffect | QPropertyAnimation
  * @param group1 {QGroupBox *}
  * @param group2 {QGroupBox *}
+ * @return       void
  */
 void Login::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
   QPropertyAnimation *animation1 = FadeEffect(group1, __FULL_VISIBLE__, __FULL_TRANSPARENT__); // Fade out group1
@@ -249,7 +261,9 @@ QPropertyAnimation *Login::FadeEffect(QGroupBox *group, const QVariant startVal,
  * @class Login
  */
 void Login::on_returnBtn_clicked() {
-  QGroupBoxFadeOutEffect(ui->f_pwd_interface, ui->login);
+  enableResetPassword(false);
+  clearResetPassword();
+  QGroupBoxFadeOutEffect(ui->f_pwd_interface, ui->login); // Redirect the user to login QGroupBox
 }
 
 /**
@@ -288,14 +302,130 @@ void Login::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const 
 }
 
 /**
- * @brief 
- * 
+ * @brief ### Verify the given mail and send a 6-chars reset code to reset the password
+ *
+ * @class Login
  */
 void Login::on_sendEmailBtn_clicked() {
+  std::string _email{ui->email->text().toStdString()}; // Hold the input it email
+
+  // Select user information using 'email'
+  Employees::Select *sl(new Employees::Select);
+  std::vector<std::string> employee = sl->selectAll(Employees::EmployeeInfo(_email, Employees::EmployeeQueueFlags::EMAIL));
+  delete sl;
+  sl = nullptr;
+
+  if (employee.empty()) {
+    std::cerr << "Error: Email doesn't exist!" << std::endl;
+    return; // ! make error status msg
+  }
+
+  QProgressDialog *progressDialog = new QProgressDialog("Sending password reset email...", "Cancel", 0, 0, this);
+  progressDialog->setWindowTitle("Processing...");
+  progressDialog->setWindowModality(Qt::WindowModal);
+  progressDialog->setCancelButton(nullptr);
+  progressDialog->setMinimumDuration(0);
+  progressDialog->show();
+
+  (void)QtConcurrent::run([this, _email, employee, progressDialog]() {
+    try {
+      generated_password = Password::generate(5);
+      EmailSender email{EmailAuth{}};
+      email.send(EmailData(
+          _email,
+          "Astra: Password Reset Request",
+          EmailBody("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/forget_password_template.html",
+                    {
+                        {"{{name}}", employee[Employees::EmployeeQueueFlags::FIRSTNAME]},
+                        {"{{prename}}", employee[Employees::EmployeeQueueFlags::LASTNAME]},
+                        {"{{password}}", generated_password},
+                    })
+              .get_inner_html()));
+
+      // Update the UI after sending the email
+      QMetaObject::invokeMethod(progressDialog, [progressDialog]() {
+            progressDialog->close();
+            progressDialog->deleteLater();  // Ensure deletion happens in the main thread
+            QMessageBox::information(progressDialog->parentWidget(), "Success", "Email sent successfully!"); }, Qt::QueuedConnection);
+      enableResetPassword(true);
+    } catch (const std::exception &e) {
+      QMetaObject::invokeMethod(progressDialog, [progressDialog, e]() {
+            progressDialog->close();
+            progressDialog->deleteLater();  // Ensure deletion happens in the main thread
+            QMessageBox::critical(progressDialog->parentWidget(), "Error", QString("Failed to send email: ") + e.what()); }, Qt::QueuedConnection);
+    }
+  });
 }
 
 /**
- * ######################################################
- * ########## / Events & Effects handling part ##########
- * ######################################################
+ * @brief ### Verify the taped code and new/confirm password
+ *
+ * @class Login
  */
+void Login::on_reset_clicked() {
+  if (ui->charCode->text().isEmpty() || ui->newPassword->text().isEmpty() || ui->confirmPassword->text().isEmpty()) {
+    std::cerr << "Error: field(s) is/are empty!" << std::endl;
+    return;
+  }
+
+  if (ui->charCode->text().toStdString() != generated_password) {
+    std::cerr << "Error: Wrong 6-characters-code!" << std::endl;
+    return;
+  }
+
+  if (ui->newPassword->text() != ui->confirmPassword->text()) {
+    std::cerr << "Error: Pls verify new/confirm passwords!" << std::endl;
+    return;
+  }
+
+  // Update password and redirect the usr to login QGroup box
+  Employees::Update up{Employees::Update()};
+  up.update(Employees::EmployeeInfo(ui->confirmPassword->text().toStdString(), Employees::EmployeeQueueFlags::PASSWORD), Employees::EmployeeInfo(ui->email->text().toStdString(), Employees::EmployeeQueueFlags::EMAIL));
+  QMessageBox::information(this, tr("Success"),
+                           tr("Your password have been changed successfully!"),
+                           QMessageBox::Ok);
+  enableResetPassword(false);
+  clearResetPassword();
+  QGroupBoxFadeOutEffect(ui->f_pwd_interface, ui->login); // Redirect the user to login QGroupBox
+}
+
+// * ========================================
+// ? === / Events & Effects handling part ===
+// ? ======== Helpers handling part =========
+// * ========================================
+
+/**
+ * @brief ### Reset the forget password QGroupBox to the default view (enable/disable proccess)
+ *
+ * @class        Login
+ * @param status {const bool &}
+ */
+void Login::enableResetPassword(const bool &status) {
+  ui->email->setEnabled(!status);
+  ui->sendEmailBtn->setEnabled(!status);
+  ui->usr_2->setEnabled(!status);
+
+  ui->charCode->setEnabled(status);
+  ui->hide_show_btn->setEnabled(status);
+  ui->lock_3->setEnabled(status);
+  ui->newPassword->setEnabled(status);
+  ui->confirmPassword->setEnabled(status);
+  ui->reset->setEnabled(status);
+  ui->lg_2->setEnabled(status);
+}
+
+/**
+ * @brief ### Reset all forget password QLineEdit's to the default state (empty)
+ *
+ * @class Login
+ */
+void Login::clearResetPassword() {
+  ui->email->setText("");
+  ui->charCode->setText("");
+  ui->newPassword->setText("");
+  ui->confirmPassword->setText("");
+}
+
+// * ==========================================
+// ? ======== / Helpers handling part =========
+// * ==========================================

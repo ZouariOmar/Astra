@@ -13,6 +13,10 @@
 
 // ? Function/Class prototype dev part
 
+// * ===========================================
+// ? === Database Constructor and destructor ===
+// * ===========================================
+
 /**
  * @brief ### Construct a new Database::Database object
  *
@@ -58,6 +62,14 @@ Database::~Database() {
     Environment::terminateEnvironment(env);
   std::cout << "Database connection closed." << std::endl;
 }
+
+// * =============================================
+// ? === / Database Constructor and destructor ===
+// * =============================================
+
+// * ==========================
+// ? === Database functions ===
+// * ==========================
 
 /**
  * @brief ### Executes `INSERT|UPDATE|DELETE` SQL query and update the `affectedRow` count
@@ -108,3 +120,7 @@ std::vector<std::vector<std::string>> Database::execute(const std::string &query
 
   return results;
 }
+
+// * ============================
+// ? === / Database functions ===
+// * ============================

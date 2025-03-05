@@ -22,6 +22,7 @@ CREATE TABLE Employees (
   LastLogin TIMESTAMP DEFAULT NULL,
   LastPasswordReset TIMESTAMP DEFAULT NULL
 );
+
 /*
  Admin info           -  INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')
  Select Age            - TRUNC(MONTHS_BETWEEN(SYSDATE, BirthDate) / 12) AS Age

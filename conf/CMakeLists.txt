@@ -54,7 +54,7 @@ include_directories(/usr/local/include/oracle)
 link_directories(/usr/local/lib/oracle)
 
 # Find Qt6 packages
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Concurrent)
 
 # Find libcurl package
 find_package(CURL REQUIRED) 
@@ -64,10 +64,10 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${UI_FILES} ${QML_FILES})
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
-Qt6::Core Qt6::Gui Qt6::Widgets # Link Qt libraries
-clntsh occi                     # Link oracle libraries
-CURL::libcurl                   # Link libcurl libraries
--lssl -lcrypto                  # Link openssl libraries
+Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Concurrent # Link Qt libraries
+clntsh occi                                     # Link oracle libraries
+CURL::libcurl                                   # Link libcurl libraries
+-lssl -lcrypto                                  # Link openssl libraries
 )
 
 # Add the tests subdirectory
