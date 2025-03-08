@@ -149,7 +149,7 @@ Employees::Select::~Select() {
  * @return     std::vector<std::string>
  */
 std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeInfo &info) {
-  *result = db->execute("SELECT * FROM Employees WHERE " + info.arg + " = '" + info.data + "'");
+  *result = db->execute("SELECT * FROM Employees WHERE " + info.arg + " = :1", SqlParam({{1, info.data}}));
   return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
 }
 
@@ -164,7 +164,7 @@ std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeI
  * @return        std::vector<std::string>
  */
 std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
-  *result = db->execute("SELECT * FROM Employees WHERE " + info_00.arg + " = '" + info_00.data + "' AND " + info_01.arg + " = '" + info_01.data + "'");
+  *result = db->execute("SELECT * FROM Employees WHERE " + info_00.arg + " = :1 AND " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}));
   return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
 }
 
@@ -207,5 +207,5 @@ Employees::Update::~Update() {
  */
 int Employees::Update::update(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
   int aff;
-  return db->execute("UPDATE Employees SET " + info_00.arg + " = '" + info_00.data + "' WHERE " + info_01.arg + " = '" + info_01.data + "'", aff), aff;
+  return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}) , aff), aff;
 }

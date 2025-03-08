@@ -13,7 +13,19 @@
 
 // ? Function/Class prototype dev part
 
+// * ============================
+// ? === SqlParam Constructor ===
+// * ============================
+
+SqlParam::SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams,
+                   const std::vector<std::pair<unsigned int, const int>> &intParams,
+                   const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams)
+    : integers(intParams),
+      strings(strParams),
+      timestamps(timestampsParams) {};
+
 // * ===========================================
+// ? ========= / SqlParam Constructor ==========
 // ? === Database Constructor and destructor ===
 // * ===========================================
 
@@ -76,14 +88,28 @@ Database::~Database() {
  *
  * @class              Database
  * @param query        {const std::string &}
+ * @param params       {const SqlParam &}
  * @param affectedRows {int &} -> Default:0
  */
-void Database::execute(const std::string &query, int &affectedRows) {
+void Database::execute(const std::string &query, const SqlParam &params, int &affectedRows) {
   affectedRows = 0; // Default to 0 affected rows
 
   try {
+    // Prepare the statement
     Statement *stmt = conn->createStatement(query);
+
+    // Bind integer parameters by name
+    for (const std::pair<unsigned int, const int> &param : params.integers)
+      stmt->setInt(param.first, param.second);
+
+    // Bind string parameters by name
+    for (const std::pair<unsigned int, const std::string> &param : params.strings)
+      stmt->setString(param.first, param.second);
+
+    // Execute the query (INSERT, UPDATE, DELETE)
     affectedRows = stmt->executeUpdate(); // For INSERT, UPDATE, DELETE queries
+
+    // Clean up
     conn->terminateStatement(stmt);
   } catch (SQLException &e) {
     std::cerr << "Query Error: " << e.getMessage() << std::endl;
@@ -93,32 +119,45 @@ void Database::execute(const std::string &query, int &affectedRows) {
 /**
  * @brief ### Executes `SELECT` SQL query and return the `results`
  *
- * @class       Database
- * @param query {const std::string &}
- * @return      std::vector<std::vector<std::string>>
+ * @class        Database
+ * @param query  {const std::string &}
+ * @param params {const SqlParam &}
+ * @return       std::vector<std::vector<std::string>>
  */
-std::vector<std::vector<std::string>> Database::execute(const std::string &query) {
+std::vector<std::vector<std::string>> Database::execute(const std::string &query, const SqlParam &params) {
   std::vector<std::vector<std::string>> results;
   try {
+    // Prepare the statement
     Statement *stmt = conn->createStatement(query);
 
-    ResultSet *rs = stmt->executeQuery();
-    int columnCount = rs->getColumnListMetaData().size();
+    // Bind integer parameters by name
+    for (const std::pair<unsigned int, const int> &param : params.integers)
+      stmt->setInt(param.first, param.second);
 
+    // Bind string parameters by name
+    for (const std::pair<unsigned int, const std::string> &param : params.strings)
+      stmt->setString(param.first, param.second);
+
+    // * Execute the query
+    ResultSet *rs = stmt->executeQuery();
+
+    // Retrieve the results
+    int columnCount = rs->getColumnListMetaData().size();
     while (rs->next()) {
       std::vector<std::string> row;
       for (int i = 1; i <= columnCount; ++i)
         row.push_back(rs->getString(i));
       results.push_back(row);
     }
-    stmt->closeResultSet(rs);
 
+    // Clean up
+    stmt->closeResultSet(rs);
     conn->terminateStatement(stmt);
   } catch (SQLException &e) {
     std::cerr << "Query Error: " << e.getMessage() << std::endl;
   }
 
-  return results;
+  return results; // Return the result
 }
 
 // * ============================

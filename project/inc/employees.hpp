@@ -59,25 +59,25 @@ protected:
 
 public:
   Setup();
-  virtual ~Setup();
+  ~Setup();
 }; // Employees::Setup class
 
-class Employees::Select : public Employees::Setup {
+class Employees::Select : private Employees::Setup {
 public:
   // Employees::Select Constructor and destructor
   Select();
-  ~Select() override;
+  ~Select();
 
   // * Employees::Select functions
   std::vector<std::string> selectAll(const Employees::EmployeeInfo &);
   std::vector<std::string> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
 }; // Employees::Select class
 
-class Employees::Update : public Employees::Setup {
+class Employees::Update : private Employees::Setup {
 public:
   // Employees::Update Constructor and destructor
   Update();
-  ~Update() override;
+  ~Update();
 
   // * Employees::Update functions
   int update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);

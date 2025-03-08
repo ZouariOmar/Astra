@@ -23,8 +23,14 @@ CREATE TABLE Employees (
   LastPasswordReset TIMESTAMP DEFAULT NULL
 );
 
+CREATE TABLE personnel(t INT);
+CREATE TABLE Boutique(t INT);
+CREATE TABLE Commercant(t INT);
+CREATE TABLE partenaire(t INT);
+CREATE TABLE événements(t INT);
 /*
- Admin info           -  INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')
+ List all Astra tables - SELECT table_name FROM user_tables;
+ Admin info            - INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')
  Select Age            - TRUNC(MONTHS_BETWEEN(SYSDATE, BirthDate) / 12) AS Age
  Select YearsOfService - TRUNC(MONTHS_BETWEEN(SYSDATE, HireDate) / 12) AS YearsOfService
  */

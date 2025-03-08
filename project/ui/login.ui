@@ -686,7 +686,7 @@ QPushButton#hide_show_btn, #hide_show_btn_2 {
       <string notr="true"/>
      </property>
      <property name="maxLength">
-      <number>6</number>
+      <number>7</number>
      </property>
      <property name="echoMode">
       <enum>QLineEdit::EchoMode::Password</enum>

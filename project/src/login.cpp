@@ -29,8 +29,6 @@
 Login::Login(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::Login),
-      gifTimer(new QTimer(this)),
-      currentGifIndex(0),
       gifPaths({
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an00.gif",
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an01.gif",
@@ -38,6 +36,8 @@ Login::Login(QWidget *parent)
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an03.gif",
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an04.gif",
       }),
+      currentGifIndex(0),
+      gifTimer(new QTimer(this)),
       currentMovie(nullptr),
       generated_password("") {
   ui->setupUi(this);
@@ -119,7 +119,10 @@ void Login::on_pushButton_clicked() {
   sl = nullptr;
 
   if (res.empty())
-    qDebug() << "User not found";
+    QMessageBox::warning(
+        this, tr("Astra"), tr("Username or password are wrong!\n"
+                              "Pleas try to login again!"),
+        QMessageBox::Ok);
   else
     emit loginSuccessful();
 }
@@ -329,7 +332,7 @@ void Login::on_sendEmailBtn_clicked() {
 
   (void)QtConcurrent::run([this, _email, employee, progressDialog]() {
     try {
-      generated_password = Password::generate(5);
+      generated_password = Password::generate();
       EmailSender email{EmailAuth{}};
       email.send(EmailData(
           _email,

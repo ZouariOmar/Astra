@@ -23,6 +23,20 @@
 // * Use workspaces
 using namespace oracle::occi;
 
+// ? Struct prototype declaration part
+
+/**
+ * ? We use param.first as the parameter name
+ * ? And param.second as the passed data
+ */
+struct SqlParam {
+  std::vector<std::pair<unsigned int, const std::string>> strings;                // Parameters of type string
+  std::vector<std::pair<unsigned int, const int>> integers;                       // Parameters of type int
+  std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
+  explicit SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams = {},
+                    const std::vector<std::pair<unsigned int, const int>> &intParams = {},
+                    const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams = {});
+}; // SqlParam struct
 
 // ? Classes prototype declaration part
 class Database {
@@ -37,8 +51,8 @@ public:
   ~Database();
 
   // * Database functions
-  void execute(const std::string &query, int &affectedRows);
-  std::vector<std::vector<std::string>> execute(const std::string &);
+  void execute(const std::string &query, const SqlParam &, int &affectedRows);
+  std::vector<std::vector<std::string>> execute(const std::string &, const SqlParam &);
 }; // Database class
 
 #endif // __CONNECT_HPP__
