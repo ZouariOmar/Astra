@@ -102,10 +102,12 @@
 			"qstackedwidget": "cpp",
 			"qpainter": "cpp",
 			"qprogressdialog": "cpp",
-			"qfuturewatcher": "cpp"
+			"qfuturewatcher": "cpp",
+			"qgraphicsdropshadoweffect": "cpp"
 		},
 		"cSpell.words": [
-			"PASSWORDGEN"
+			"PASSWORDGEN",
+			"qreal"
 		]
 	}
 }

@@ -1,0 +1,1475 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>EmployeesUI</class>
+ <widget class="QMainWindow" name="EmployeesUI">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1920</width>
+    <height>1080</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Astra</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</iconset>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">* {
+	background-color: rgb(245, 239, 235);
+}
+
+QComboBox {
+	background-color: white;
+}
+
+QPushButton {
+	border-radius: 17px;
+	background-color: white;
+}
+
+#Add_button:hover {
+	background-color: rgb(246, 245, 244);
+}
+
+Line {
+	background-color: rgb(147, 155, 167);
+}
+
+/* ### From Elements ### */
+#Form {
+	border-radius: 20px;
+	background-color: rgb(255, 255, 255);
+}
+
+#Cancel_form {
+    border-radius: 10px;
+    border: none;
+    background-color: rgba(47, 65, 86, 0.5);
+}
+
+#Cancel_form:hover {
+    background-color: rgba(47, 65, 86, 1);
+}
+
+#Form &gt; QLineEdit {
+	background-color: rgb(246, 245, 244);
+	border-radius: 8px;
+	padding-left: 30px;
+}
+
+#insertBtn {
+	background-color: rgba(209, 184, 155, 1);
+	border: none;
+	border-radius: 8px;
+	font: 10pt &quot;Verdana&quot;;
+	color: black;
+}
+
+#insertBtn:hover {
+	background-color: rgba(175, 153, 126, 1); 
+}
+
+#dateEdit {
+	background-color: rgb(246, 245, 244);
+	border-radius: 8px;
+	padding-left: 30px;
+}
+
+#Filtre_2 {
+	background-color: rgb(246, 245, 244);
+	border-radius: 8px;
+	padding-left: 30px;
+}
+
+#show:hover {
+	text-decoration: underline;
+}
+/* ### / From Elements ### */
+
+/* ### Employees Table View ### */
+#EmployeesTableView {
+	background-color: rgb(246, 245, 244);
+	border-radius: 8px;
+	padding-left: 30px;
+}
+/* ### / Employees Table View ### */
+
+</string>
+  </property>
+  <widget class="QWidget" name="centralwidget">
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
+   <widget class="QLabel" name="Background_navigation">
+    <property name="geometry">
+     <rect>
+      <x>-20</x>
+      <y>0</y>
+      <width>281</width>
+      <height>1090</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: rgb(200, 217, 230);
+border-radius: 20px;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Boutiques_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>210</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+font: 20pt &quot;Verdana&quot;;
+padding-right: 15;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Boutiques</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="checkable">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Commercants_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>270</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+padding-left: 20;
+font: 20pt &quot;Verdana&quot;;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Commerçant</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Evenements_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>390</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+padding-left: 3;
+font: 20pt &quot;Verdana&quot;;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Événement</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Partenariats_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>330</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+padding-left: 14;
+font: 20pt &quot;Verdana&quot;;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Partenariats</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Employe_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>510</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+padding-right: 10;
+font: 20pt &quot;Verdana&quot;;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Employés</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Personnels_B">
+    <property name="geometry">
+     <rect>
+      <x>-10</x>
+      <y>450</y>
+      <width>271</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>20</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: none;
+border: none;
+padding-right: 6;
+font: 20pt &quot;Verdana&quot;;
+color: #494d53;
+}
+
+QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
+</string>
+    </property>
+    <property name="text">
+     <string>  Personnels</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+   </widget>
+   <widget class="Line" name="Lower_line">
+    <property name="geometry">
+     <rect>
+      <x>34</x>
+      <y>900</y>
+      <width>191</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="lineWidth">
+     <number>1</number>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="Line" name="Above_line">
+    <property name="geometry">
+     <rect>
+      <x>34</x>
+      <y>130</y>
+      <width>191</width>
+      <height>2</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Horizontal</enum>
+    </property>
+   </widget>
+   <widget class="QLineEdit" name="Search_bar">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>30</y>
+      <width>681</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 8px;
+background-color: white;
+padding-left: 35px;
+color: black;</string>
+    </property>
+    <property name="placeholderText">
+     <string>Search...</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="User_Image">
+    <property name="geometry">
+     <rect>
+      <x>1840</x>
+      <y>10</y>
+      <width>70</width>
+      <height>70</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">border-radius: 35px;
+background-color: white;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/images.jpg</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Notification">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>30</y>
+      <width>35</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</iconset>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="PDF">
+    <property name="geometry">
+     <rect>
+      <x>1150</x>
+      <y>30</y>
+      <width>35</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</iconset>
+    </property>
+   </widget>
+   <widget class="QComboBox" name="Filtre">
+    <property name="geometry">
+     <rect>
+      <x>1010</x>
+      <y>30</y>
+      <width>121</width>
+      <height>28</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="placeholderText">
+     <string>Filtre ...</string>
+    </property>
+    <item>
+     <property name="text">
+      <string>Boutiques</string>
+     </property>
+    </item>
+    <item>
+     <property name="text">
+      <string>Statistiques</string>
+     </property>
+    </item>
+   </widget>
+   <widget class="QPushButton" name="Privacy">
+    <property name="geometry">
+     <rect>
+      <x>40</x>
+      <y>930</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>11</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgba(200, 217, 230, 1);
+border: none;
+font: 11pt &quot;Verdana&quot;;
+color: #494d53;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Privacy</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Policy">
+    <property name="geometry">
+     <rect>
+      <x>110</x>
+      <y>930</y>
+      <width>41</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>11</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgba(200, 217, 230, 1);
+border: none;
+font: 11pt &quot;Verdana&quot;;
+color: #494d53;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Terms</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Support">
+    <property name="geometry">
+     <rect>
+      <x>170</x>
+      <y>930</y>
+      <width>51</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>11</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgba(200, 217, 230, 1);
+border: none;
+font: 11pt &quot;Verdana&quot;;
+color: #494d53;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Support</string>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Support_2">
+    <property name="geometry">
+     <rect>
+      <x>70</x>
+      <y>959</y>
+      <width>121</width>
+      <height>21</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <family>Verdana</family>
+      <pointsize>11</pointsize>
+      <italic>false</italic>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QPushButton {
+background-color: rgba(200, 217, 230, 1);
+border: none;
+font: 11pt &quot;Verdana&quot;;
+color: #494d53;
+}
+</string>
+    </property>
+    <property name="text">
+     <string>Copyright © 2025</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="searchIcon">
+    <property name="geometry">
+     <rect>
+      <x>317</x>
+      <y>38</y>
+      <width>16</width>
+      <height>16</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-search.gif</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QPushButton" name="Add_button">
+    <property name="geometry">
+     <rect>
+      <x>310</x>
+      <y>80</y>
+      <width>35</width>
+      <height>35</height>
+     </rect>
+    </property>
+    <property name="cursor">
+     <cursorShape>PointingHandCursor</cursorShape>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>25</width>
+      <height>25</height>
+     </size>
+    </property>
+    <property name="autoDefault">
+     <bool>false</bool>
+    </property>
+    <property name="default">
+     <bool>false</bool>
+    </property>
+    <property name="flat">
+     <bool>false</bool>
+    </property>
+   </widget>
+   <widget class="QGroupBox" name="Form">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>130</y>
+      <width>211</width>
+      <height>221</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+      <fontweight>Thin</fontweight>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true"/>
+    </property>
+    <property name="title">
+     <string>     Add New Employee</string>
+    </property>
+    <widget class="QLineEdit" name="firstNameInsert">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>40</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>First Name...</string>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="Cancel_form">
+     <property name="geometry">
+      <rect>
+       <x>180</x>
+       <y>7</y>
+       <width>20</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</iconset>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="insertBtn">
+     <property name="geometry">
+      <rect>
+       <x>140</x>
+       <y>197</y>
+       <width>61</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="text">
+      <string>Add</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>70</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Last Name...</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_3">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>100</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Email Address...</string>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_4">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>130</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Password...</string>
+     </property>
+    </widget>
+    <widget class="QComboBox" name="Filtre_2">
+     <property name="geometry">
+      <rect>
+       <x>10</x>
+       <y>160</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Department ...</string>
+     </property>
+     <item>
+      <property name="text">
+       <string/>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Commercial</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Shops</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Partenaires</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Events</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Personnels</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+      </property>
+     </item>
+     <item>
+      <property name="text">
+       <string>Employees</string>
+      </property>
+      <property name="icon">
+       <iconset>
+        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+      </property>
+     </item>
+    </widget>
+    <widget class="QLabel" name="label">
+     <property name="geometry">
+      <rect>
+       <x>17</x>
+       <y>45</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_2">
+     <property name="geometry">
+      <rect>
+       <x>17</x>
+       <y>75</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_3">
+     <property name="geometry">
+      <rect>
+       <x>18</x>
+       <y>105</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_4">
+     <property name="geometry">
+      <rect>
+       <x>18</x>
+       <y>135</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-lock-24.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="show">
+     <property name="geometry">
+      <rect>
+       <x>14</x>
+       <y>200</y>
+       <width>81</width>
+       <height>20</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>8</pointsize>
+      </font>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string>Show More</string>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>16</width>
+       <height>16</height>
+      </size>
+     </property>
+     <property name="checkable">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_5">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>40</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Job Title...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_5">
+     <property name="geometry">
+      <rect>
+       <x>217</x>
+       <y>45</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-job-50.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_6">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>70</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Salary...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_6">
+     <property name="geometry">
+      <rect>
+       <x>217</x>
+       <y>75</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-money-32.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QDateEdit" name="dateEdit">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>160</y>
+       <width>191</width>
+       <height>21</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_7">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>100</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>(+216) XX XX XX XX</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_7">
+     <property name="geometry">
+      <rect>
+       <x>217</x>
+       <y>105</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-call-50.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLineEdit" name="firstNameInsert_8">
+     <property name="geometry">
+      <rect>
+       <x>210</x>
+       <y>130</y>
+       <width>191</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="font">
+      <font>
+       <pointsize>10</pointsize>
+      </font>
+     </property>
+     <property name="styleSheet">
+      <string notr="true"/>
+     </property>
+     <property name="placeholderText">
+      <string>Address...</string>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_8">
+     <property name="geometry">
+      <rect>
+       <x>217</x>
+       <y>135</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-location-50.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_9">
+     <property name="geometry">
+      <rect>
+       <x>217</x>
+       <y>163</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-birthday-16.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QLabel" name="label_10">
+     <property name="geometry">
+      <rect>
+       <x>18</x>
+       <y>163</y>
+       <width>16</width>
+       <height>16</height>
+      </rect>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="pixmap">
+      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</pixmap>
+     </property>
+     <property name="scaledContents">
+      <bool>true</bool>
+     </property>
+    </widget>
+    <widget class="QPushButton" name="profileImage">
+     <property name="geometry">
+      <rect>
+       <x>190</x>
+       <y>190</y>
+       <width>31</width>
+       <height>26</height>
+      </rect>
+     </property>
+     <property name="cursor">
+      <cursorShape>PointingHandCursor</cursorShape>
+     </property>
+     <property name="text">
+      <string/>
+     </property>
+     <property name="icon">
+      <iconset>
+       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</iconset>
+     </property>
+     <property name="iconSize">
+      <size>
+       <width>50</width>
+       <height>50</height>
+      </size>
+     </property>
+    </widget>
+    <zorder>profileImage</zorder>
+    <zorder>firstNameInsert</zorder>
+    <zorder>Cancel_form</zorder>
+    <zorder>insertBtn</zorder>
+    <zorder>firstNameInsert_2</zorder>
+    <zorder>firstNameInsert_3</zorder>
+    <zorder>firstNameInsert_4</zorder>
+    <zorder>Filtre_2</zorder>
+    <zorder>label</zorder>
+    <zorder>label_2</zorder>
+    <zorder>label_3</zorder>
+    <zorder>label_4</zorder>
+    <zorder>show</zorder>
+    <zorder>firstNameInsert_5</zorder>
+    <zorder>label_5</zorder>
+    <zorder>firstNameInsert_6</zorder>
+    <zorder>label_6</zorder>
+    <zorder>dateEdit</zorder>
+    <zorder>firstNameInsert_7</zorder>
+    <zorder>label_7</zorder>
+    <zorder>firstNameInsert_8</zorder>
+    <zorder>label_8</zorder>
+    <zorder>label_9</zorder>
+    <zorder>label_10</zorder>
+   </widget>
+   <widget class="Line" name="line">
+    <property name="geometry">
+     <rect>
+      <x>339</x>
+      <y>36</y>
+      <width>2</width>
+      <height>20</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Orientation::Vertical</enum>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Astra">
+    <property name="geometry">
+     <rect>
+      <x>120</x>
+      <y>40</y>
+      <width>131</width>
+      <height>51</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: none;
+color:  black; 
+font: 35pt &quot;Sylfaen&quot;;</string>
+    </property>
+    <property name="text">
+     <string>Astra</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="Logo">
+    <property name="geometry">
+     <rect>
+      <x>20</x>
+      <y>20</y>
+      <width>90</width>
+      <height>90</height>
+     </rect>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">background-color: none;
+color:  black; 
+font: 35pt &quot;Sylfaen&quot;;</string>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="pixmap">
+     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</pixmap>
+    </property>
+    <property name="scaledContents">
+     <bool>true</bool>
+    </property>
+   </widget>
+   <widget class="QTableWidget" name="EmployeesTableView">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>130</y>
+      <width>731</width>
+      <height>231</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>12</pointsize>
+     </font>
+    </property>
+    <property name="autoFillBackground">
+     <bool>false</bool>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectionBehavior::SelectColumns</enum>
+    </property>
+    <column>
+     <property name="text">
+      <string>Profile Image</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Username</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Email</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Department</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
+      <string>Actions</string>
+     </property>
+    </column>
+   </widget>
+   <zorder>EmployeesTableView</zorder>
+   <zorder>Background_navigation</zorder>
+   <zorder>Lower_line</zorder>
+   <zorder>Above_line</zorder>
+   <zorder>Search_bar</zorder>
+   <zorder>User_Image</zorder>
+   <zorder>Notification</zorder>
+   <zorder>PDF</zorder>
+   <zorder>Filtre</zorder>
+   <zorder>Privacy</zorder>
+   <zorder>Policy</zorder>
+   <zorder>Support</zorder>
+   <zorder>Support_2</zorder>
+   <zorder>Boutiques_B</zorder>
+   <zorder>Commercants_B</zorder>
+   <zorder>Partenariats_B</zorder>
+   <zorder>Evenements_B</zorder>
+   <zorder>Personnels_B</zorder>
+   <zorder>Employe_B</zorder>
+   <zorder>searchIcon</zorder>
+   <zorder>Add_button</zorder>
+   <zorder>Form</zorder>
+   <zorder>line</zorder>
+   <zorder>Astra</zorder>
+   <zorder>Logo</zorder>
+  </widget>
+ </widget>
+ <resources/>
+ <connections/>
+</ui>

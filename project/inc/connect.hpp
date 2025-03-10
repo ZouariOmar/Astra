@@ -41,8 +41,12 @@ struct SqlParam {
 // ? Classes prototype declaration part
 class Database {
 private:
+  // * Database private vars
   Environment *env;
   Connection *conn;
+
+  // * Database private functions
+  inline void setSqlParams(Statement *, const SqlParam &);
 
 public:
   // * Database constructors and destructor
@@ -50,7 +54,7 @@ public:
   Database(const char *, const char *, const char *);
   ~Database();
 
-  // * Database functions
+  // * Database public functions
   void execute(const std::string &query, const SqlParam &, int &affectedRows);
   std::vector<std::vector<std::string>> execute(const std::string &, const SqlParam &);
 }; // Database class

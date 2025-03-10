@@ -56,5 +56,9 @@
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
   "C_Cpp_Runner.msvcSecureNoWarnings": false,
-  "cmake.sourceDirectory": "/home/zouari_omar/Documents/Daily/Projects/Astra/conf"
+  "cmake.sourceDirectory": "/home/zouari_omar/Documents/Daily/Projects/Astra/conf",
+  "cSpell.words": [
+    "Pixmap",
+    "qreal"
+  ]
 }

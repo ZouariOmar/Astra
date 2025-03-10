@@ -20,8 +20,8 @@
 SqlParam::SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams,
                    const std::vector<std::pair<unsigned int, const int>> &intParams,
                    const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams)
-    : integers(intParams),
-      strings(strParams),
+    : strings(strParams),
+      integers(intParams),
       timestamps(timestampsParams) {};
 
 // * ===========================================
@@ -33,7 +33,7 @@ SqlParam::SqlParam(const std::vector<std::pair<unsigned int, const std::string>>
  * @brief ### Construct a new Database::Database object
  *
  * @class   Database
- * @details Use the session export it vars
+ * @details Use the ENV session export it vars
  */
 Database::Database()
     : Database(
@@ -64,8 +64,8 @@ Database::Database(const char *username, const char *password, const char *datab
 /**
  * @brief Destroy the Database::Database object
  *
- * @class   Database
  * @details Cleans up resources
+ * @class   Database
  */
 Database::~Database() {
   if (conn)
@@ -98,16 +98,11 @@ void Database::execute(const std::string &query, const SqlParam &params, int &af
     // Prepare the statement
     Statement *stmt = conn->createStatement(query);
 
-    // Bind integer parameters by name
-    for (const std::pair<unsigned int, const int> &param : params.integers)
-      stmt->setInt(param.first, param.second);
-
-    // Bind string parameters by name
-    for (const std::pair<unsigned int, const std::string> &param : params.strings)
-      stmt->setString(param.first, param.second);
+    // Set SQL params
+    setSqlParams(stmt, params);
 
     // Execute the query (INSERT, UPDATE, DELETE)
-    affectedRows = stmt->executeUpdate(); // For INSERT, UPDATE, DELETE queries
+    affectedRows = stmt->executeUpdate();
 
     // Clean up
     conn->terminateStatement(stmt);
@@ -130,13 +125,8 @@ std::vector<std::vector<std::string>> Database::execute(const std::string &query
     // Prepare the statement
     Statement *stmt = conn->createStatement(query);
 
-    // Bind integer parameters by name
-    for (const std::pair<unsigned int, const int> &param : params.integers)
-      stmt->setInt(param.first, param.second);
-
-    // Bind string parameters by name
-    for (const std::pair<unsigned int, const std::string> &param : params.strings)
-      stmt->setString(param.first, param.second);
+    // Set SQL params
+    setSqlParams(stmt, params);
 
     // * Execute the query
     ResultSet *rs = stmt->executeQuery();
@@ -158,6 +148,24 @@ std::vector<std::vector<std::string>> Database::execute(const std::string &query
   }
 
   return results; // Return the result
+}
+
+/**
+ * @brief ### Set the SQL parameters into `stmt`
+ *
+ * @details      Helper function
+ * @class        Database
+ * @param stmt   {Statement *}
+ * @param params {const SqlParam &}
+ */
+void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
+  // Bind integer parameters by name
+  for (const std::pair<unsigned int, const int> &param : params.integers)
+    stmt->setInt(param.first, param.second);
+
+  // Bind string parameters by name
+  for (const std::pair<unsigned int, const std::string> &param : params.strings)
+    stmt->setString(param.first, param.second);
 }
 
 // * ============================

@@ -1,4 +1,6 @@
 docker exec -it oracle-db sqlplus c##omar/root@//localhost:1521/orclpdb1
+docker exec -it oracle-db bash
+ - lsnrctl start|status
 
 https://curl.se/libcurl/c/smtp-mail.html
 https://curl.se/libcurl/c/smtp-ssl.html

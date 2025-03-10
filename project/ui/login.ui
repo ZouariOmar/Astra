@@ -11,7 +11,11 @@
    </rect>
   </property>
   <property name="windowTitle">
-   <string>MainWindow</string>
+   <string>Astra</string>
+  </property>
+  <property name="windowIcon">
+   <iconset>
+    <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">/* Login interface */
