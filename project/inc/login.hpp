@@ -46,6 +46,7 @@ class Login : public QMainWindow {
 public:
   explicit Login(QWidget *parent = nullptr);
   ~Login();
+  std::vector<std::string> get_employee();
 
 private: // ? Private vars
   Ui::Login *ui;
@@ -54,10 +55,12 @@ private: // ? Private vars
   QTimer *gifTimer;
   QMovie *currentMovie;
   std::string generated_password;
+  std::vector<std::string> employee;
 
 private: // ? Private fns
   // * Events
-  bool eventFilter(QObject *, QEvent *) override;
+  bool
+  eventFilter(QObject *, QEvent *) override;
   bool forget_password_events(QObject *, QEvent *);
   bool login_btn_events(QObject *, QLabel *, QEvent *);
 

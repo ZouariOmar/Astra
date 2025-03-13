@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</iconset>
+    <normaloff>../../doc/imgs/logo.png</normaloff>../../doc/imgs/logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">* {
@@ -158,7 +158,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+      <normaloff>../assets/global/icons8-shop-50.png</normaloff>../assets/global/icons8-shop-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -207,7 +207,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+      <normaloff>../assets/global/icons8-salesman-50.png</normaloff>../assets/global/icons8-salesman-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -253,7 +253,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+      <normaloff>../assets/global/icons8-event-50.png</normaloff>../assets/global/icons8-event-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -299,7 +299,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+      <normaloff>../assets/global/icons8-handshake-50.png</normaloff>../assets/global/icons8-handshake-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -345,7 +345,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+      <normaloff>../assets/global/icons8-employees-24.png</normaloff>../assets/global/icons8-employees-24.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -391,7 +391,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+      <normaloff>../assets/global/icons8-user-groups-48.png</normaloff>../assets/global/icons8-user-groups-48.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -471,7 +471,7 @@ background-color: white;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/images.jpg</pixmap>
+     <pixmap>../assets/global/images.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -497,7 +497,7 @@ background-color: white;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</iconset>
+      <normaloff>../assets/global/icons8-notification.gif</normaloff>../assets/global/icons8-notification.gif</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="PDF">
@@ -520,7 +520,7 @@ background-color: white;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</iconset>
+      <normaloff>../assets/global/icons8-pdf.gif</normaloff>../assets/global/icons8-pdf.gif</iconset>
     </property>
    </widget>
    <widget class="QComboBox" name="Filtre">
@@ -694,7 +694,7 @@ color: #494d53;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-search.gif</pixmap>
+     <pixmap>../assets/global/icons8-search.gif</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -720,7 +720,7 @@ color: #494d53;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</iconset>
+      <normaloff>../assets/global/Add.png</normaloff>../assets/global/Add.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -803,7 +803,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</iconset>
+       <normaloff>../assets/Employees/Close.png</normaloff>../assets/Employees/Close.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="insertBtn">
@@ -825,7 +825,7 @@ color: #494d53;
       <string>Add</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_2">
+    <widget class="QLineEdit" name="lastNameInsert">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -846,7 +846,7 @@ color: #494d53;
       <string>Last Name...</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_3">
+    <widget class="QLineEdit" name="emailNameInsert">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -867,7 +867,7 @@ color: #494d53;
       <string>Email Address...</string>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_4">
+    <widget class="QLineEdit" name="passwordNameInsert">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -888,7 +888,7 @@ color: #494d53;
       <string>Password...</string>
      </property>
     </widget>
-    <widget class="QComboBox" name="Filtre_2">
+    <widget class="QComboBox" name="departmentInsert">
      <property name="geometry">
       <rect>
        <x>10</x>
@@ -919,7 +919,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+        <normaloff>../assets/global/icons8-salesman-50.png</normaloff>../assets/global/icons8-salesman-50.png</iconset>
       </property>
      </item>
      <item>
@@ -928,7 +928,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+        <normaloff>../assets/global/icons8-shop-50.png</normaloff>../assets/global/icons8-shop-50.png</iconset>
       </property>
      </item>
      <item>
@@ -937,7 +937,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+        <normaloff>../assets/global/icons8-handshake-50.png</normaloff>../assets/global/icons8-handshake-50.png</iconset>
       </property>
      </item>
      <item>
@@ -946,7 +946,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+        <normaloff>../assets/global/icons8-event-50.png</normaloff>../assets/global/icons8-event-50.png</iconset>
       </property>
      </item>
      <item>
@@ -955,7 +955,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+        <normaloff>../assets/global/icons8-user-groups-48.png</normaloff>../assets/global/icons8-user-groups-48.png</iconset>
       </property>
      </item>
      <item>
@@ -964,7 +964,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+        <normaloff>../assets/global/icons8-employees-24.png</normaloff>../assets/global/icons8-employees-24.png</iconset>
       </property>
      </item>
     </widget>
@@ -981,7 +981,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1000,7 +1000,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1019,7 +1019,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</pixmap>
+      <pixmap>../assets/login imgs/icons8-email-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1038,7 +1038,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-lock-24.png</pixmap>
+      <pixmap>../assets/global/icons8-lock-24.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1066,7 +1066,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</iconset>
+       <normaloff>../assets/Employees/icons8-right.png</normaloff>../assets/Employees/icons8-right.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1078,7 +1078,7 @@ color: #494d53;
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_5">
+    <widget class="QLineEdit" name="jobInsert">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -1112,13 +1112,13 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-job-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-job-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_6">
+    <widget class="QLineEdit" name="salaryInsert">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -1152,13 +1152,13 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-money-32.png</pixmap>
+      <pixmap>../assets/Employees/icons8-money-32.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QDateEdit" name="dateEdit">
+    <widget class="QDateEdit" name="birthdateInsert">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -1173,7 +1173,7 @@ color: #494d53;
       </font>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_7">
+    <widget class="QLineEdit" name="telInsert">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -1207,13 +1207,13 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-call-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-call-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QLineEdit" name="firstNameInsert_8">
+    <widget class="QLineEdit" name="addressInsert">
      <property name="geometry">
       <rect>
        <x>210</x>
@@ -1247,7 +1247,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-location-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-location-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1266,7 +1266,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-birthday-16.png</pixmap>
+      <pixmap>../assets/Employees/icons8-birthday-16.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1285,13 +1285,13 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-department-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
      </property>
     </widget>
-    <widget class="QPushButton" name="profileImage">
+    <widget class="QPushButton" name="profileImageInsert">
      <property name="geometry">
       <rect>
        <x>190</x>
@@ -1308,7 +1308,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</iconset>
+       <normaloff>../assets/Employees/icons8-profile-image-78.png</normaloff>../assets/Employees/icons8-profile-image-78.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1317,27 +1317,27 @@ color: #494d53;
       </size>
      </property>
     </widget>
-    <zorder>profileImage</zorder>
+    <zorder>profileImageInsert</zorder>
     <zorder>firstNameInsert</zorder>
     <zorder>Cancel_form</zorder>
     <zorder>insertBtn</zorder>
-    <zorder>firstNameInsert_2</zorder>
-    <zorder>firstNameInsert_3</zorder>
-    <zorder>firstNameInsert_4</zorder>
-    <zorder>Filtre_2</zorder>
+    <zorder>lastNameInsert</zorder>
+    <zorder>emailNameInsert</zorder>
+    <zorder>passwordNameInsert</zorder>
+    <zorder>departmentInsert</zorder>
     <zorder>label</zorder>
     <zorder>label_2</zorder>
     <zorder>label_3</zorder>
     <zorder>label_4</zorder>
     <zorder>show</zorder>
-    <zorder>firstNameInsert_5</zorder>
+    <zorder>jobInsert</zorder>
     <zorder>label_5</zorder>
-    <zorder>firstNameInsert_6</zorder>
+    <zorder>salaryInsert</zorder>
     <zorder>label_6</zorder>
-    <zorder>dateEdit</zorder>
-    <zorder>firstNameInsert_7</zorder>
+    <zorder>birthdateInsert</zorder>
+    <zorder>telInsert</zorder>
     <zorder>label_7</zorder>
-    <zorder>firstNameInsert_8</zorder>
+    <zorder>addressInsert</zorder>
     <zorder>label_8</zorder>
     <zorder>label_9</zorder>
     <zorder>label_10</zorder>
@@ -1391,32 +1391,80 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</pixmap>
+     <pixmap>../../doc/imgs/logo.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
     </property>
    </widget>
-   <widget class="QTableWidget" name="EmployeesTableView">
+   <widget class="QTableWidget" name="EmployeesTableWidget">
     <property name="geometry">
      <rect>
       <x>270</x>
       <y>130</y>
-      <width>731</width>
+      <width>621</width>
       <height>231</height>
      </rect>
     </property>
     <property name="font">
      <font>
       <pointsize>12</pointsize>
+      <kerning>true</kerning>
      </font>
     </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
-    <property name="selectionBehavior">
-     <enum>QAbstractItemView::SelectionBehavior::SelectColumns</enum>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Sunken</enum>
     </property>
+    <property name="midLineWidth">
+     <number>0</number>
+    </property>
+    <property name="autoScroll">
+     <bool>true</bool>
+    </property>
+    <property name="editTriggers">
+     <set>QAbstractItemView::EditTrigger::NoEditTriggers</set>
+    </property>
+    <property name="alternatingRowColors">
+     <bool>true</bool>
+    </property>
+    <property name="selectionMode">
+     <enum>QAbstractItemView::SelectionMode::SingleSelection</enum>
+    </property>
+    <property name="selectionBehavior">
+     <enum>QAbstractItemView::SelectionBehavior::SelectRows</enum>
+    </property>
+    <property name="textElideMode">
+     <enum>Qt::TextElideMode::ElideRight</enum>
+    </property>
+    <property name="gridStyle">
+     <enum>Qt::PenStyle::SolidLine</enum>
+    </property>
+    <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="rowCount">
+     <number>5</number>
+    </property>
+    <attribute name="horizontalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <attribute name="horizontalHeaderMinimumSectionSize">
+     <number>25</number>
+    </attribute>
+    <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
+     <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderCascadingSectionResizes">
+     <bool>false</bool>
+    </attribute>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
+    <row/>
     <column>
      <property name="text">
       <string>Profile Image</string>
@@ -1439,11 +1487,16 @@ font: 35pt &quot;Sylfaen&quot;;</string>
     </column>
     <column>
      <property name="text">
+      <string>Status</string>
+     </property>
+    </column>
+    <column>
+     <property name="text">
       <string>Actions</string>
      </property>
     </column>
    </widget>
-   <zorder>EmployeesTableView</zorder>
+   <zorder>EmployeesTableWidget</zorder>
    <zorder>Background_navigation</zorder>
    <zorder>Lower_line</zorder>
    <zorder>Above_line</zorder>

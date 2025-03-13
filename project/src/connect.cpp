@@ -17,12 +17,23 @@
 // ? === SqlParam Constructor ===
 // * ============================
 
+/**
+ * @brief ### Construct a new SqlParam::SqlParam object
+ *
+ * @struct                 SqlParam
+ * @param strParams        {const std::vector<std::pair<unsigned int, const std::string>> &}
+ * @param intParams        {const std::vector<std::pair<unsigned int, const int>> &}
+ * @param timestampsParams {const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &}
+ * @param blobsParams      {const std::vector<std::pair<unsigned int, const oracle::occi::Blob>>}
+ */
 SqlParam::SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams,
                    const std::vector<std::pair<unsigned int, const int>> &intParams,
-                   const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams)
+                   const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams,
+                   const std::vector<std::pair<unsigned int, const oracle::occi::Blob>> &blobsParams)
     : strings(strParams),
       integers(intParams),
-      timestamps(timestampsParams) {};
+      timestamps(timestampsParams),
+      blobs(blobsParams) {};
 
 // * ===========================================
 // ? ========= / SqlParam Constructor ==========

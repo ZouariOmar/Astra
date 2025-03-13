@@ -168,10 +168,76 @@ std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeI
   return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
 }
 
-// * =====================================
-// ? === / Employees::Select functions ===
-// ? ==== Employees::Update functions ====
-// * =====================================
+/**
+ * @brief ### Return all user data where different to `info`
+ *
+ * @namespace  Employees
+ * @class      Select
+ * @param info {const Employees::EmployeeInfo &}
+ * @return     std::vector<std::vector<std::string>>
+ */
+std::vector<std::vector<std::string>> Employees::Select::selectAllExcept(const Employees::EmployeeInfo &info) {
+  *result = db->execute("SELECT * FROM Employees WHERE " + info.arg + " <> :1", SqlParam({{1, info.data}}));
+  return (result->empty()) ? std::vector<std::vector<std::string>>{} : *result; // Return the first and the only row
+}
+
+/**
+ * @brief ### Select the last inserted employees into Employees table
+ *
+ * @namespace  Employees
+ * @class      Select
+ * @return     std::vector<std::string>
+ */
+std::vector<std::string> Employees::Select::selectLastInsertedRow() {
+  *result = db->execute("SELECT * FROM Employees ORDER BY id DESC LIMIT 1", SqlParam{{}});
+  return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
+}
+
+// * ======================================================
+// ? =========== / Employees::Select functions ============
+// ? ==== Employees::Insert constructor and destructor ====
+// * ======================================================
+
+/**
+ * @brief ### Construct a new Employees::Insert::Insert object
+ *
+ * @namespace Employees
+ * @class     Inset
+ */
+Employees::Insert::Insert() {
+  db = new Database();
+  result = new std::vector<std::vector<std::string>>;
+}
+
+/**
+ * @brief ### Destroy the Employees::Insert::Insert object
+ *
+ * @namespace Employees
+ * @class     Inset
+ */
+Employees::Insert::~Insert() {
+  delete db;
+  db = nullptr;
+  delete result;
+  result = nullptr;
+}
+
+// * ========================================================
+// ? ==== / Employees::Insert constructor and destructor ====
+// ? ============== Employees::Insert functions =============
+// * ========================================================
+
+int Employees::Insert::insertReq(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01, const Employees::EmployeeInfo &info_02, const Employees::EmployeeInfo &info_03, const Employees::EmployeeInfo &info_04) {
+  int aff;
+  return db->execute("INSERT INTO Employees (" + info_00.arg + ", " + info_01.arg + ", " + info_02.arg + ", " + info_03.arg + ", " + info_04.arg + ") VALUES (:1, :2, :3, :4, :5)",
+                     SqlParam({{1, info_00.data}, {2, info_01.data}, {3, info_02.data}, {4, info_03.data}, {5, info_04.data}}), aff),
+         aff;
+}
+
+// * ========================================================
+// ? ============ / Employees::Insert functions =============
+// ? ============= Employees::Update functions ==============
+// * ========================================================
 
 /**
  * @brief ### Construct a new Employees::Employees::Update object
@@ -207,5 +273,9 @@ Employees::Update::~Update() {
  */
 int Employees::Update::update(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
   int aff;
-  return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}) , aff), aff;
+  return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}), aff), aff;
 }
+
+// * =======================================
+// ? ==== / Employees::Update functions ====
+// * =======================================

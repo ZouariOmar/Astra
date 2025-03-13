@@ -40,6 +40,7 @@ enum EmployeeQueueFlags {
 struct EmployeeInfo;
 class Setup;
 class Select;
+class Insert;
 class Update;
 } // namespace Employees
 
@@ -71,7 +72,19 @@ public:
   // * Employees::Select functions
   std::vector<std::string> selectAll(const Employees::EmployeeInfo &);
   std::vector<std::string> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  std::vector<std::vector<std::string>> selectAllExcept(const Employees::EmployeeInfo &);
+  std::vector<std::string> selectLastInsertedRow();
 }; // Employees::Select class
+
+class Employees::Insert : private Employees::Setup {
+  public:
+    // Employees::Select Constructor and destructor
+    Insert();
+    ~Insert();
+
+    // * Employees::Insert functions
+    int insertReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+}; // Employees::Insert class
 
 class Employees::Update : private Employees::Setup {
 public:

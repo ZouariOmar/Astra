@@ -21,6 +21,7 @@
 #include <QtGui/QPixmap>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMessageBox>
 
 // Include generated .ui files
 #include "../ui/ui_employees.h"
@@ -36,10 +37,12 @@ class EmployeesUI : public QMainWindow {
   Q_OBJECT
 
 public:
-  explicit EmployeesUI(QWidget *parent = nullptr);
+  explicit EmployeesUI(std::vector<std::string>, QWidget *parent = nullptr);
   ~EmployeesUI();
+  void set_employee(const std::vector<std::string> &);
 
 private: // ? Private EmployeesUI vars
+  std::vector<std::string> employee;
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie,
       *notification_movie;
@@ -47,7 +50,8 @@ private: // ? Private EmployeesUI vars
 
 private: // ? Private EmployeesUI function
   inline void __init__();
-  void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *);
+  inline void __init_employees_table__();
+  void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal xOffset = 5, const qreal yOffset = 5, const qreal blurRadius = 5, const QColor color = Qt::gray);
   void set_pushButtonMovie(QPushButton *, QMovie *) const;
   void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
 
@@ -55,6 +59,7 @@ private slots:
   void on_show_clicked(bool);
   void on_Add_button_clicked();
   void on_Cancel_form_clicked();
+  void on_insertBtn_clicked();
 }; // EmployeesUI class
 
 #endif // __EMPLOYEES_UI__

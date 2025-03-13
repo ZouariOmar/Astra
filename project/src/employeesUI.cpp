@@ -10,6 +10,7 @@
 
 //? Include prototype declaration part
 #include "../inc/employeesUI.hpp"
+#include "../inc/employees.hpp"
 
 //? Function/Class prototype dev part
 
@@ -23,8 +24,9 @@
  * @class        Solution
  * @param parent {QWidget *}
  */
-EmployeesUI::EmployeesUI(QWidget *parent)
+EmployeesUI::EmployeesUI(std::vector<std::string> _employee, QWidget *parent)
     : QMainWindow(parent),
+      employee(_employee),
       ui(new Ui::EmployeesUI),
       pdf_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif")),
       notification_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif")),
@@ -57,7 +59,10 @@ inline void EmployeesUI::__init__() {
   ui->Form->hide();
 
   // Hide Profile image form
-  ui->profileImage->hide();
+  ui->profileImageInsert->hide();
+
+  // Init Employees table view
+  __init_employees_table__();
 
   // Set pushButtons Movie (as QIcon)
   set_pushButtonMovie(ui->PDF, pdf_movie);
@@ -74,6 +79,67 @@ inline void EmployeesUI::__init__() {
   set_shadowEffect(ui->Filtre, &shadow_effect_components[4]);
   set_shadowEffect(ui->Notification, &shadow_effect_components[5]);
   set_shadowEffect(ui->Form, &shadow_effect_components[6]);
+}
+
+/**
+ * @brief ### Init/Async employees table view
+ *
+ * @class EmployeesUI
+ */
+inline void EmployeesUI::__init_employees_table__() {
+  Employees::Select *sl(new Employees::Select);
+  std::vector<std::vector<std::string>> employees = sl->selectAllExcept(Employees::EmployeeInfo("2", Employees::EmployeeQueueFlags::EMPLOYEE_ID));
+  delete sl;
+  sl = nullptr;
+
+  size_t rows{employees.size()};
+  int columns{ui->EmployeesTableWidget->columnCount()}; // * 5 columns for now
+  ui->EmployeesTableWidget->setRowCount(rows);          // Set row count
+
+  for (size_t row{}; row < rows; ++row) { // Iterate over rows
+    for (int col{}; col < columns; ++col) {
+      QTableWidgetItem *item{nullptr};
+      QPushButton *button{nullptr};
+      switch (col) {
+      case 0: // Show image profile
+        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::PROFILE_IMAGE]));
+        ui->EmployeesTableWidget->setItem(row, col, item);
+        break;
+
+      case 1: // Show username
+        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::USERNAME]));
+        ui->EmployeesTableWidget->setItem(row, col, item);
+        break;
+
+      case 2: // Show email
+        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::EMAIL]));
+        ui->EmployeesTableWidget->setItem(row, col, item);
+        break;
+
+      case 3: // Show department
+        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::DEPARTMENT]));
+        ui->EmployeesTableWidget->setItem(row, col, item);
+        break;
+
+      case 4: // Show status
+        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::STATUS]));
+        ui->EmployeesTableWidget->setItem(row, col, item);
+        break;
+
+      case 5: // Show Actions
+        button = new QPushButton("hello mama!");
+        ui->EmployeesTableWidget->setCellWidget(row, col, button);
+        break;
+
+      default:
+        break;
+      }
+    }
+  }
+}
+
+void EmployeesUI::set_employee(const std::vector<std::string> &_employee) {
+  employee = _employee;
 }
 
 // * ================================================
@@ -130,15 +196,20 @@ void EmployeesUI::set_pushButtonMovie(QPushButton *btn, QMovie *movie) const {
 /**
  * @brief ### Set the shadow effect on `effect` and affected to `obj`
  *
- * @class        EmployeesUI
- * @param obj    {QWidget *}
- * @param effect {QGraphicsDropShadowEffect *}
+ * @class            EmployeesUI
+ * @param obj        {QWidget *}
+ * @param effect     {QGraphicsDropShadowEffect *}
+ * @param xOffset    {const qreal}
+ * @param yOffset    {const qreal}
+ * @param blurRadius {const qreal}
+ * @param color      {const QColor}
+ * @return           void
  */
-void EmployeesUI::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect *effect) {
-  effect->setBlurRadius(5);
-  effect->setXOffset(5);
-  effect->setYOffset(5);
-  effect->setColor(Qt::gray);
+void EmployeesUI::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect *effect, const qreal xOffset, const qreal yOffset, const qreal blurRadius, const QColor color) {
+  effect->setXOffset(xOffset);
+  effect->setYOffset(yOffset);
+  effect->setBlurRadius(blurRadius);
+  effect->setColor(color);
   obj->setGraphicsEffect(effect);
 }
 
@@ -177,19 +248,67 @@ void EmployeesUI::on_Cancel_form_clicked() {
 void EmployeesUI::on_show_clicked(bool checked) {
   if (checked) {
     ui->Form->resize(411, ui->Form->height());
-    ui->profileImage->show();
+    ui->profileImageInsert->show();
     ui->show->setIcon(QIcon("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-left.png"));
     ui->Cancel_form->move(380, ui->Cancel_form->y());
     ui->insertBtn->move(340, ui->insertBtn->y());
   } else {
     ui->Form->resize(211, ui->Form->height());
-    ui->profileImage->hide();
+    ui->profileImageInsert->hide();
     ui->show->setIcon(QIcon("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png"));
     ui->Cancel_form->move(180, ui->Cancel_form->y());
     ui->insertBtn->move(140, ui->insertBtn->y());
   }
 }
 
+/**
+ * @brief ###
+ *
+ * @class  EmployeesUI
+ * @return void
+ */
+void EmployeesUI::on_insertBtn_clicked() {
+  // 1. Hold data from UI
+  std::string firstName = ui->firstNameInsert->text().toStdString();
+  std::string lastName = ui->lastNameInsert->text().toStdString();
+  std::string email = ui->emailNameInsert->text().toStdString();
+  std::string password = ui->passwordNameInsert->text().toStdString();
+  std::string department = ui->departmentInsert->currentText().toStdString();
+
+  // 2. Verify if the given email exist
+  Employees::Select *sl(new Employees::Select);
+  std::vector<std::string> employee = sl->selectAll(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags::EMAIL));
+  delete sl;
+  sl = nullptr;
+
+  if (!employee.empty()) {
+    QMessageBox::warning(this, tr("Astra"),
+                         tr("This Email Exist, you can't added it again!"),
+                         QMessageBox::Ok);
+    return;
+  }
+
+  // 3. If not, insert the given data
+  Employees::Insert *ist(new Employees::Insert);
+  int affRow = ist->insertReq(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags::EMAIL),
+                              Employees::EmployeeInfo(firstName, Employees::EmployeeQueueFlags::FIRSTNAME),
+                              Employees::EmployeeInfo(lastName, Employees::EmployeeQueueFlags::LASTNAME),
+                              Employees::EmployeeInfo(password, Employees::EmployeeQueueFlags::PASSWORD),
+                              Employees::EmployeeInfo(department, Employees::EmployeeQueueFlags::DEPARTMENT));
+  delete ist;
+  ist = nullptr;
+
+  // 4. Show a QMessageBox on success/failed operation
+  (!affRow) ? QMessageBox::warning(this, tr("Astra"),
+                                   tr("Error: Can't insert the given employee data!"),
+                                   QMessageBox::Ok)
+            : QMessageBox::information(this, tr("Astra"),
+                                       tr("Employee added successfully!"),
+                                       QMessageBox::Ok);
+
+  // 5. Refresh the table (just add the last(new) inserted employee)
+  __init_employees_table__();
+}
 // * ========================================
 // ? === / Events & signals handling part ===
 // * ========================================

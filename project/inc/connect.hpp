@@ -33,9 +33,11 @@ struct SqlParam {
   std::vector<std::pair<unsigned int, const std::string>> strings;                // Parameters of type string
   std::vector<std::pair<unsigned int, const int>> integers;                       // Parameters of type int
   std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
+  std::vector<std::pair<unsigned int, const oracle::occi::Blob>> blobs;          // Parameters of type blob
   explicit SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams = {},
                     const std::vector<std::pair<unsigned int, const int>> &intParams = {},
-                    const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams = {});
+                    const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams = {},
+                    const std::vector<std::pair<unsigned int, const oracle::occi::Blob>> &blobsParams = {});
 }; // SqlParam struct
 
 // ? Classes prototype declaration part

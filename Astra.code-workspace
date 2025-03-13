@@ -106,8 +106,12 @@
 			"qgraphicsdropshadoweffect": "cpp"
 		},
 		"cSpell.words": [
+			"occi",
 			"PASSWORDGEN",
 			"qreal"
+		],
+		"conventionalCommits.scopes": [
+			"CRUD"
 		]
 	}
 }

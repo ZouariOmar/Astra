@@ -123,8 +123,20 @@ void Login::on_pushButton_clicked() {
         this, tr("Astra"), tr("Username or password are wrong!\n"
                               "Pleas try to login again!"),
         QMessageBox::Ok);
-  else
-    emit loginSuccessful();
+  else {
+    employee = res;         // Hold the verified employees data to pass to the next interface
+    emit loginSuccessful(); // Lance loginSuccessful signal
+  }
+}
+
+/**
+ * @brief ### Get verified employee data
+ *
+ * @class  Login
+ * @return std::vector<std::string>
+ */
+std::vector<std::string> Login::get_employee() {
+  return employee;
 }
 
 // * ======================================
@@ -319,8 +331,10 @@ void Login::on_sendEmailBtn_clicked() {
   sl = nullptr;
 
   if (employee.empty()) {
-    std::cerr << "Error: Email doesn't exist!" << std::endl;
-    return; // ! make error status msg
+    QMessageBox::warning(this, tr("Astra"),
+                         tr("This Email doesn't exist!"),
+                         QMessageBox::Ok);
+    return;
   }
 
   QProgressDialog *progressDialog = new QProgressDialog("Sending password reset email...", "Cancel", 0, 0, this);
