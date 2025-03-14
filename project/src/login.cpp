@@ -10,7 +10,6 @@
 
 // ? Include prototype declaration part
 #include "../inc/login.hpp"
-#include "../inc/employees.hpp"
 #include "../inc/passwordGen.hpp"
 #include "../inc/smtp-mail.hpp"
 
@@ -112,20 +111,24 @@ void Login::on_pushButton_clicked() {
     return;
   }
 
-  // Verify the validity of the given info
-  Employees::Select *sl = new Employees::Select;
-  std::vector<std::string> res = sl->selectAll(Employees::EmployeeInfo(_username, Employees::EmployeeQueueFlags::USERNAME), Employees::EmployeeInfo(_password, Employees::EmployeeQueueFlags::PASSWORD));
-  delete sl;
-  sl = nullptr;
+  // Assuming `Select` does not need to be dynamically allocated, we can use stack allocation.
+  Employees::Select sl;
 
-  if (res.empty())
+  // Execute the select query with the given parameters.
+  std::vector<SqlParam> res = sl.selectAll(
+      Employees::EmployeeInfo(_username, Employees::EmployeeQueueFlags_strings::USERNAME),
+      Employees::EmployeeInfo(_password, Employees::EmployeeQueueFlags_strings::PASSWORD));
+
+  // Check if the result is empty
+  if (res.empty()) {
+    // Show error message if the result is empty (i.e., login failed)
     QMessageBox::warning(
-        this, tr("Astra"), tr("Username or password are wrong!\n"
-                              "Pleas try to login again!"),
+        this, tr("Astra"), tr("Username or password are incorrect!\nPlease try to login again!"),
         QMessageBox::Ok);
-  else {
-    employee = res;         // Hold the verified employees data to pass to the next interface
-    emit loginSuccessful(); // Lance loginSuccessful signal
+  } else {
+    // Store the verified employee data and proceed to the next interface
+    employee = res;         // Hold the verified employees data
+    emit loginSuccessful(); // Emit the signal for successful login
   }
 }
 
@@ -133,9 +136,9 @@ void Login::on_pushButton_clicked() {
  * @brief ### Get verified employee data
  *
  * @class  Login
- * @return std::vector<std::string>
+ * @return std::vector<SqlParam>
  */
-std::vector<std::string> Login::get_employee() {
+std::vector<SqlParam> Login::get_employee() {
   return employee;
 }
 
@@ -326,7 +329,7 @@ void Login::on_sendEmailBtn_clicked() {
 
   // Select user information using 'email'
   Employees::Select *sl(new Employees::Select);
-  std::vector<std::string> employee = sl->selectAll(Employees::EmployeeInfo(_email, Employees::EmployeeQueueFlags::EMAIL));
+  std::vector<SqlParam> employee = sl->selectAll(Employees::EmployeeInfo(_email, Employees::EmployeeQueueFlags_strings::EMAIL));
   delete sl;
   sl = nullptr;
 
@@ -353,8 +356,8 @@ void Login::on_sendEmailBtn_clicked() {
           "Astra: Password Reset Request",
           EmailBody("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/forget_password_template.html",
                     {
-                        {"{{name}}", employee[Employees::EmployeeQueueFlags::FIRSTNAME]},
-                        {"{{prename}}", employee[Employees::EmployeeQueueFlags::LASTNAME]},
+                        {"{{name}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::FIRSTNAME].second},
+                        {"{{prename}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::LASTNAME].second},
                         {"{{password}}", generated_password},
                     })
               .get_inner_html()));
@@ -397,7 +400,7 @@ void Login::on_reset_clicked() {
 
   // Update password and redirect the usr to login QGroup box
   Employees::Update up{Employees::Update()};
-  up.update(Employees::EmployeeInfo(ui->confirmPassword->text().toStdString(), Employees::EmployeeQueueFlags::PASSWORD), Employees::EmployeeInfo(ui->email->text().toStdString(), Employees::EmployeeQueueFlags::EMAIL));
+  up.update(Employees::EmployeeInfo(ui->confirmPassword->text().toStdString(), Employees::EmployeeQueueFlags_strings::PASSWORD), Employees::EmployeeInfo(ui->email->text().toStdString(), Employees::EmployeeQueueFlags_strings::EMAIL));
   QMessageBox::information(this, tr("Success"),
                            tr("Your password have been changed successfully!"),
                            QMessageBox::Ok);

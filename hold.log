@@ -1,0 +1,963 @@
+[0;34mBuilding project in 'bin/build'...[0m
+[1/3] Building CXX object CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o
+FAILED: CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o 
+/usr/bin/c++ -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/bin/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtConcurrent -Wall -std=gnu++20 -mno-direct-extern-access -MD -MT CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o -MF CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o.d -fmodules-ts -fmodule-mapper=CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp
+In file included from /usr/include/c++/14.2.1/bits/specfun.h:43,
+                 from /usr/include/c++/14.2.1/cmath:3906,
+                 from /usr/include/qt6/QtCore/qnumeric.h:15,
+                 from /usr/include/qt6/QtCore/qglobal.h:62,
+                 from /usr/include/qt6/QtGui/qtguiglobal.h:7,
+                 from /usr/include/qt6/QtGui/qbitmap.h:7,
+                 from /usr/include/qt6/QtGui/QBitmap:1,
+                 from /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/../inc/employeesUI.hpp:18,
+                 from /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:12:
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const std::__cxx11::basic_string<char> >*; _OI = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const std::__cxx11::basic_string<char>]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+In file included from /usr/include/c++/14.2.1/utility:69,
+                 from /usr/include/qt6/QtCore/qglobal.h:15:
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*; _OI = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const std::__cxx11::basic_string<char>]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const int>*; _OI = std::pair<unsigned int, const int>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const int>*; _OI = std::pair<unsigned int, const int>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const oracle::occi::Timestamp>*; _OI = std::pair<unsigned int, const oracle::occi::Timestamp>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const oracle::occi::Timestamp]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const oracle::occi::Timestamp>*; _OI = std::pair<unsigned int, const oracle::occi::Timestamp>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const oracle::occi::Timestamp]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static void std::__copy_move<false, false, std::random_access_iterator_tag>::__assign_one(_Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = const std::pair<unsigned int, const int>]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:455:20:   required from ‘static constexpr _Up* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(_Tp*, _Tp*, _Up*) [with _Tp = const std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>; bool _IsMove = false]’
+  454 |             std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  455 |               __assign_one(__result, __first);
+      |               ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:521:30:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  520 |       return std::__copy_move<_IsMove, __memcpyable<_OI, _II>::__value,
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  521 |                               _Category>::__copy_m(__first, __last, __result);
+      |                               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static void std::__copy_move<false, false, std::random_access_iterator_tag>::__assign_one(_Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:455:20:   required from ‘static constexpr _Up* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(_Tp*, _Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>; bool _IsMove = false]’
+  454 |             std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  455 |               __assign_one(__result, __first);
+      |               ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:521:30:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  520 |       return std::__copy_move<_IsMove, __memcpyable<_OI, _II>::__value,
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  521 |                               _Category>::__copy_m(__first, __last, __result);
+      |                               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/employeesUI.cpp:153:14:   required from here
+  153 |   employee = _employee;
+      |              ^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+[2/3] Building CXX object CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o
+FAILED: CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o 
+/usr/bin/c++ -DQT_CONCURRENT_LIB -DQT_CORE_LIB -DQT_GUI_LIB -DQT_NO_DEBUG -DQT_WIDGETS_LIB -I/usr/local/include/oracle -isystem /home/zouari_omar/Documents/Daily/Projects/Astra/bin/build/Astra_autogen/include -isystem /usr/include/qt6/QtCore -isystem /usr/include/qt6 -isystem /usr/lib/qt6/mkspecs/linux-g++ -isystem /usr/include/qt6/QtGui -isystem /usr/include/qt6/QtWidgets -isystem /usr/include/qt6/QtConcurrent -Wall -std=gnu++20 -mno-direct-extern-access -MD -MT CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o -MF CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o.d -fmodules-ts -fmodule-mapper=CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o.modmap -MD -fdeps-format=p1689r5 -x c++ -o CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp.o -c /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp
+In file included from /usr/include/c++/14.2.1/bits/specfun.h:43,
+                 from /usr/include/c++/14.2.1/cmath:3906,
+                 from /usr/include/qt6/QtCore/qnumeric.h:15,
+                 from /usr/include/qt6/QtCore/qglobal.h:62,
+                 from /usr/include/qt6/QtCore/QtCore:4,
+                 from /usr/include/qt6/QtConcurrent/QtConcurrentDepends:3,
+                 from /usr/include/qt6/QtConcurrent/QtConcurrent:3,
+                 from /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/../inc/login.hpp:22,
+                 from /home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:12:
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const std::__cxx11::basic_string<char> >*; _OI = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const __cxx11::basic_string<char> >*, vector<pair<unsigned int, const __cxx11::basic_string<char> > > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const std::__cxx11::basic_string<char>]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+In file included from /usr/include/c++/14.2.1/utility:69,
+                 from /usr/include/qt6/QtCore/qglobal.h:15:
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*; _OI = std::pair<unsigned int, const std::__cxx11::basic_string<char> >*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const __cxx11::basic_string<char> >*; _OI = pair<unsigned int, const __cxx11::basic_string<char> >*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const std::__cxx11::basic_string<char>]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const int>*; _OI = std::pair<unsigned int, const int>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const int>*; _OI = std::pair<unsigned int, const int>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = const std::pair<unsigned int, const oracle::occi::Timestamp>*; _OI = std::pair<unsigned int, const oracle::occi::Timestamp>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const oracle::occi::Timestamp>*, vector<pair<unsigned int, const oracle::occi::Timestamp> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const oracle::occi::Timestamp]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static constexpr _OI std::__copy_move<false, false, std::random_access_iterator_tag>::__copy_m(_II, _II, _OI) [with _II = std::pair<unsigned int, const oracle::occi::Timestamp>*; _OI = std::pair<unsigned int, const oracle::occi::Timestamp>*]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const oracle::occi::Timestamp>*; _OI = pair<unsigned int, const oracle::occi::Timestamp>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const oracle::occi::Timestamp]’
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:403:25: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  403 |               *__result = *__first;
+      |               ~~~~~~~~~~^~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static void std::__copy_move<false, false, std::random_access_iterator_tag>::__assign_one(_Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = const std::pair<unsigned int, const int>]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:455:20:   required from ‘static constexpr _Up* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(_Tp*, _Tp*, _Up*) [with _Tp = const std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>; bool _IsMove = false]’
+  454 |             std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  455 |               __assign_one(__result, __first);
+      |               ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:521:30:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  520 |       return std::__copy_move<_IsMove, __memcpyable<_OI, _II>::__value,
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  521 |                               _Category>::__copy_m(__first, __last, __result);
+      |                               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >; _OI = __gnu_cxx::__normal_iterator<pair<unsigned int, const int>*, vector<pair<unsigned int, const int> > >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h: In instantiation of ‘static void std::__copy_move<false, false, std::random_access_iterator_tag>::__assign_one(_Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>]’:
+/usr/include/c++/14.2.1/bits/stl_algobase.h:455:20:   required from ‘static constexpr _Up* std::__copy_move<_IsMove, true, std::random_access_iterator_tag>::__copy_m(_Tp*, _Tp*, _Up*) [with _Tp = std::pair<unsigned int, const int>; _Up = std::pair<unsigned int, const int>; bool _IsMove = false]’
+  454 |             std::__copy_move<_IsMove, false, random_access_iterator_tag>::
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  455 |               __assign_one(__result, __first);
+      |               ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:521:30:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  520 |       return std::__copy_move<_IsMove, __memcpyable<_OI, _II>::__value,
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  521 |                               _Category>::__copy_m(__first, __last, __result);
+      |                               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = pair<unsigned int, const int>*; _OI = pair<unsigned int, const int>*]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:255:17:   [ skipping 2 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/usr/include/c++/14.2.1/bits/stl_algobase.h:518:12:   required from ‘constexpr _OI std::__copy_move_a2(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  517 |         return std::__copy_move<_IsMove, false, _Category>::
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  518 |           __copy_m(__first, __last, __result);
+      |           ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:548:42:   required from ‘constexpr _OI std::__copy_move_a1(_II, _II, _OI) [with bool _IsMove = false; _II = const SqlParam*; _OI = SqlParam*]’
+  548 |     { return std::__copy_move_a2<_IsMove>(__first, __last, __result); }
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:556:31:   required from ‘constexpr _OI std::__copy_move_a(_II, _II, _OI) [with bool _IsMove = false; _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  556 |                 std::__copy_move_a1<_IsMove>(std::__niter_base(__first),
+      |                 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  557 |                                              std::__niter_base(__last),
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~
+  558 |                                              std::__niter_base(__result)));
+      |                                              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:651:7:   required from ‘constexpr _OI std::copy(_II, _II, _OI) [with _II = __gnu_cxx::__normal_iterator<const SqlParam*, vector<SqlParam> >; _OI = __gnu_cxx::__normal_iterator<SqlParam*, vector<SqlParam> >]’
+  650 |       return std::__copy_move_a<__is_move_iterator<_II>::__value>
+      |              ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  651 |              (std::__miter_base(__first), std::__miter_base(__last), __result);
+      |              ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/usr/include/c++/14.2.1/bits/vector.tcc:250:31:   required from ‘constexpr std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = SqlParam; _Alloc = std::allocator<SqlParam>]’
+  250 |               std::_Destroy(std::copy(__x.begin(), __x.end(), begin()),
+      |                             ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/login.cpp:126:16:   required from here
+  126 |     employee = res;         // Hold the verified employees data to pass to the next interface
+      |                ^~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: error: use of deleted function ‘std::pair<_T1, _T2>& std::pair<_T1, _T2>::operator=(const std::pair<_T1, _T2>&) [with _T1 = unsigned int; _T2 = const int]’
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_pair.h:587:13: note: declared here
+  587 |       pair& operator=(const pair&) = delete;
+      |             ^~~~~~~~
+/usr/include/c++/14.2.1/bits/stl_algobase.h:413:17: note: use ‘-fdiagnostics-all-candidates’ to display considered candidates
+  413 |         { *__to = *__from; }
+      |           ~~~~~~^~~~~~~~~
+ninja: build stopped: subcommand failed.
+[0;31mError:[0m Build failed.

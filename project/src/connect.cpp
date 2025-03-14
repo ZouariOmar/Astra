@@ -26,12 +26,14 @@
  * @param timestampsParams {const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &}
  * @param blobsParams      {const std::vector<std::pair<unsigned int, const oracle::occi::Blob>>}
  */
-SqlParam::SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams,
-                   const std::vector<std::pair<unsigned int, const int>> &intParams,
-                   const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams,
-                   const std::vector<std::pair<unsigned int, const oracle::occi::Blob>> &blobsParams)
+SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strParams,
+                   const std::vector<std::pair<unsigned int, int>> &intParams,
+                   const std::vector<std::pair<unsigned int, oracle::occi::Date>> &dateParams,
+                   const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams,
+                   const std::vector<std::pair<unsigned int, std::vector<unsigned char>>> &blobsParams)
     : strings(strParams),
       integers(intParams),
+      dates(dateParams),
       timestamps(timestampsParams),
       blobs(blobsParams) {};
 
@@ -104,10 +106,11 @@ Database::~Database() {
  */
 void Database::execute(const std::string &query, const SqlParam &params, int &affectedRows) {
   affectedRows = 0; // Default to 0 affected rows
+  Statement *stmt = nullptr;
 
   try {
     // Prepare the statement
-    Statement *stmt = conn->createStatement(query);
+    stmt = conn->createStatement(query);
 
     // Set SQL params
     setSqlParams(stmt, params);
@@ -115,11 +118,24 @@ void Database::execute(const std::string &query, const SqlParam &params, int &af
     // Execute the query (INSERT, UPDATE, DELETE)
     affectedRows = stmt->executeUpdate();
 
-    // Clean up
-    conn->terminateStatement(stmt);
-  } catch (SQLException &e) {
+    // Commit the transaction (optional, depending on your DB settings)
+    conn->commit();
+  } catch (const SQLException &e) {
     std::cerr << "Query Error: " << e.getMessage() << std::endl;
+
+    // Rollback transaction in case of error
+    try {
+      conn->rollback();
+    } catch (const SQLException &rollbackErr) {
+      std::cerr << "Rollback Error: " << rollbackErr.getMessage() << std::endl;
+    }
+
+    throw; // Re-throw the exception so the caller can handle it
   }
+
+  // Ensure stmt is cleaned up even if an error occurs
+  if (stmt)
+    conn->terminateStatement(stmt);
 }
 
 /**
@@ -130,35 +146,73 @@ void Database::execute(const std::string &query, const SqlParam &params, int &af
  * @param params {const SqlParam &}
  * @return       std::vector<std::vector<std::string>>
  */
-std::vector<std::vector<std::string>> Database::execute(const std::string &query, const SqlParam &params) {
-  std::vector<std::vector<std::string>> results;
+std::vector<SqlParam> Database::execute(const std::string &query, const SqlParam &params) {
+  std::vector<SqlParam> results;
+
   try {
-    // Prepare the statement
     Statement *stmt = conn->createStatement(query);
-
-    // Set SQL params
     setSqlParams(stmt, params);
-
-    // * Execute the query
     ResultSet *rs = stmt->executeQuery();
 
-    // Retrieve the results
-    int columnCount = rs->getColumnListMetaData().size();
+    std::vector<MetaData> columnsMetaData = rs->getColumnListMetaData();
+    int columnCount = columnsMetaData.size();
+
     while (rs->next()) {
-      std::vector<std::string> row;
-      for (int i = 1; i <= columnCount; ++i)
-        row.push_back(rs->getString(i));
+      SqlParam row;
+
+      for (int i = 1; i <= columnCount; ++i) {
+        MetaData columnMetaData = columnsMetaData[i - 1];
+        int dataType = columnMetaData.getInt(MetaData::ATTR_DATA_TYPE);
+
+        switch (dataType) {
+        case OCCI_SQLT_NUM:
+          row.integers.emplace_back(i, rs->getInt(i));
+          break;
+
+        case OCCI_SQLT_CHR:
+        case OCCI_SQLT_VCS:
+          row.strings.emplace_back(i, rs->getString(i));
+          break;
+
+        case OCCI_SQLT_DAT:
+          row.dates.emplace_back(i, rs->getDate(i)); // Fetch and store as Date
+          break;
+
+        case OCCI_SQLT_TIMESTAMP: // Handling TIMESTAMP
+          row.timestamps.emplace_back(i, rs->getTimestamp(i));
+          break;
+
+        case OCCI_SQLT_BLOB: {
+          oracle::occi::Blob blob = rs->getBlob(i);
+
+          if (blob.isNull()) // * For: ORA-32114: Cannot perform operation on a null LOB
+            break;
+
+          blob.open(OCCI_LOB_READONLY);
+
+          std::vector<unsigned char> blobData(blob.length());
+          blob.read(blob.length(), blobData.data(), blob.length());
+          blob.close();
+
+          row.blobs.emplace_back(i, blobData); // Store as std::vector<unsigned char>
+          break;
+        }
+
+        default:
+          std::cerr << "Unknown data type encountered: " << dataType << std::endl;
+        }
+      }
+
       results.push_back(row);
     }
 
-    // Clean up
     stmt->closeResultSet(rs);
     conn->terminateStatement(stmt);
   } catch (SQLException &e) {
     std::cerr << "Query Error: " << e.getMessage() << std::endl;
   }
 
-  return results; // Return the result
+  return results;
 }
 
 /**
@@ -170,13 +224,30 @@ std::vector<std::vector<std::string>> Database::execute(const std::string &query
  * @param params {const SqlParam &}
  */
 void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
-  // Bind integer parameters by name
-  for (const std::pair<unsigned int, const int> &param : params.integers)
+  for (const auto &param : params.integers)
     stmt->setInt(param.first, param.second);
 
-  // Bind string parameters by name
-  for (const std::pair<unsigned int, const std::string> &param : params.strings)
+  for (const auto &param : params.strings)
     stmt->setString(param.first, param.second);
+
+  for (const auto &param : params.dates)
+    stmt->setDate(param.first, param.second);
+
+  for (const auto &param : params.timestamps)
+    stmt->setTimestamp(param.first, param.second);
+
+  for (const auto &param : params.blobs) {
+    try {
+      oracle::occi::Blob blob(conn); // Create a temporary BLOB
+      blob.open(OCCI_LOB_READWRITE);
+      blob.write(param.second.size(), (unsigned char *)param.second.data(), param.second.size());
+      blob.close();
+
+      stmt->setBlob(param.first, blob);
+    } catch (SQLException &e) {
+      std::cerr << "BLOB Binding Error: " << e.getMessage() << std::endl;
+    }
+  }
 }
 
 // * ============================

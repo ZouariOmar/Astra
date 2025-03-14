@@ -23,61 +23,134 @@
  * @namespace   Employees
  * @struct      EmployeeInfo
  * @param _data {const std::string &}
- * @param flag  {const Employees::EmployeeQueueFlags &}
+ * @param flag  {const Employees::EmployeeQueueFlags_integers &}
  */
-Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags &flag)
-    : data(_data) {
+Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags_integers &flag)
+    : data(_data), arg("") {
   switch (flag) {
-  case Employees::EmployeeQueueFlags::EMPLOYEE_ID:
+  case Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID:
     arg = "EmployeeID";
     break;
-  case Employees::EmployeeQueueFlags::USERNAME:
+  case Employees::EmployeeQueueFlags_integers::SALARY:
+    arg = "Salary";
+    break;
+  default:
+    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_integers' flag!" << std::endl;
+    throw std::invalid_argument("Invalid EmployeeQueueFlags_integers flag passed to EmployeeInfo constructor.");
+    break;
+  }
+}
+
+/**
+ * @brief ### Construct a new Employees::EmployeeInfo::EmployeeInfo object
+ *
+ * @namespace   Employees
+ * @struct      EmployeeInfo
+ * @param _data {const std::string &}
+ * @param flag  {const Employees::EmployeeQueueFlags_strings &}
+ */
+Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags_strings &flag)
+    : data(_data), arg("") {
+  switch (flag) {
+  case Employees::EmployeeQueueFlags_strings::USERNAME:
     arg = "Username";
     break;
-  case Employees::EmployeeQueueFlags::FIRSTNAME:
+  case Employees::EmployeeQueueFlags_strings::FIRSTNAME:
     arg = "FirstName";
     break;
-  case Employees::EmployeeQueueFlags::LASTNAME:
+  case Employees::EmployeeQueueFlags_strings::LASTNAME:
     arg = "LastName";
     break;
-  case Employees::EmployeeQueueFlags::EMAIL:
+  case Employees::EmployeeQueueFlags_strings::EMAIL:
     arg = "Email";
     break;
-  case Employees::EmployeeQueueFlags::JOBTITLE:
+  case Employees::EmployeeQueueFlags_strings::JOBTITLE:
     arg = "JobTitle";
     break;
-  case Employees::EmployeeQueueFlags::HIRE_DATE:
-    arg = "HireDate";
-    break;
-  case Employees::EmployeeQueueFlags::STATUS:
+  case Employees::EmployeeQueueFlags_strings::STATUS:
     arg = "Status";
     break;
-  case Employees::EmployeeQueueFlags::PASSWORD:
+  case Employees::EmployeeQueueFlags_strings::PASSWORD:
     arg = "Password";
     break;
-  case Employees::EmployeeQueueFlags::PROFILE_IMAGE:
-    arg = "ProfileImage";
-    break;
-  case Employees::EmployeeQueueFlags::PHONE_NUMBER:
-    arg = "PhoneNumber";
-    break;
-  case Employees::EmployeeQueueFlags::ADDRESS:
+  case Employees::EmployeeQueueFlags_strings::ADDRESS:
     arg = "Address";
     break;
-  case Employees::EmployeeQueueFlags::BIRTHDATE:
-    arg = "BirthDate";
-    break;
-  case Employees::EmployeeQueueFlags::DEPARTMENT:
+  case Employees::EmployeeQueueFlags_strings::DEPARTMENT:
     arg = "Department";
     break;
-  case Employees::EmployeeQueueFlags::LAST_LOGIN:
+  default:
+    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_strings' flag!" << std::endl;
+    throw std::invalid_argument("Invalid EmployeeQueueFlags_strings flag passed to EmployeeInfo constructor.");
+    break;
+  }
+}
+
+/**
+ * @brief ### Construct a new Employees::EmployeeInfo::EmployeeInfo object
+ *
+ * @namespace   Employees
+ * @struct      EmployeeInfo
+ * @param _data {const std::string &}
+ * @param flag  {const Employees::EmployeeQueueFlags_dates &}
+ */
+Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags_dates &flag)
+    : data(_data), arg("") {
+  switch (flag) {
+  case Employees::EmployeeQueueFlags_dates::HIRE_DATE:
+    arg = "HireDate";
+    break;
+  case Employees::EmployeeQueueFlags_dates::BIRTHDATE:
+    arg = "BirthDate";
+    break;
+  default:
+    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_dates' flag!" << std::endl;
+    throw std::invalid_argument("Invalid EmployeeQueueFlags_dates flag passed to EmployeeInfo constructor.");
+    break;
+  }
+}
+
+/**
+ * @brief ### Construct a new Employees::EmployeeInfo::EmployeeInfo object
+ *
+ * @namespace   Employees
+ * @struct      EmployeeInfo
+ * @param _data {const std::string &}
+ * @param flag  {const Employees::EmployeeQueueFlags_timestamps &}
+ */
+Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags_timestamps &flag)
+    : data(_data), arg("") {
+  switch (flag) {
+  case Employees::EmployeeQueueFlags_timestamps::LAST_LOGIN:
     arg = "LastLogin";
     break;
-  case Employees::EmployeeQueueFlags::LAST_PASSWORD_RESET:
+  case Employees::EmployeeQueueFlags_timestamps::LAST_PASSWORD_RESET:
     arg = "LastPasswordReset";
     break;
   default:
-    std::cerr << "Error: Not invalid 'EmployeeQueueFlags' flag!" << std::endl;
+    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_timestamps' flag!" << std::endl;
+    throw std::invalid_argument("Invalid EmployeeQueueFlags_timestamps flag passed to EmployeeInfo constructor.");
+    break;
+  }
+}
+
+/**
+ * @brief ### Construct a new Employees::EmployeeInfo::EmployeeInfo object
+ *
+ * @namespace   Employees
+ * @struct      EmployeeInfo
+ * @param _data {const std::string &}
+ * @param flag  {const Employees::EmployeeQueueFlags_blobs &}
+ */
+Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees::EmployeeQueueFlags_blobs &flag)
+    : data(_data), arg("") {
+  switch (flag) {
+  case Employees::EmployeeQueueFlags_blobs::PROFILE_IMAGE:
+    arg = "ProfileImage";
+    break;
+  default:
+    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_blobs' flag!" << std::endl;
+    throw std::invalid_argument("Invalid EmployeeQueueFlags_blobs flag passed to EmployeeInfo constructor.");
     break;
   }
 }
@@ -118,7 +191,7 @@ Employees::Setup::~Setup() {};
  */
 Employees::Select::Select() {
   db = new Database();
-  result = new std::vector<std::vector<std::string>>;
+  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -146,11 +219,14 @@ Employees::Select::~Select() {
  * @namespace  Employees
  * @class      Select
  * @param info {const Employees::EmployeeInfo &}
- * @return     std::vector<std::string>
+ * @return     std::vector<SqlParam>
  */
-std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeInfo &info) {
-  *result = db->execute("SELECT * FROM Employees WHERE " + info.arg + " = :1", SqlParam({{1, info.data}}));
-  return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
+std::vector<SqlParam> Employees::Select::selectAll(const Employees::EmployeeInfo &info) {
+  if (!db)
+    throw std::runtime_error("Database connection is not initialized.");
+
+  return db->execute("SELECT * FROM Employees WHERE " + info.arg + " = :1",
+                     SqlParam({{1, info.data}}));
 }
 
 /**
@@ -161,36 +237,37 @@ std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeI
  * @class         Select
  * @param info_00 {const Employees::EmployeeInfo &}
  * @param info_01 {const Employees::EmployeeInfo &}
- * @return        std::vector<std::string>
+ * @return        std::vector<SqlParam>
  */
-std::vector<std::string> Employees::Select::selectAll(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
-  *result = db->execute("SELECT * FROM Employees WHERE " + info_00.arg + " = :1 AND " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}));
-  return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
+std::vector<SqlParam> Employees::Select::selectAll(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
+  return db->execute(
+      "SELECT * FROM Employees WHERE " + info_00.arg + " = :1 AND " + info_01.arg + " = :2",
+      SqlParam({{1, info_00.data}, {2, info_01.data}}));
 }
 
 /**
- * @brief ### Return all user data where different to `info`
+ * @brief ### Return all user data except where `info`
  *
  * @namespace  Employees
  * @class      Select
  * @param info {const Employees::EmployeeInfo &}
- * @return     std::vector<std::vector<std::string>>
+ * @return     std::vector<SqlParam>
  */
-std::vector<std::vector<std::string>> Employees::Select::selectAllExcept(const Employees::EmployeeInfo &info) {
-  *result = db->execute("SELECT * FROM Employees WHERE " + info.arg + " <> :1", SqlParam({{1, info.data}}));
-  return (result->empty()) ? std::vector<std::vector<std::string>>{} : *result; // Return the first and the only row
+std::vector<SqlParam> Employees::Select::selectAllExcept(const Employees::EmployeeInfo &info) {
+  return db->execute(
+      "SELECT * FROM Employees WHERE " + info.arg + " <> :1",
+      SqlParam({}, {{1, std::stoi(info.data)}}));
 }
 
 /**
- * @brief ### Select the last inserted employees into Employees table
+ * @brief ### Select the last inserted employee from the Employees table
  *
  * @namespace  Employees
  * @class      Select
- * @return     std::vector<std::string>
+ * @return     std::vector<SqlParam>
  */
-std::vector<std::string> Employees::Select::selectLastInsertedRow() {
-  *result = db->execute("SELECT * FROM Employees ORDER BY id DESC LIMIT 1", SqlParam{{}});
-  return (result->empty()) ? std::vector<std::string>{} : (*result)[0]; // Return the first and the only row
+std::vector<SqlParam> Employees::Select::selectLastInsertedRow() {
+  return db->execute("SELECT * FROM Employees ORDER BY id DESC LIMIT 1", SqlParam{});
 }
 
 // * ======================================================
@@ -206,7 +283,7 @@ std::vector<std::string> Employees::Select::selectLastInsertedRow() {
  */
 Employees::Insert::Insert() {
   db = new Database();
-  result = new std::vector<std::vector<std::string>>;
+  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -247,7 +324,7 @@ int Employees::Insert::insertReq(const Employees::EmployeeInfo &info_00, const E
  */
 Employees::Update::Update() {
   db = new Database();
-  result = new std::vector<std::vector<std::string>>;
+  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -267,15 +344,68 @@ Employees::Update::~Update() {
 /**
  * @brief ### Update user data where `info_00` and `info_01`
  *
- * @param info_00
- * @param info_01
- * @return int
+ * @namespace     Employees
+ * @class         Update
+ * @param info_00 {const Employees::EmployeeInfo &}
+ * @param info_01 {const Employees::EmployeeInfo &}
+ * @return        int
  */
 int Employees::Update::update(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
   int aff;
   return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}), aff), aff;
 }
 
-// * =======================================
-// ? ==== / Employees::Update functions ====
-// * =======================================
+// * ====================================================
+// ? =========== / Employees::Update functions ==========
+// ? ==== Employees::Delete constructor and destructor ==
+// * ====================================================
+
+/**
+ * @brief ### Construct a new Employees::Employees::Delete object
+ *
+ * @namespace Employees
+ * @class     Delete
+ */
+Employees::Delete::Delete() {
+  db = new Database();
+  result = new std::vector<SqlParam>;
+}
+
+/**
+ * @brief ### Destroy the Employees::Employees::Delete object
+ *
+ * @details   Close oracle 1521 port
+ * @namespace Employees
+ * @class     Delete
+ */
+Employees::Delete::~Delete() {
+  delete db;
+  db = nullptr;
+  delete result;
+  result = nullptr;
+}
+
+// * ======================================================
+// ? === / Employees::Delete constructor and destructor ===
+// ? ============ Employees::Delete functions ===========
+// * ======================================================
+
+/**
+ * @brief ### Delete user where `info`
+ *
+ * @param info {const Employees::EmployeeInfo &}
+ * @namespace  Employees
+ * @class      Delete
+ * @return     int
+ */
+int Employees::Delete::del(const Employees::EmployeeInfo &info) {
+  int aff;
+  return db->execute("DELETE FROM Employees WHERE " + info.arg + " = :1",
+                     SqlParam({{1, info.data}}),
+                     aff),
+         aff;
+}
+
+// * ======================================================
+// ? ============ / Employees::Delete functions ===========
+// * ======================================================

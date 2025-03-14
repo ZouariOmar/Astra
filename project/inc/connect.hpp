@@ -30,14 +30,16 @@ using namespace oracle::occi;
  * ? And param.second as the passed data
  */
 struct SqlParam {
-  std::vector<std::pair<unsigned int, const std::string>> strings;                // Parameters of type string
-  std::vector<std::pair<unsigned int, const int>> integers;                       // Parameters of type int
-  std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
-  std::vector<std::pair<unsigned int, const oracle::occi::Blob>> blobs;          // Parameters of type blob
-  explicit SqlParam(const std::vector<std::pair<unsigned int, const std::string>> &strParams = {},
-                    const std::vector<std::pair<unsigned int, const int>> &intParams = {},
-                    const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &timestampsParams = {},
-                    const std::vector<std::pair<unsigned int, const oracle::occi::Blob>> &blobsParams = {});
+  std::vector<std::pair<unsigned int, std::string>> strings;                // Parameters of type string
+  std::vector<std::pair<unsigned int, int>> integers;                       // Parameters of type int
+  std::vector<std::pair<unsigned int, oracle::occi::Date>> dates;           // Parameters of type timestamp
+  std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
+  std::vector<std::pair<unsigned int, std::vector<unsigned char>>> blobs;   // Parameters of type blob
+  explicit SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strParams = {},
+                    const std::vector<std::pair<unsigned int, int>> &intParams = {},
+                    const std::vector<std::pair<unsigned int, oracle::occi::Date>> &dateParams = {},
+                    const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams = {},
+                    const std::vector<std::pair<unsigned int, std::vector<unsigned char>>> &blobsParams = {});
 }; // SqlParam struct
 
 // ? Classes prototype declaration part
@@ -58,7 +60,7 @@ public:
 
   // * Database public functions
   void execute(const std::string &query, const SqlParam &, int &affectedRows);
-  std::vector<std::vector<std::string>> execute(const std::string &, const SqlParam &);
+  std::vector<SqlParam> execute(const std::string &, const SqlParam &);
 }; // Database class
 
 #endif // __CONNECT_HPP__

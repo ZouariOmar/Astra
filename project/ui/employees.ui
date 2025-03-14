@@ -1412,6 +1412,9 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <kerning>true</kerning>
      </font>
     </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
     <property name="autoFillBackground">
      <bool>false</bool>
     </property>
@@ -1439,10 +1442,19 @@ font: 35pt &quot;Sylfaen&quot;;</string>
     <property name="textElideMode">
      <enum>Qt::TextElideMode::ElideRight</enum>
     </property>
+    <property name="showGrid">
+     <bool>true</bool>
+    </property>
     <property name="gridStyle">
      <enum>Qt::PenStyle::SolidLine</enum>
     </property>
     <property name="sortingEnabled">
+     <bool>true</bool>
+    </property>
+    <property name="wordWrap">
+     <bool>false</bool>
+    </property>
+    <property name="cornerButtonEnabled">
      <bool>true</bool>
     </property>
     <property name="rowCount">

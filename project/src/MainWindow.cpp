@@ -30,9 +30,9 @@ MainWindow::MainWindow()
 
   // Switch to the next interface on `loginSuccessful` signal
   connect(loginUI, &Login::loginSuccessful, this, [this]() {
-    EmployeesUI *employee(new EmployeesUI(loginUI->get_employee(), this));
-    stackedWidget->addWidget(employee);
-    stackedWidget->setCurrentWidget(employee);
+    EmployeesUI *employee_ui(new EmployeesUI(loginUI->get_employee(), this));
+    stackedWidget->addWidget(employee_ui);
+    stackedWidget->setCurrentWidget(employee_ui);
   }); // TODO:Need specify the next widget by verifying the department of the employee
 
   setCentralWidget(stackedWidget);

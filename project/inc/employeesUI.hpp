@@ -21,7 +21,10 @@
 #include <QtGui/QPixmap>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QMainWindow>
+#include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
+
+#include "../inc/employees.hpp"
 
 // Include generated .ui files
 #include "../ui/ui_employees.h"
@@ -37,12 +40,12 @@ class EmployeesUI : public QMainWindow {
   Q_OBJECT
 
 public:
-  explicit EmployeesUI(std::vector<std::string>, QWidget *parent = nullptr);
+  explicit EmployeesUI(std::vector<SqlParam>, QWidget *parent = nullptr);
   ~EmployeesUI();
-  void set_employee(const std::vector<std::string> &);
+  void set_employee(const std::vector<SqlParam> &);
 
 private: // ? Private EmployeesUI vars
-  std::vector<std::string> employee;
+  std::vector<SqlParam> employee;
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie,
       *notification_movie;

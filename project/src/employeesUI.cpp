@@ -24,7 +24,7 @@
  * @class        Solution
  * @param parent {QWidget *}
  */
-EmployeesUI::EmployeesUI(std::vector<std::string> _employee, QWidget *parent)
+EmployeesUI::EmployeesUI(std::vector<SqlParam> _employee, QWidget *parent)
     : QMainWindow(parent),
       employee(_employee),
       ui(new Ui::EmployeesUI),
@@ -87,49 +87,113 @@ inline void EmployeesUI::__init__() {
  * @class EmployeesUI
  */
 inline void EmployeesUI::__init_employees_table__() {
-  Employees::Select *sl(new Employees::Select);
-  std::vector<std::vector<std::string>> employees = sl->selectAllExcept(Employees::EmployeeInfo("2", Employees::EmployeeQueueFlags::EMPLOYEE_ID));
-  delete sl;
-  sl = nullptr;
+  ui->EmployeesTableWidget->clear(); // Clear the table (need it for Async action)
 
+  // Set the header label
+  ui->EmployeesTableWidget->setHorizontalHeaderLabels(QStringList()
+                                                      << "Profile Image"
+                                                      << "Username"
+                                                      << "Email"
+                                                      << "Department"
+                                                      << "Status"
+                                                      << "Actions");
+
+  // Select all employees except the root admin
+  Employees::Select *sl = new Employees::Select;
+  std::vector<SqlParam> employees = sl->selectAllExcept(Employees::EmployeeInfo(
+      std::to_string(employee[0].integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
+      Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID));
+
+  // Set up the rows for the QTableWidget
   size_t rows{employees.size()};
   int columns{ui->EmployeesTableWidget->columnCount()}; // * 5 columns for now
   ui->EmployeesTableWidget->setRowCount(rows);          // Set row count
 
-  for (size_t row{}; row < rows; ++row) { // Iterate over rows
+  for (size_t row{}; row < rows; ++row) {
     for (int col{}; col < columns; ++col) {
       QTableWidgetItem *item{nullptr};
-      QPushButton *button{nullptr};
+      std::vector<unsigned char> blobData; // Declare outside of the case to prevent scope issues
+
       switch (col) {
-      case 0: // Show image profile
-        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::PROFILE_IMAGE]));
+      case 0: { // Show image profile
+        if (!employees[row].blobs.empty()) {
+          // Ensure the blobData is assigned correctly
+          blobData = employees[row].blobs[Employees::EmployeeQueueFlags_blobs::PROFILE_IMAGE].second;
+
+          QPixmap pixmap;
+          if (pixmap.loadFromData(blobData.data(), blobData.size())) {
+            item = new QTableWidgetItem();
+            item->setIcon(QIcon(pixmap)); // Set the pixmap
+          }
+        }
+
+        if (!item) { // If no image data, set default image
+          QPixmap defaultPixmap("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/default.jpg");
+          item = new QTableWidgetItem();
+          item->setIcon(QIcon(defaultPixmap)); // Set default image icon
+        }
+
+        // Center the image
+        item->setTextAlignment(Qt::AlignHCenter | Qt::AlignVCenter);
         ui->EmployeesTableWidget->setItem(row, col, item);
         break;
+      }
 
-      case 1: // Show username
-        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::USERNAME]));
+      case 1: { // Show username
+        item = new QTableWidgetItem(QString::fromStdString(employees[row].strings[Employees::EmployeeQueueFlags_strings::USERNAME].second));
         ui->EmployeesTableWidget->setItem(row, col, item);
         break;
+      }
 
-      case 2: // Show email
-        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::EMAIL]));
+      case 2: { // Show email
+        item = new QTableWidgetItem(QString::fromStdString(employees[row].strings[Employees::EmployeeQueueFlags_strings::EMAIL].second));
         ui->EmployeesTableWidget->setItem(row, col, item);
         break;
+      }
 
-      case 3: // Show department
-        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::DEPARTMENT]));
+      case 3: { // Show department
+        item = new QTableWidgetItem(QString::fromStdString(employees[row].strings[Employees::EmployeeQueueFlags_strings::DEPARTMENT].second));
         ui->EmployeesTableWidget->setItem(row, col, item);
         break;
+      }
 
-      case 4: // Show status
-        item = new QTableWidgetItem(QString::fromStdString(employees[row][Employees::EmployeeQueueFlags::STATUS]));
+      case 4: { // Show status
+        item = new QTableWidgetItem(QString::fromStdString(employees[row].strings[Employees::EmployeeQueueFlags_strings::STATUS].second));
         ui->EmployeesTableWidget->setItem(row, col, item);
         break;
+      }
 
-      case 5: // Show Actions
-        button = new QPushButton("hello mama!");
+      case 5: { // Show Actions (Button)
+        QPushButton *button = new QPushButton("...");
+
+        // Create menu
+        QMenu *menu = new QMenu(button);
+        QAction *updateAction = new QAction("Update", menu),
+                *deleteAction = new QAction("Delete", menu);
+
+        menu->addAction(updateAction), menu->addAction(deleteAction); // Add actions to the menu
+
+        button->setMenu(menu); // Set the menu for the button
+
+        // On Update click
+        connect(updateAction, &QAction::triggered, this, [this, row]() -> void {
+          qDebug() << "Update clicked for row:" << row;
+          // * updateEmployee(row);
+        });
+
+        connect(deleteAction, &QAction::triggered, this, [this, row, employees]() -> void { // * On Delete click
+          Employees::Delete del;
+          int affRow = del.del(Employees::EmployeeInfo(
+              std::to_string(employees[row].integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
+              Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID));
+          (affRow) ? QMessageBox::information(this, "Deletion Successful", "The employee has been successfully deleted!")
+                   : QMessageBox::warning(this, "Deletion Failed", "Failed to delete the employee.\nPlease try again.");
+          __init_employees_table__(); // Async EmployeesTableWidget update
+        });
+
         ui->EmployeesTableWidget->setCellWidget(row, col, button);
         break;
+      }
 
       default:
         break;
@@ -138,7 +202,7 @@ inline void EmployeesUI::__init_employees_table__() {
   }
 }
 
-void EmployeesUI::set_employee(const std::vector<std::string> &_employee) {
+void EmployeesUI::set_employee(const std::vector<SqlParam> &_employee) {
   employee = _employee;
 }
 
@@ -277,7 +341,7 @@ void EmployeesUI::on_insertBtn_clicked() {
 
   // 2. Verify if the given email exist
   Employees::Select *sl(new Employees::Select);
-  std::vector<std::string> employee = sl->selectAll(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags::EMAIL));
+  std::vector<SqlParam> employee = sl->selectAll(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags_strings::EMAIL));
   delete sl;
   sl = nullptr;
 
@@ -290,11 +354,11 @@ void EmployeesUI::on_insertBtn_clicked() {
 
   // 3. If not, insert the given data
   Employees::Insert *ist(new Employees::Insert);
-  int affRow = ist->insertReq(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags::EMAIL),
-                              Employees::EmployeeInfo(firstName, Employees::EmployeeQueueFlags::FIRSTNAME),
-                              Employees::EmployeeInfo(lastName, Employees::EmployeeQueueFlags::LASTNAME),
-                              Employees::EmployeeInfo(password, Employees::EmployeeQueueFlags::PASSWORD),
-                              Employees::EmployeeInfo(department, Employees::EmployeeQueueFlags::DEPARTMENT));
+  int affRow = ist->insertReq(Employees::EmployeeInfo(email, Employees::EmployeeQueueFlags_strings::EMAIL),
+                              Employees::EmployeeInfo(firstName, Employees::EmployeeQueueFlags_strings::FIRSTNAME),
+                              Employees::EmployeeInfo(lastName, Employees::EmployeeQueueFlags_strings::LASTNAME),
+                              Employees::EmployeeInfo(password, Employees::EmployeeQueueFlags_strings::PASSWORD),
+                              Employees::EmployeeInfo(department, Employees::EmployeeQueueFlags_strings::DEPARTMENT));
   delete ist;
   ist = nullptr;
 

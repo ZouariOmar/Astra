@@ -29,6 +29,8 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
 
+#include "../inc/employees.hpp"
+
 // Include generated .ui files
 #include "../ui/ui_login.h"
 
@@ -46,7 +48,7 @@ class Login : public QMainWindow {
 public:
   explicit Login(QWidget *parent = nullptr);
   ~Login();
-  std::vector<std::string> get_employee();
+  std::vector<SqlParam> get_employee();
 
 private: // ? Private vars
   Ui::Login *ui;
@@ -55,7 +57,7 @@ private: // ? Private vars
   QTimer *gifTimer;
   QMovie *currentMovie;
   std::string generated_password;
-  std::vector<std::string> employee;
+  std::vector<SqlParam> employee;
 
 private: // ? Private fns
   // * Events

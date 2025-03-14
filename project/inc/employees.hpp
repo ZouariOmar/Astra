@@ -17,38 +17,51 @@
 
 // ? Namespaces declaration part
 namespace Employees {
-enum EmployeeQueueFlags {
+enum EmployeeQueueFlags_integers {
   EMPLOYEE_ID,
+  SALARY
+}; // EmployeeQueueFlags_integers enum
+enum EmployeeQueueFlags_strings {
   USERNAME,
   FIRSTNAME,
   LASTNAME,
   EMAIL,
   JOBTITLE,
-  SALARY,
-  HIRE_DATE,
   STATUS,
   PASSWORD,
-  PROFILE_IMAGE,
   PHONE_NUMBER,
   ADDRESS,
-  BIRTHDATE,
-  DEPARTMENT,
+  DEPARTMENT
+}; // EmployeeQueueFlags_strings enum
+enum EmployeeQueueFlags_dates {
+  HIRE_DATE,
+  BIRTHDATE
+}; // EmployeeQueueFlags_dates enum
+enum EmployeeQueueFlags_timestamps {
   LAST_LOGIN,
   LAST_PASSWORD_RESET
-}; // EmployeeQueueFlags enum
+}; // EmployeeQueueFlags_timestamps enum
+enum EmployeeQueueFlags_blobs {
+  PROFILE_IMAGE
+}; // EmployeeQueueFlags_blobs enum
 
 struct EmployeeInfo;
 class Setup;
 class Select;
 class Insert;
 class Update;
+class Delete;
 } // namespace Employees
 
 // ? Structure declaration part
 struct Employees::EmployeeInfo {
   std::string data;
   std::string arg;
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags &);
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_integers &);
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_strings &);
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_dates &);
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_timestamps &);
+  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_blobs &);
 }; // EmployeeInfo struct
 
 // ? Classes prototype declaration part
@@ -56,7 +69,7 @@ struct Employees::EmployeeInfo {
 class Employees::Setup {
 protected:
   Database *db;
-  std::vector<std::vector<std::string>> *result;
+  std::vector<SqlParam> *result;
 
 public:
   Setup();
@@ -70,20 +83,20 @@ public:
   ~Select();
 
   // * Employees::Select functions
-  std::vector<std::string> selectAll(const Employees::EmployeeInfo &);
-  std::vector<std::string> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
-  std::vector<std::vector<std::string>> selectAllExcept(const Employees::EmployeeInfo &);
-  std::vector<std::string> selectLastInsertedRow();
+  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo &);
+  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo &);
+  std::vector<SqlParam> selectLastInsertedRow();
 }; // Employees::Select class
 
 class Employees::Insert : private Employees::Setup {
-  public:
-    // Employees::Select Constructor and destructor
-    Insert();
-    ~Insert();
+public:
+  // Employees::Select Constructor and destructor
+  Insert();
+  ~Insert();
 
-    // * Employees::Insert functions
-    int insertReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  // * Employees::Insert functions
+  int insertReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
 }; // Employees::Insert class
 
 class Employees::Update : private Employees::Setup {
@@ -94,6 +107,16 @@ public:
 
   // * Employees::Update functions
   int update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+}; // Employees::Update class
+
+class Employees::Delete : private Employees::Setup {
+public:
+  // Employees::Update Constructor and destructor
+  Delete();
+  ~Delete();
+
+  // * Employees::Update functions
+  int del(const Employees::EmployeeInfo &);
 }; // Employees::Update class
 
 #endif // __EMPLOYEES_HPP__
