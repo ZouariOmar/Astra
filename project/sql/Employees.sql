@@ -26,8 +26,16 @@ CREATE TABLE Employees (
 CREATE TABLE personnel(t INT);
 CREATE TABLE Boutique(t INT);
 CREATE TABLE Commercant(t INT);
-CREATE TABLE partenaire(t INT);
-CREATE TABLE événements(t INT);
+CREATE TABLE Partenaire(t INT);
+CREATE TABLE Evenements(t INT);
+CREATE TABLE Sponsoring (
+    id_evenement NUMBER,
+    id_partenaire NUMBER,
+    PRIMARY KEY (id_evenement, id_partenaire),
+    FOREIGN KEY (id_evenement) REFERENCES Evenements(id_evenement),
+    FOREIGN KEY (id_partenaire) REFERENCES Partenaire(id_partenaire)
+);
+
 /*
  List all Astra tables - SELECT table_name FROM user_tables;
  Admin info            - INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')

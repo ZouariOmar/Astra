@@ -167,8 +167,7 @@ Employees::EmployeeInfo::EmployeeInfo(const std::string &_data, const Employees:
  * @class     Setup
  */
 Employees::Setup::Setup()
-    : db(nullptr),
-      result(nullptr) {};
+    : db(nullptr) {};
 
 /**
  * @brief ### Destroy the Employees::Setup::Setup object
@@ -176,7 +175,9 @@ Employees::Setup::Setup()
  * @namespace Employees
  * @class     Setup
  */
-Employees::Setup::~Setup() {};
+Employees::Setup::~Setup() {
+  db = nullptr;
+};
 
 // * =====================================================
 // ? === / Employees::Setup Constructor and destructor ===
@@ -191,7 +192,6 @@ Employees::Setup::~Setup() {};
  */
 Employees::Select::Select() {
   db = new Database();
-  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -203,9 +203,6 @@ Employees::Select::Select() {
  */
 Employees::Select::~Select() {
   delete db;
-  db = nullptr;
-  delete result;
-  result = nullptr;
 }
 
 // * ======================================================
@@ -283,7 +280,6 @@ std::vector<SqlParam> Employees::Select::selectLastInsertedRow() {
  */
 Employees::Insert::Insert() {
   db = new Database();
-  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -294,9 +290,6 @@ Employees::Insert::Insert() {
  */
 Employees::Insert::~Insert() {
   delete db;
-  db = nullptr;
-  delete result;
-  result = nullptr;
 }
 
 // * ========================================================
@@ -324,7 +317,6 @@ int Employees::Insert::insertReq(const Employees::EmployeeInfo &info_00, const E
  */
 Employees::Update::Update() {
   db = new Database();
-  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -336,9 +328,6 @@ Employees::Update::Update() {
  */
 Employees::Update::~Update() {
   delete db;
-  db = nullptr;
-  delete result;
-  result = nullptr;
 }
 
 /**
@@ -351,6 +340,23 @@ Employees::Update::~Update() {
  * @return        int
  */
 int Employees::Update::update(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01) {
+  int aff;
+  return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}), aff), aff;
+}
+
+/**
+ * @brief ### Update the required employee data
+ *
+ * @namespace     Employees
+ * @class         Update
+ * @param info_00 {const Employees::EmployeeInfo &}
+ * @param info_01 {const Employees::EmployeeInfo &}
+ * @param info_02 {const Employees::EmployeeInfo &}
+ * @param info_03 {const Employees::EmployeeInfo &}
+ * @param info_04 {const Employees::EmployeeInfo &}
+ * @return        int
+ */
+int Employees::Update::updateReq(const Employees::EmployeeInfo &info_00, const Employees::EmployeeInfo &info_01, const Employees::EmployeeInfo &info_02, const Employees::EmployeeInfo &info_03, const Employees::EmployeeInfo &info_04) {
   int aff;
   return db->execute("UPDATE Employees SET " + info_00.arg + " = :1 WHERE " + info_01.arg + " = :2", SqlParam({{1, info_00.data}, {2, info_01.data}}), aff), aff;
 }
@@ -368,7 +374,6 @@ int Employees::Update::update(const Employees::EmployeeInfo &info_00, const Empl
  */
 Employees::Delete::Delete() {
   db = new Database();
-  result = new std::vector<SqlParam>;
 }
 
 /**
@@ -380,9 +385,6 @@ Employees::Delete::Delete() {
  */
 Employees::Delete::~Delete() {
   delete db;
-  db = nullptr;
-  delete result;
-  result = nullptr;
 }
 
 // * ======================================================

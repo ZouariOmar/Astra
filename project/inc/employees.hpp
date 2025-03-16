@@ -69,7 +69,6 @@ struct Employees::EmployeeInfo {
 class Employees::Setup {
 protected:
   Database *db;
-  std::vector<SqlParam> *result;
 
 public:
   Setup();
@@ -107,16 +106,18 @@ public:
 
   // * Employees::Update functions
   int update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  int updateReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  ;
 }; // Employees::Update class
 
 class Employees::Delete : private Employees::Setup {
 public:
-  // Employees::Update Constructor and destructor
+  // Employees::Delete Constructor and destructor
   Delete();
   ~Delete();
 
-  // * Employees::Update functions
+  // * Employees::Delete functions
   int del(const Employees::EmployeeInfo &);
-}; // Employees::Update class
+}; // Employees::Delete class
 
 #endif // __EMPLOYEES_HPP__

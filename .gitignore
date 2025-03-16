@@ -4,7 +4,9 @@ project/.env
 # Ignore build files
 bin/build/*
 
-# Ignore QtDS Project
-project/QtDS/*
 # Ignore the helper doc
 doc/Helper.txt
+
+# Ignore Doxygen dirs/files
+doc/html
+doc/latex

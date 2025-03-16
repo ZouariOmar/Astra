@@ -30,7 +30,7 @@ EmployeesUI::EmployeesUI(std::vector<SqlParam> _employee, QWidget *parent)
       ui(new Ui::EmployeesUI),
       pdf_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif")),
       notification_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif")),
-      shadow_effect_components(new QGraphicsDropShadowEffect[NB_SHADOWS]) {
+      shadow_effect_components(new QGraphicsDropShadowEffect[SHADOWS_EFFECT_COMBO_NUMBERS]) {
   ui->setupUi(this);
   __init__();
 }
@@ -172,8 +172,7 @@ inline void EmployeesUI::__init_employees_table__() {
                 *deleteAction = new QAction("Delete", menu);
 
         menu->addAction(updateAction), menu->addAction(deleteAction); // Add actions to the menu
-
-        button->setMenu(menu); // Set the menu for the button
+        button->setMenu(menu);                                        // Set the menu for the button
 
         // On Update click
         connect(updateAction, &QAction::triggered, this, [this, row]() -> void {

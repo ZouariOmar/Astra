@@ -111,7 +111,8 @@
 			"qreal"
 		],
 		"conventionalCommits.scopes": [
-			"CRUD"
+			"CRUD",
+			"DatabaseClass"
 		]
 	}
 }

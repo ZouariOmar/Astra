@@ -11,7 +11,7 @@
 // ? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_UI__
 #define __EMPLOYEES_UI__
-#define NB_SHADOWS 7
+#define SHADOWS_EFFECT_COMBO_NUMBERS 7
 
 // ? Include prototype declaration part
 // * Include std libs (Qt)
