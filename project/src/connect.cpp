@@ -182,21 +182,21 @@ std::vector<SqlParam> Database::execute(const std::string &query, const SqlParam
           row.timestamps.emplace_back(i, rs->getTimestamp(i));
           break;
 
-        case OCCI_SQLT_BLOB: {
-          oracle::occi::Blob blob = rs->getBlob(i);
+        // case OCCI_SQLT_BLOB: {
+        //   oracle::occi::Blob blob = rs->getBlob(i);
 
-          if (blob.isNull()) // * For: ORA-32114: Cannot perform operation on a null LOB
-            break;
+        //   if (blob.isNull()) // * For: ORA-32114: Cannot perform operation on a null LOB
+        //     break;
 
-          blob.open(OCCI_LOB_READONLY);
+        //   blob.open(OCCI_LOB_READONLY);
 
-          std::vector<unsigned char> blobData(blob.length());
-          blob.read(blob.length(), blobData.data(), blob.length());
-          blob.close();
+        //   std::vector<unsigned char> blobData(blob.length());
+        //   blob.read(blob.length(), blobData.data(), blob.length());
+        //   blob.close();
 
-          row.blobs.emplace_back(i, blobData); // Store as std::vector<unsigned char>
-          break;
-        }
+        //   row.blobs.emplace_back(i, blobData); // Store as std::vector<unsigned char>
+        //   break;
+        // }
 
         default:
           std::cerr << "Unknown data type encountered: " << dataType << std::endl;
@@ -236,18 +236,20 @@ void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
   for (const auto &param : params.timestamps)
     stmt->setTimestamp(param.first, param.second);
 
-  for (const auto &param : params.blobs) {
-    try {
-      oracle::occi::Blob blob(conn); // Create a temporary BLOB
-      blob.open(OCCI_LOB_READWRITE);
-      blob.write(param.second.size(), (unsigned char *)param.second.data(), param.second.size());
-      blob.close();
+  // ! ORA-32102(invalid OCI handle) - @link https://docs.oracle.com/en/error-help/db/ora-32102/?r=23ai docs.oracle.com @endlink
+  // ! We will not support Blobs anymore
+  // for (const auto &param : params.blobs) {
+  //   try {
+  //     oracle::occi::Blob blob(conn); // Create a temporary BLOB
+  //     blob.open(OCCI_LOB_READWRITE);
+  //     blob.write(param.second.size(), (unsigned char *)param.second.data(), param.second.size());
+  //     blob.close();
 
-      stmt->setBlob(param.first, blob);
-    } catch (SQLException &e) {
-      std::cerr << "BLOB Binding Error: " << e.getMessage() << std::endl;
-    }
-  }
+  //     stmt->setBlob(param.first, blob);
+  //   } catch (SQLException &e) {
+  //     std::cerr << "BLOB Binding Error: " << e.getMessage() << std::endl;
+  //   }
+  // }
 }
 
 // * ============================

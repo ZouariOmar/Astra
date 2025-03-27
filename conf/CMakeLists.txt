@@ -39,6 +39,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/passwordGen.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/employees.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/employeesUI.hpp
+  ${CMAKE_SOURCE_DIR}/../project/templates/employees.tpp
 )
 
 # Add the UI file

@@ -103,7 +103,9 @@
 			"qpainter": "cpp",
 			"qprogressdialog": "cpp",
 			"qfuturewatcher": "cpp",
-			"qgraphicsdropshadoweffect": "cpp"
+			"qgraphicsdropshadoweffect": "cpp",
+			"qmenu": "cpp",
+			"qfiledialog": "cpp"
 		},
 		"cSpell.words": [
 			"occi",
@@ -113,6 +115,7 @@
 		"conventionalCommits.scopes": [
 			"CRUD",
 			"DatabaseClass"
-		]
+		],
+		"liveServer.settings.port": 5501
 	}
 }

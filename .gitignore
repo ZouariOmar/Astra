@@ -8,5 +8,4 @@ bin/build/*
 doc/Helper.txt
 
 # Ignore Doxygen dirs/files
-doc/html
-doc/latex
+doc/Doxygen/*

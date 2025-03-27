@@ -116,8 +116,8 @@ void Login::on_pushButton_clicked() {
 
   // Execute the select query with the given parameters.
   std::vector<SqlParam> res = sl.selectAll(
-      Employees::EmployeeInfo(_username, Employees::EmployeeQueueFlags_strings::USERNAME),
-      Employees::EmployeeInfo(_password, Employees::EmployeeQueueFlags_strings::PASSWORD));
+      Employees::EmployeeInfo<std::string>(_username, Employees::EmployeeQueueFlags_strings::USERNAME),
+      Employees::EmployeeInfo<std::string>(_password, Employees::EmployeeQueueFlags_strings::PASSWORD));
 
   // Check if the result is empty
   if (res.empty()) {
@@ -329,7 +329,7 @@ void Login::on_sendEmailBtn_clicked() {
 
   // Select user information using 'email'
   Employees::Select *sl(new Employees::Select);
-  std::vector<SqlParam> employee = sl->selectAll(Employees::EmployeeInfo(_email, Employees::EmployeeQueueFlags_strings::EMAIL));
+  std::vector<SqlParam> employee = sl->selectAll(Employees::EmployeeInfo<std::string>(_email, Employees::EmployeeQueueFlags_strings::EMAIL));
   delete sl;
   sl = nullptr;
 

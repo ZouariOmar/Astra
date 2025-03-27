@@ -13,59 +13,120 @@
 #define __EMPLOYEES_HPP__
 
 // ? Include prototype declaration part
+// * Include std C++ header
+#include <algorithm>
+#include <regex>
+
+// * Include custom header(s)
 #include "../inc/connect.hpp"
 
 // ? Namespaces declaration part
+
+/**
+ * @namespace Employees
+ * @brief     Employees namespace
+ *
+ */
 namespace Employees {
+
+/**
+ * @enum  EmployeeQueueFlags_integers
+ * @brief EmployeeQueueFlags_integers enum
+ */
 enum EmployeeQueueFlags_integers {
-  EMPLOYEE_ID,
-  SALARY
+  EMPLOYEE_ID, //!< 0
+  SALARY,      //!< 1
+  PHONE_NUMBER //!< 2
 }; // EmployeeQueueFlags_integers enum
+
+/**
+ * @enum  EmployeeQueueFlags_strings
+ * @brief EmployeeQueueFlags_strings enum
+ */
 enum EmployeeQueueFlags_strings {
-  USERNAME,
-  FIRSTNAME,
-  LASTNAME,
-  EMAIL,
-  JOBTITLE,
-  STATUS,
-  PASSWORD,
-  PHONE_NUMBER,
-  ADDRESS,
-  DEPARTMENT
+  USERNAME,          //!< 0
+  FIRSTNAME,         //!< 1
+  LASTNAME,          //!< 2
+  EMAIL,             //!< 3
+  JOBTITLE,          //!< 4
+  STATUS,            //!< 5
+  PASSWORD,          //!< 6
+  ADDRESS,           //!< 7
+  DEPARTMENT,        //!< 8
+  PROFILE_IMAGE_PATH //!< 9
 }; // EmployeeQueueFlags_strings enum
+
+/**
+ * @enum  EmployeeQueueFlags_dates
+ * @brief EmployeeQueueFlags_dates enum
+ */
 enum EmployeeQueueFlags_dates {
-  HIRE_DATE,
-  BIRTHDATE
+  HIRE_DATE, //!< 0
+  BIRTHDATE  //!< 1
 }; // EmployeeQueueFlags_dates enum
+
+/**
+ * @enum  EmployeeQueueFlags_timestamps
+ * @brief EmployeeQueueFlags_timestamps enum
+ */
 enum EmployeeQueueFlags_timestamps {
-  LAST_LOGIN,
-  LAST_PASSWORD_RESET
+  LAST_LOGIN,         //!< 0
+  LAST_PASSWORD_RESET //!< 1
 }; // EmployeeQueueFlags_timestamps enum
+
+/**
+ * @enum  EmployeeQueueFlags_blobs
+ * @brief EmployeeQueueFlags_blobs enum
+ */
 enum EmployeeQueueFlags_blobs {
-  PROFILE_IMAGE
 }; // EmployeeQueueFlags_blobs enum
 
+/**
+ * @enum  EmployeeCheckerFlags
+ * @brief EmployeeCheckerFlags enum
+ */
+enum EmployeeCheckerFlags {
+  EMPTY = -1,                 //!< -1
+  OK,                         //!< 0
+  REFUSED,                    //!< 1
+  UNIQUE_EMAIL,               //!< 2
+  UNIQUE_EMAIL_WITH_EXCEPTION //!< 3
+}; // EmployeeCheckerFlags enum
+
+template <typename T>
 struct EmployeeInfo;
 class Setup;
 class Select;
 class Insert;
 class Update;
 class Delete;
+class EmployeeChecker;
 } // namespace Employees
 
 // ? Structure declaration part
+
+/**
+ * @struct Employees::EmployeeInfo
+ * @brief  EmployeeInfo struct
+ */
+template <typename T>
 struct Employees::EmployeeInfo {
-  std::string data;
+  T data;
   std::string arg;
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_integers &);
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_strings &);
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_dates &);
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_timestamps &);
-  explicit EmployeeInfo(const std::string &, const Employees::EmployeeQueueFlags_blobs &);
+  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_integers &);
+  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_strings &);
+  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_dates &);
+  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_timestamps &);
+  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_blobs &);
 }; // EmployeeInfo struct
 
 // ? Classes prototype declaration part
 
+/**
+ * @class Employees::Setup
+ * @brief Generale database setup
+ *
+ */
 class Employees::Setup {
 protected:
   Database *db;
@@ -75,6 +136,10 @@ public:
   ~Setup();
 }; // Employees::Setup class
 
+/**
+ * @brief C`R`UD
+ * @class Employees::Select
+ */
 class Employees::Select : private Employees::Setup {
 public:
   // Employees::Select Constructor and destructor
@@ -82,22 +147,47 @@ public:
   ~Select();
 
   // * Employees::Select functions
-  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo &);
-  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
-  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo &);
+  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectLastInsertedRow();
 }; // Employees::Select class
 
+/**
+ * @brief Insert new employee
+ * @class Employees::Insert
+ */
 class Employees::Insert : private Employees::Setup {
 public:
-  // Employees::Select Constructor and destructor
+  // Employees::Insert Constructor and destructor
   Insert();
   ~Insert();
 
-  // * Employees::Insert functions
-  int insertReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  // * Employees::Insert function(s)
+  int insert(const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &);
+
+  int insert(const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<int> &,
+             const Employees::EmployeeInfo<int> &,
+             const Employees::EmployeeInfo<oracle::occi::Date> &);
 }; // Employees::Insert class
 
+/**
+ * @brief CR`U`D
+ * @class Employees::Update
+ */
 class Employees::Update : private Employees::Setup {
 public:
   // Employees::Update Constructor and destructor
@@ -105,11 +195,15 @@ public:
   ~Update();
 
   // * Employees::Update functions
-  int update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
-  int updateReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);
+  int update(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
+  int updateReq(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
   ;
 }; // Employees::Update class
 
+/**
+ * @brief CRU`D`
+ * @class Employees::Delete
+ */
 class Employees::Delete : private Employees::Setup {
 public:
   // Employees::Delete Constructor and destructor
@@ -117,7 +211,27 @@ public:
   ~Delete();
 
   // * Employees::Delete functions
-  int del(const Employees::EmployeeInfo &);
+  int del(const Employees::EmployeeInfo<std::string> &);
 }; // Employees::Delete class
+
+/**
+ * @class Employees::EmployeeChecker
+ * @brief Check the passed employees data
+ */
+class Employees::EmployeeChecker {
+private:
+  static bool is_validEmail(const std::string &);
+  static bool is_empty(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &);
+  static bool is_alphaDigit(const std::string &);
+
+public:
+  static std::pair<Employees::EmployeeCheckerFlags, const char *> is_valid(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const std::pair<Employees::EmployeeCheckerFlags, const char *> &flag = {Employees::EmployeeCheckerFlags::EMPTY, ""});
+}; // EmployeeChecker class
+
+#if __has_include("../templates/employees.tpp")
+#include "../templates/employees.tpp"
+#else
+#error "employees.tpp not found!"
+#endif
 
 #endif // __EMPLOYEES_HPP__

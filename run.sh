@@ -6,22 +6,24 @@
 #          or ninja). It allows users to perform operations like
 #          configuring the project, building, cleaning the build
 #          directory, and running the application.
-# Usage: ./run.sh <build_tool> <command> [--root | --all | --test]
+# Usage: ./run.sh <command> [options]
 #
 # Arguments:
-#   <build_tool>   - The build tool to use. Supported values: 'make' or 'ninja'.
-#   <command>      - The action to perform. Supported commands:
-#                   'build', 'run', 'clean', or 'test'.
-#   [--root]        - Optional flag for building from the root directory.
-#   [--all]         - Optional flag for cleaning all files from the build directory.
-#   [--test]        - Optional flag to run tests after building the project.
+#   <command>       - The action to perform. Supported commands:
+#                       build | run | clean | setup | <-h, --help>
+#   [options]       - Optional flags to modify behavior:
+#       -r, --root    - Build from the root directory.
+#       -d, --doc     - Build index.html && latex.pdf files using `doxygen`
+#       -a, --all     - Clean all files in the build directory.
+#       -t, --test    - Run tests after building the project.
 #
 # Example Usage:
-#   ./run.sh make build         - Build the project using make
-#   ./run.sh ninja build        - Build the project using ninja
-#   ./run.sh make clean --all   - Clean the project by removing all build files
-#   ./run.sh make run           - Run the application after building it
-#   ./run.sh make run --test    - Run the application and execute tests after building it
+#   . ./run.sh setup        - Setup the project
+#   ./run.sh -b             - Build the project
+#   ./run.sh -r             - Run the project
+#   ./run.sh -c             - Clean the project
+#   ./run.sh -b -r          - Build and then run the project
+#   ./run.sh -b -a          - Clean all files and build the project
 # ====================================================================================
 
 # Define color codes
@@ -31,147 +33,256 @@ YELLOW='\033[0;33m'
 BLUE='\033[0;34m'
 NC='\033[0m' # No color
 
-#* Check if at least two arguments are provided
-if [ "$#" -lt 2 ]; then
-  echo -e "${RED}Error:${NC} Insufficient arguments."
-  echo -e "${YELLOW}Usage${NC}: ./run.sh <build_tool> <command> [--root | --all | --test]"
-  exit 1
-fi
-
 #* Define variables
 APP_NAME="Astra"
 BUILD_DIR="bin/build"
 CMAKE_LIST_DIR="conf"
-TEST_NAME="test"
+CMAKE_GENERATOR="Ninja"
 TEST_BUILD_DIR="$BUILD_DIR/test"
-BUILD_TOOL=$1
-ARG=$2
-OPTION=$3
+TEST_NAME="test"
+BUILD_CMD="ninja"
+ENV_FILE="project/.env"
+ROOT_FLAG=false
+ALL_FLAG=false
+TEST_FLAG=false
+DOC_FLAG=false
+COMMAND=""
 
-#* Map build tool to CMake generator
-case "$BUILD_TOOL" in
-make)
-  CMAKE_GENERATOR="Unix Makefiles"
-  ;;
-ninja)
-  CMAKE_GENERATOR="Ninja"
-  ;;
-*)
-  echo -e "${RED}Error:${NC} Invalid build tool. Supported tools: make, ninja."
-  exit 1
-  ;;
-esac
+#* Parse options using a while loop
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+  build)
+    COMMAND="build"
+    shift
+    ;;
+  run)
+    COMMAND="run"
+    shift
+    ;;
+  clean)
+    COMMAND="clean"
+    shift
+    ;;
+  setup)
+    COMMAND="setup"
+    shift
+    ;;
+  -h | --help)
+    COMMAND=help
+    shift
+    ;;
+  -t | --test)
+    TEST_FLAG=true
+    shift
+    ;;
+  -a | --all)
+    ALL_FLAG=true
+    shift
+    ;;
+  -r | --root)
+    ROOT_FLAG=true
+    shift
+    ;;
+  -d | --doc)
+    DOC_FLAG=true
+    shift
+    ;;
+  *)
+    echo -e "${RED}Error:${NC} Invalid option: $1"
+    return 1
+    ;;
+  esac
+done
 
-#* Process commands
-case "$ARG" in
-build)
+#* Check if command is provided
+if [ -z "$COMMAND" ]; then
+  echo -e "${RED}Error:${NC} Command is required!"
+  echo -e "${BLUE}Usage:${NC} ./run.sh <build|run|clean|setup|-h,--help> [-t,--test|-a,--all|-r,--root]"
+  return 1
+fi
+
+#* Display help if --help or -h is passed
+help() {
+  echo -e "${BLUE}Usage:${NC} ./run.sh <build|run|clean|setup|-h,--help> [-t,--test|-a,--all|-r,--root]"
+  echo -e "${YELLOW}Commands:${NC}"
+  echo -e "  build           Build the project"
+  echo -e "  run             Run the project"
+  echo -e "  clean           Clean the project"
+  echo -e "  setup           Setup the project"
+  echo -e "  -h, --help      Display this help message and exit"
+  echo -e "${YELLOW}Options:${NC}"
+  echo -e "  -t, --test      Run tests after building the project"
+  echo -e "  -a, --all       Clean all files in the build directory (Clear)"
+  echo -e "  -r, --root      Build the project from the root (from CMakeLists.txt)"
+  return 0
+}
+
+build() {
   #* Handle build with --root option
-  if [ "$OPTION" == "--root" ]; then
+  if [ "$ROOT_FLAG" = true ]; then
     echo -e "${BLUE}Building project from root using CMake with generator '$CMAKE_GENERATOR'...${NC}"
     cmake -S "$CMAKE_LIST_DIR" -B "$BUILD_DIR" -G "$CMAKE_GENERATOR" || {
       echo -e "${RED}Error:${NC} CMake configuration failed."
-      exit 1
+      return 1
     }
-    $BUILD_TOOL -C "$BUILD_DIR" || {
+    $BUILD_CMD -C "$BUILD_DIR" || {
       echo -e "${RED}Error:${NC} Build failed."
-      exit 1
+      return 1
     }
     echo -e "${GREEN}Build from root completed successfully.${NC}"
-    exit 0
+    return 0
   fi
+
+  #* Handle build with --doc option
+  # if [ "$DOC_FLAG" = true ]; then
+  #   echo -e "${BLUE}Building documentation from Doxyfile using doxygen...${NC}"
+  #   doxygen -S "$CMAKE_LIST_DIR" -B "$BUILD_DIR" -G "$CMAKE_GENERATOR" || {
+  #     echo -e "${RED}Error:${NC} CMake configuration failed."
+  #     return 1
+  #   }
+  #   $BUILD_CMD -C "$BUILD_DIR" || {
+  #     echo -e "${RED}Error:${NC} Build failed."
+  #     return 1
+  #   }
+  #   echo -e "${GREEN}Build from root completed successfully.${NC}"
+  #   return 0
+  # fi
 
   #* Handle regular build
   if [ -d "$BUILD_DIR" ]; then
     echo -e "${BLUE}Building project in '$BUILD_DIR'...${NC}"
     cd "$BUILD_DIR" || {
       echo -e "${RED}Error:${NC} Failed to enter build directory."
-      exit 1
+      return 1
     }
-    $BUILD_TOOL || {
+    $BUILD_CMD || {
       echo -e "${RED}Error:${NC} Build failed."
-      exit 1
+      return 1
     }
     echo -e "${GREEN}Build completed successfully.${NC}"
   else
     echo -e "${RED}Error:${NC} Build directory '$BUILD_DIR' not found."
-    exit 1
+    return 1
   fi
-  ;;
-run)
+}
+
+run() {
   #* Run the application if it exists
-  if [ "$OPTION" == "--test" ]; then
+  if [ "$TEST_FLAG" = true ]; then
     #* Run tests after building
     echo -e "${BLUE}Running tests after building the project...${NC}"
     cd "$TEST_BUILD_DIR" || {
-      echo -e "${RED}Error:${NC} Failed to enter build directory."
-      exit 1
+      echo -e "${RED}Error:${NC} Failed to enter test build directory."
+      return 1
     }
-    ./$TEST_NAME || {
+    ./"$TEST_NAME" || {
       echo -e "${RED}Error:${NC} Application run failed."
-      exit 1
+      return 1
     }
     echo -e "${GREEN}Running tests...${NC}"
-    # Run tests using ctest (or your test framework)
     ctest || {
       echo -e "${RED}Error:${NC} Test execution failed."
-      exit 1
+      return 1
     }
     echo -e "${GREEN}Tests completed successfully.${NC}"
-    exit 0
+    return 0
   fi
 
   #* Regular run (without tests)
   if [ -f "$BUILD_DIR/$APP_NAME" ]; then
     echo -e "${BLUE}Running application...${NC}"
-
-    #* Run the application binary
     "$BUILD_DIR/$APP_NAME" || {
       echo -e "${RED}Error:${NC} Failed to run the application."
-      exit 1
+      return 1
     }
   else
     echo -e "${RED}Error:${NC} Application '$APP_NAME' not found in '$BUILD_DIR'."
-    exit 1
+    return 1
   fi
-  ;;
-clean)
+}
+
+clean() {
   #* Handle clean with --all option
-  if [ "$OPTION" == "--all" ]; then
+  if [ "$ALL_FLAG" = true ]; then
     if [ -d "$BUILD_DIR" ]; then
       echo -e "${BLUE}Removing all contents (including hidden files) inside '$BUILD_DIR'...${NC}"
       rm -rf "$BUILD_DIR"/* "$BUILD_DIR"/.* 2>/dev/null || {
         echo -e "${RED}Error:${NC} Failed to delete contents of build directory."
-        exit 1
+        return 1
       }
       echo -e "${GREEN}Clean operation completed successfully.${NC}"
     else
       echo -e "${RED}Error:${NC} Build directory '$BUILD_DIR' not found."
-      exit 1
+      return 1
     fi
-    exit 0
+    return 0
   fi
 
-  #* Clean the build directory
+  #* Clean the build directory (without --all)
   if [ -d "$BUILD_DIR" ]; then
     echo -e "${BLUE}Cleaning build directory...${NC}"
     cd "$BUILD_DIR" || {
       echo -e "${RED}Error:${NC} Failed to enter build directory."
-      exit 1
+      return 1
     }
-    $BUILD_TOOL clean || {
+    $BUILD_CMD clean || {
       echo -e "${RED}Error:${NC} Clean failed."
-      exit 1
+      return 1
     }
     echo -e "${GREEN}Clean completed successfully.${NC}"
   else
     echo -e "${RED}Error:${NC} Build directory '$BUILD_DIR' not found."
-    exit 1
+    return 1
   fi
+}
+
+setup() {
+  if [ ! -f "$ENV_FILE" ]; then
+    echo -e "${RED}Error:${NC} ${ENV_FILE} file not found."
+    return 1
+  fi
+
+  export $(grep -v '^#' "$ENV_FILE" | xargs) || {
+    echo -e "${RED}Failed to load environment variables from ${ENV_FILE}!${NC}"
+    return 1
+  }
+  echo -e "${GREEN}Environment variables loaded from ${ENV_FILE}!${NC}"
+
+  oracle start || {
+    echo -e "${RED}Oracle failed to start!${NC}"
+    return 1
+  }
+  echo -e "${GREEN}Oracle started successfully!${NC}"
+
+  docker exec -it oracle-db sqlplus "${oracle_username}/${oracle_password}@//${oracle_database}" || {
+    echo -e "${RED}Docker | sqlplus failed to start!${NC}"
+    return 1
+  }
+  echo -e "${GREEN}sqlplus started successfully!${NC}"
+
+  return 0
+}
+
+#* Process commands
+case "$COMMAND" in
+build)
+  build
+  ;;
+run)
+  run
+  ;;
+clean)
+  clean
+  ;;
+setup)
+  setup
+  ;;
+help)
+  help
+  return 0
   ;;
 *)
-  #* Invalid command
-  echo -e "${RED}Error:${NC} Unknown command '$ARG'. Supported commands: build, run, clean, test."
-  echo -e "${YELLOW}Usage:${NC} ./run.sh <build_tool> <command> [--root | --all | --test]"
-  exit 1
+  echo -e "${RED}Error:${NC} Unknown command '$COMMAND'!"
+  echo -e "${BLUE}Usage:${NC} ./run.sh <build|run|clean|setup|-h,--help> [-t,--test|-a,--all|-r,--root]"
   ;;
 esac
