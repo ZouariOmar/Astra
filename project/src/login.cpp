@@ -112,12 +112,14 @@ void Login::on_pushButton_clicked() {
   }
 
   // Assuming `Select` does not need to be dynamically allocated, we can use stack allocation.
-  Employees::Select sl;
+  Employees::Select *sl(new Employees::Select);
 
   // Execute the select query with the given parameters.
-  std::vector<SqlParam> res = sl.selectAll(
+  std::vector<SqlParam> res = sl->selectAll(
       Employees::EmployeeInfo<std::string>(_username, Employees::EmployeeQueueFlags_strings::USERNAME),
       Employees::EmployeeInfo<std::string>(_password, Employees::EmployeeQueueFlags_strings::PASSWORD));
+  delete sl;
+  sl = nullptr;
 
   // Check if the result is empty
   if (res.empty()) {

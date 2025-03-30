@@ -20,6 +20,7 @@
 #include <QtWidgets/QStackedWidget>
 
 // * Include custom headers
+#include "../inc/employeesUI.hpp"
 #include "../inc/login.hpp"
 
 // ? Class prototype declaration part
@@ -27,6 +28,7 @@ class MainWindow : public QMainWindow {
 private:
   QStackedWidget *stackedWidget;
   Login *loginUI;
+  EmployeesUI *employee_ui;
 
 public:
   MainWindow();

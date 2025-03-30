@@ -89,7 +89,7 @@ while [[ $# -gt 0 ]]; do
     ;;
   *)
     echo -e "${RED}Error:${NC} Invalid option: $1"
-    return 1
+    exit 1
     ;;
   esac
 done

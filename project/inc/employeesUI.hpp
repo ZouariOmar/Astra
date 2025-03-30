@@ -11,7 +11,7 @@
 // ? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_UI__
 #define __EMPLOYEES_UI__
-#define SHADOWS_EFFECT_COMBO_NUMBERS 8
+#define SHADOWS_EFFECT_COMBO_NUMBERS 9
 
 // ? Include prototype declaration part
 // * Include std libs (Qt)
@@ -24,7 +24,6 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
-
 #include "../inc/employees.hpp"
 
 // Include generated .ui files
@@ -37,7 +36,18 @@ class EmployeesUI;
 }
 QT_END_NAMESPACE
 
-class EmployeesUI : public QMainWindow {
+class Utils {
+protected:
+  std::string profileImgInsertHolder,
+      profileImgUpdateHolder;
+  std::string extractUsername(const std::string &, const unsigned short &length = 12) const;
+  std::string strToUpper(std::string) const;
+
+public:
+  Utils();
+}; // Utils class
+
+class EmployeesUI : public QMainWindow, private Utils {
   Q_OBJECT
 
 public:
@@ -54,13 +64,16 @@ private: // ? Private EmployeesUI vars
 
 private: // ? Private EmployeesUI function
   inline void __init__();
-  inline void __init_employees_table__();
+  void __init_employees_table__();
   inline void __init_form_group_box__();
   inline void __init_update_form_group_box__();
+  void __clear_employees_table__();
+  void __init_current__employee_UI__();
+  // void insertRow_employees_table();
   void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal xOffset = 5, const qreal yOffset = 5, const qreal blurRadius = 5, const QColor color = Qt::gray);
   void set_pushButtonMovie(QPushButton *, QMovie *) const;
   void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
-  std::string extractUsername(const std::string &) const;
+  
 
 private slots:
   void on_show_clicked(bool);
@@ -71,6 +84,8 @@ private slots:
   void on_insertBtn_clicked();
   void on_updateBtn_clicked();
   void on_profileImageInsert_clicked();
+  void on_profileImageInsert_2_clicked();
+  void on_Filtre_activated(int);
 }; // EmployeesUI class
 
 #endif // __EMPLOYEES_UI__

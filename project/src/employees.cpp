@@ -14,46 +14,52 @@
 //? Function/Class prototype dev part
 
 /**
+ * @fn           Employees::EmployeeStatusString(const EmployeeStatusFlags &)
+ * @brief        Return the corresponding `EmployeeStatusFlags` string
+ * @param status {const EmployeeStatusFlags &}
+ * @return       std::string
+ */
+std::string Employees::EmployeeStatusString(const EmployeeStatusFlags &status) {
+  switch (status) {
+  case EmployeeStatusFlags::ALL:
+    return "ALL";
+  case EmployeeStatusFlags::ACTIVE:
+    return "ACTIVE";
+  case EmployeeStatusFlags::INACTIVE:
+    return "INACTIVE";
+  case EmployeeStatusFlags::SUSPENDED:
+    return "SUSPENDED";
+  default:
+    return "NONE";
+  }
+  return ""; // Dummy
+}
+
+// * ====================================
+// ? ========= Employees::Setup =========
+// * ====================================
+
+/**
  * @fn    Employees::Setup::Setup()
  * @brief Construct a new Employees::Setup::Setup object
  */
 Employees::Setup::Setup()
-    : db(nullptr) {};
+    : db(new Database()) {};
 
 /**
  * @fn    Employees::Setup::~Setup()
  * @brief Destroy the Employees::Setup::Setup object
  */
 Employees::Setup::~Setup() {
+  if (db)
+    delete db;
   db = nullptr;
 };
 
-// * =====================================================
-// ? === / Employees::Setup Constructor and destructor ===
-// ? === Employees::Select Constructor and destructor ====
-// * =====================================================
-
-/**
- * @fn    Employees::Select::Select()
- * @brief Construct a new Employees::Employees::Select object
- */
-Employees::Select::Select() {
-  db = new Database();
-}
-
-/**
- * @fn      Employees::Select::~Select()
- * @brief   Destroy the Employees::Employees::Select object
- * @details Close oracle 1521 port
- */
-Employees::Select::~Select() {
-  delete db;
-}
-
-// * ======================================================
-// ? === / Employees::Select Constructor and destructor ===
-// ? ============ Employees::Select functions =============
-// * ======================================================
+// * ======================================
+// ? ========= / Employees::Setup  ========
+// ? ========= Employees::Select  =========
+// * ======================================
 
 /**
  * @fn         Employees::Select::selectAll(const Employees::EmployeeInfo &)
@@ -114,31 +120,10 @@ std::vector<SqlParam> Employees::Select::selectLastInsertedRow() {
   return db->execute("SELECT * FROM Employees ORDER BY id DESC LIMIT 1", SqlParam{});
 }
 
-// * ======================================================
-// ? =========== / Employees::Select functions ============
-// ? ==== Employees::Insert constructor and destructor ====
-// * ======================================================
-
-/**
- * @fn    Employees::Insert::~Insert()
- * @brief Construct a new Employees::Insert::Insert object
- */
-Employees::Insert::Insert() {
-  db = new Database();
-}
-
-/**
- * @fn    Employees::Insert::~Insert()
- * @brief Destroy the Employees::Insert::Insert object
- */
-Employees::Insert::~Insert() {
-  delete db;
-}
-
-// * ========================================================
-// ? ==== / Employees::Insert constructor and destructor ====
-// ? ============== Employees::Insert functions =============
-// * ========================================================
+// * =====================================
+// ? ========= / Employees::Select =======
+// ? =========== Employees::Insert =======
+// * =====================================
 
 /**
  * @fn               Employees::Insert::insertReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &)
@@ -209,27 +194,10 @@ int Employees::Insert::insert(const Employees::EmployeeInfo<std::string> &email,
          aff;
 }
 
-// * ========================================================
-// ? ============ / Employees::Insert functions =============
-// ? ============= Employees::Update functions ==============
-// * ========================================================
-
-/**
- * @fn    Employees::Update::Update()
- * @brief Construct a new Employees::Employees::Update object
- */
-Employees::Update::Update() {
-  db = new Database();
-}
-
-/**
- * @fn      Employees::Update::~Update()
- * @brief   Destroy the Employees::Employees::Update object
- * @details Close oracle 1521 port
- */
-Employees::Update::~Update() {
-  delete db;
-}
+// * ==============================================
+// ? ============ / Employees::Insert =============
+// ? ============= Employees::Update ==============
+// * ==============================================
 
 /**
  * @fn            Employees::Update::update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &);)
@@ -246,7 +214,7 @@ int Employees::Update::update(const Employees::EmployeeInfo<std::string> &info_0
 }
 
 /**
- * @fn               Employees::Update::updateReq(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &)
+ * @fn               Employees::Update::update(const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &, const Employees::EmployeeInfo &)
  * @brief            Update the required employee data where `username`
  * @param email      {const Employees::EmployeeInfo &}
  * @param firstname  {const Employees::EmployeeInfo &}
@@ -256,7 +224,7 @@ int Employees::Update::update(const Employees::EmployeeInfo<std::string> &info_0
  * @param username   {const Employees::EmployeeInfo &}
  * @return           int
  */
-int Employees::Update::updateReq(const Employees::EmployeeInfo<std::string> &email, const Employees::EmployeeInfo<std::string> &firstname, const Employees::EmployeeInfo<std::string> &lastname, const Employees::EmployeeInfo<std::string> &password, const Employees::EmployeeInfo<std::string> &department, const Employees::EmployeeInfo<std::string> &username) {
+int Employees::Update::update(const Employees::EmployeeInfo<std::string> &email, const Employees::EmployeeInfo<std::string> &firstname, const Employees::EmployeeInfo<std::string> &lastname, const Employees::EmployeeInfo<std::string> &password, const Employees::EmployeeInfo<std::string> &department, const Employees::EmployeeInfo<std::string> &username) {
   int aff;
   return db->execute("UPDATE Employees SET " + email.arg + " = :1, " + firstname.arg + " = :2, " + lastname.arg + " = :3, " + password.arg + " = :4, " + department.arg + " = :5 WHERE " + username.arg + " = :6",
                      SqlParam(
@@ -265,32 +233,60 @@ int Employees::Update::updateReq(const Employees::EmployeeInfo<std::string> &ema
          aff;
 }
 
-// * ====================================================
-// ? =========== / Employees::Update functions ==========
-// ? ==== Employees::Delete constructor and destructor ==
-// * ====================================================
-
 /**
- * @fn    Employees::Delete::Delete()
- * @brief Construct a new Employees::Employees::Delete object
+ * @fn               Employees::Update::update(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<int> &, const Employees::EmployeeInfo<int> &, const Employees::EmployeeInfo<oracle::occi::Date> &)
+ * @brief            Update all employee data where `username`
+ * @param username   {const Employees::EmployeeInfo<std::string> &}
+ * @param email      {const Employees::EmployeeInfo<std::string> &}
+ * @param firstname  {const Employees::EmployeeInfo<std::string> &}
+ * @param lastname   {const Employees::EmployeeInfo<std::string> &}
+ * @param password   {const Employees::EmployeeInfo<std::string> &}
+ * @param department {const Employees::EmployeeInfo<std::string> &}
+ * @param jobTitle   {const Employees::EmployeeInfo<std::string> &}
+ * @param address    {const Employees::EmployeeInfo<std::string> &}
+ * @param imagePath  {const Employees::EmployeeInfo<std::string> &}
+ * @param status     {const Employees::EmployeeInfo<std::string> &}
+ * @param salary     {const Employees::EmployeeInfo<int> &}
+ * @param tel        {const Employees::EmployeeInfo<int> &}
+ * @param birthdate  {const Employees::EmployeeInfo<oracle::occi::Date> &}
+ * @return           int
  */
-Employees::Delete::Delete() {
-  db = new Database();
+int Employees::Update::update(const Employees::EmployeeInfo<std::string> &username,
+                              const Employees::EmployeeInfo<std::string> &email,
+                              const Employees::EmployeeInfo<std::string> &firstName,
+                              const Employees::EmployeeInfo<std::string> &lastName,
+                              const Employees::EmployeeInfo<std::string> &password,
+                              const Employees::EmployeeInfo<std::string> &department,
+                              const Employees::EmployeeInfo<std::string> &jobTitle,
+                              const Employees::EmployeeInfo<std::string> &address,
+                              const Employees::EmployeeInfo<std::string> &imagePath,
+                              const Employees::EmployeeInfo<std::string> &status,
+                              const Employees::EmployeeInfo<int> &salary,
+                              const Employees::EmployeeInfo<int> &tel,
+                              const Employees::EmployeeInfo<oracle::occi::Date> &birthdate) {
+  int aff;
+  return db->execute("UPDATE Employees SET " + email.arg + " = :1, " + firstName.arg + " = :2, " + lastName.arg + " = :3, " + password.arg + " = :4, " + department.arg + " = :5, " + jobTitle.arg + " = :6, " + address.arg + " = :7, " + imagePath.arg + " = :8, " + status.arg + " = :9, " + salary.arg + " = :10, " + tel.arg + " = :11, " + birthdate.arg + " = :12 WHERE " + username.arg + " = :13 ",
+                     SqlParam(
+                         {{1, email.data},
+                          {2, firstName.data},
+                          {3, lastName.data},
+                          {4, password.data},
+                          {5, department.data},
+                          {6, jobTitle.data},
+                          {7, address.data},
+                          {8, imagePath.data},
+                          {9, status.data},
+                          {13, username.data}},
+                         {{10, salary.data}, {11, tel.data}},
+                         {{12, birthdate.data}}),
+                     aff),
+         aff;
 }
 
-/**
- * @fn      Employees::Delete::~Delete()
- * @brief   Destroy the Employees::Employees::Delete object
- * @details Close oracle 1521 port
- */
-Employees::Delete::~Delete() {
-  delete db;
-}
-
-// * ======================================================
-// ? === / Employees::Delete constructor and destructor ===
-// ? ============ Employees::Delete functions ===========
-// * ======================================================
+// * ===========================================
+// ? =========== / Employees::Update ===========
+// ? ============ Employees::Delete  ===========
+// * ===========================================
 
 /**
  * @fn         Employees::Delete::del(const Employees::EmployeeInfo &)
@@ -306,10 +302,10 @@ int Employees::Delete::del(const Employees::EmployeeInfo<std::string> &info) {
          aff;
 }
 
-// * ======================================================
-// ? ============ / Employees::Delete functions ===========
-// ? ======== Employees::EmployeeChecker functions ========
-// * ======================================================
+// * ============================================
+// ? ============ / Employees::Delete ===========
+// ? ======== Employees::EmployeeChecker ========
+// * ============================================
 
 /**
  * @fn               Employees::EmployeeChecker::is_empty
@@ -360,7 +356,7 @@ bool Employees::EmployeeChecker::is_alphaDigit(const std::string &s) {
  * @param department {const std::string &}
  * @return           std::pair<Employees::EmployeeCheckerFlags, const char *>
  */
-std::pair<Employees::EmployeeCheckerFlags, const char *> Employees::EmployeeChecker::is_valid(const std::string &email, const std::string &firstname, const std::string &lastname, const std::string &password, const std::string &department, const std::pair<Employees::EmployeeCheckerFlags, const char *> &flag) {
+std::pair<Employees::EmployeeCheckerFlags, const char *> Employees::EmployeeChecker::is_valid(const std::string &email, const std::string &firstname, const std::string &lastname, const std::string &password, const std::string &department, std::string status, const std::pair<Employees::EmployeeCheckerFlags, const char *> &flag) {
   if (is_empty(email, firstname, lastname, password, department))
     return {Employees::EmployeeCheckerFlags::REFUSED, "Error: Missing required employee data!\nPlease fill in the missing fields."};
 
@@ -387,6 +383,6 @@ std::pair<Employees::EmployeeCheckerFlags, const char *> Employees::EmployeeChec
   return {Employees::EmployeeCheckerFlags::OK, ""}; // Valid employee informations
 }
 
-// * ======================================================
-// ? ======= / Employees::EmployeeChecker functions =======
-// * ======================================================
+// * ============================================
+// ? ======= / Employees::EmployeeChecker =======
+// * ============================================

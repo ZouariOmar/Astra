@@ -18,7 +18,7 @@
 #include "../inc/employees.hpp"
 
 // * ==============================================
-// ? === Employees::SetEmployeeInfo Constructor ===
+// ? === Employees::SetEmployeeInfo Constructors ==
 // * ==============================================
 
 /**
@@ -144,27 +144,8 @@ Employees::EmployeeInfo<T>::EmployeeInfo(const T &_data, const Employees::Employ
   }
 }
 
-/**
- * @fn          EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_blobs &)
- * @brief       Construct a new Employees::EmployeeInfo<T>::EmployeeInfo object
- * @tparam T    <string|int|..>
- * @param _data {const T &}
- * @param flag  {const Employees::EmployeeQueueFlags_blobs &}
- */
-template <typename T>
-Employees::EmployeeInfo<T>::EmployeeInfo(const T &_data, const Employees::EmployeeQueueFlags_blobs &flag)
-    : data(_data), arg("") {
-  switch (flag) {
-  default:
-    std::cerr << "Error: Not invalid 'EmployeeQueueFlags_blobs' flag!" << std::endl;
-    throw std::invalid_argument("Invalid EmployeeQueueFlags_blobs flag passed to EmployeeInfo constructor.");
-    break;
-  }
-}
-
 // * ===================================================
-// ? ==== / Employees::SetEmployeeInfo Constructor =====
-// ? === Employees::Setup Constructor and destructor ===
+// ? ==== / Employees::SetEmployeeInfo Constructors ====
 // * ===================================================
 
 #endif // __EMPLOYEES_TPP__

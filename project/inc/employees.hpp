@@ -93,6 +93,18 @@ enum EmployeeCheckerFlags {
   UNIQUE_EMAIL_WITH_EXCEPTION //!< 3
 }; // EmployeeCheckerFlags enum
 
+/**
+ * @enum  EmployeesStatusFlags
+ * @brief EmployeesStatusFlags enum
+ */
+enum EmployeeStatusFlags {
+  ALL,      //!< 0
+  ACTIVE,   //!< 1
+  INACTIVE, //!< 2
+  SUSPENDED //!< 3
+}; // EmployeesStatusFlags
+
+std::string EmployeeStatusString(const EmployeeStatusFlags &);
 template <typename T>
 struct EmployeeInfo;
 class Setup;
@@ -117,7 +129,6 @@ struct Employees::EmployeeInfo {
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_strings &);
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_dates &);
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_timestamps &);
-  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_blobs &);
 }; // EmployeeInfo struct
 
 // ? Classes prototype declaration part
@@ -133,7 +144,7 @@ protected:
 
 public:
   Setup();
-  ~Setup();
+  virtual ~Setup();
 }; // Employees::Setup class
 
 /**
@@ -142,10 +153,6 @@ public:
  */
 class Employees::Select : private Employees::Setup {
 public:
-  // Employees::Select Constructor and destructor
-  Select();
-  ~Select();
-
   // * Employees::Select functions
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
@@ -160,10 +167,6 @@ public:
  */
 class Employees::Insert : private Employees::Setup {
 public:
-  // Employees::Insert Constructor and destructor
-  Insert();
-  ~Insert();
-
   // * Employees::Insert function(s)
   int insert(const Employees::EmployeeInfo<std::string> &,
              const Employees::EmployeeInfo<std::string> &,
@@ -190,13 +193,30 @@ public:
  */
 class Employees::Update : private Employees::Setup {
 public:
-  // Employees::Update Constructor and destructor
-  Update();
-  ~Update();
-
   // * Employees::Update functions
-  int update(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
-  int updateReq(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
+  int update(const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &);
+
+  int update(const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &);
+
+  int update(const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<std::string> &,
+             const Employees::EmployeeInfo<int> &,
+             const Employees::EmployeeInfo<int> &,
+             const Employees::EmployeeInfo<oracle::occi::Date> &);
   ;
 }; // Employees::Update class
 
@@ -206,10 +226,6 @@ public:
  */
 class Employees::Delete : private Employees::Setup {
 public:
-  // Employees::Delete Constructor and destructor
-  Delete();
-  ~Delete();
-
   // * Employees::Delete functions
   int del(const Employees::EmployeeInfo<std::string> &);
 }; // Employees::Delete class
@@ -225,7 +241,14 @@ private:
   static bool is_alphaDigit(const std::string &);
 
 public:
-  static std::pair<Employees::EmployeeCheckerFlags, const char *> is_valid(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &, const std::pair<Employees::EmployeeCheckerFlags, const char *> &flag = {Employees::EmployeeCheckerFlags::EMPTY, ""});
+  static std::pair<Employees::EmployeeCheckerFlags, const char *> is_valid(const std::string &,
+                                                                           const std::string &,
+                                                                           const std::string &,
+                                                                           const std::string &,
+                                                                           const std::string &,
+                                                                           std::string status,
+                                                                           const std::pair<Employees::EmployeeCheckerFlags, const char *>
+                                                                               &flag = {Employees::EmployeeCheckerFlags::EMPTY, ""});
 }; // EmployeeChecker class
 
 #if __has_include("../templates/employees.tpp")

@@ -26,23 +26,28 @@ using namespace oracle::occi;
 // ? Struct prototype declaration part
 
 /**
+ * @struct SqlParam
+ * @brief  SqlParam struct
  * ? We use param.first as the parameter name
  * ? And param.second as the passed data
  */
 struct SqlParam {
   std::vector<std::pair<unsigned int, std::string>> strings;                // Parameters of type string
   std::vector<std::pair<unsigned int, int>> integers;                       // Parameters of type int
-  std::vector<std::pair<unsigned int, oracle::occi::Date>> dates;           // Parameters of type timestamp
+  std::vector<std::pair<unsigned int, oracle::occi::Date>> dates;           // Parameters of type dates
   std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
-  std::vector<std::pair<unsigned int, std::vector<unsigned char>>> blobs;   // Parameters of type blob
   explicit SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strParams = {},
                     const std::vector<std::pair<unsigned int, int>> &intParams = {},
                     const std::vector<std::pair<unsigned int, oracle::occi::Date>> &dateParams = {},
-                    const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams = {},
-                    const std::vector<std::pair<unsigned int, std::vector<unsigned char>>> &blobsParams = {});
+                    const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams = {});
 }; // SqlParam struct
 
 // ? Classes prototype declaration part
+
+/**
+ * @class Database
+ * @brief Database class
+ */
 class Database {
 private:
   // * Database private vars

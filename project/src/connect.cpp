@@ -18,24 +18,21 @@
 // * ============================
 
 /**
- * @brief ### Construct a new SqlParam::SqlParam object
- *
- * @struct                 SqlParam
- * @param strParams        {const std::vector<std::pair<unsigned int, const std::string>> &}
- * @param intParams        {const std::vector<std::pair<unsigned int, const int>> &}
- * @param timestampsParams {const std::vector<std::pair<unsigned int, const oracle::occi::Timestamp>> &}
- * @param blobsParams      {const std::vector<std::pair<unsigned int, const oracle::occi::Blob>>}
+ * @fn                     SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &, const std::vector<std::pair<unsigned int, int>> &, const std::vector<std::pair<unsigned int, oracle::occi::Date>> &, const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &)
+ * @brief                  Construct a new SqlParam::SqlParam object
+ * @param strParams        {const std::vector<std::pair<unsigned int, std::string>> &}
+ * @param intParams        {const std::vector<std::pair<unsigned int, int>> &}
+ * @param dateParams       {const std::vector<std::pair<unsigned int, oracle::occi::Date>> &}
+ * @param timestampsParams {const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &}
  */
 SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strParams,
                    const std::vector<std::pair<unsigned int, int>> &intParams,
                    const std::vector<std::pair<unsigned int, oracle::occi::Date>> &dateParams,
-                   const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams,
-                   const std::vector<std::pair<unsigned int, std::vector<unsigned char>>> &blobsParams)
+                   const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams)
     : strings(strParams),
       integers(intParams),
       dates(dateParams),
-      timestamps(timestampsParams),
-      blobs(blobsParams) {};
+      timestamps(timestampsParams) {};
 
 // * ===========================================
 // ? ========= / SqlParam Constructor ==========
@@ -43,9 +40,8 @@ SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strP
 // * ===========================================
 
 /**
- * @brief ### Construct a new Database::Database object
- *
- * @class   Database
+ * @fn      Database
+ * @brief   Construct a new Database::Database object
  * @details Use the ENV session export it vars
  */
 Database::Database()
@@ -56,18 +52,18 @@ Database::Database()
 }
 
 /**
- * @brief Construct a new Database::Database object
- *
- * @class      Database
- * @param user {const std::string &}
- * @param pass {const std::string &}
- * @param db   {const std::string &}
+ * @fn             Database
+ * @brief          Construct a new Database::Database object
+ * @param username {const char *}
+ * @param password {const char *}
+ * @param database {const char *}
  */
-Database::Database(const char *username, const char *password, const char *database) {
+Database::Database(const char *username, const char *password, const char *database)
+    : env(nullptr), conn(nullptr) {
   try {
     env = Environment::createEnvironment(Environment::DEFAULT);
     conn = env->createConnection(username, password, database);
-    std::cout << "Connected to Oracle Database!" << std::endl;
+    std::cout << "Connected to Oracle Database! " << std::endl;
   } catch (SQLException &e) {
     std::cerr << "Connection Error: " << e.getMessage() << std::endl;
     throw;
@@ -75,38 +71,36 @@ Database::Database(const char *username, const char *password, const char *datab
 }
 
 /**
- * @brief Destroy the Database::Database object
- *
+ * @fn      Database::~Database()
+ * @brief   Destroy the Database::Database object
  * @details Cleans up resources
- * @class   Database
  */
 Database::~Database() {
   if (conn)
     env->terminateConnection(conn);
   if (env)
     Environment::terminateEnvironment(env);
+  conn = nullptr;
+  env = nullptr;
   std::cout << "Database connection closed." << std::endl;
 }
 
 // * =============================================
 // ? === / Database Constructor and destructor ===
+// ? ============ Database functions =============
 // * =============================================
 
-// * ==========================
-// ? === Database functions ===
-// * ==========================
-
 /**
- * @brief ### Executes `INSERT|UPDATE|DELETE` SQL query and update the `affectedRow` count
- *
- * @class              Database
+ * @fn                 Database::execute(const std::string &, const SqlParam &, int &)
+ * @brief              Executes `INSERT|UPDATE|DELETE` SQL query and update the `affectedRow` count
  * @param query        {const std::string &}
  * @param params       {const SqlParam &}
  * @param affectedRows {int &} -> Default:0
+ * @return             void
  */
 void Database::execute(const std::string &query, const SqlParam &params, int &affectedRows) {
   affectedRows = 0; // Default to 0 affected rows
-  Statement *stmt = nullptr;
+  Statement *stmt(nullptr);
 
   try {
     // Prepare the statement
@@ -139,9 +133,8 @@ void Database::execute(const std::string &query, const SqlParam &params, int &af
 }
 
 /**
- * @brief ### Executes `SELECT` SQL query and return the `results`
- *
- * @class        Database
+ * @fn           Database::execute(const std::string &, const SqlParam &)
+ * @brief        Executes `SELECT` SQL query and return the `results`
  * @param query  {const std::string &}
  * @param params {const SqlParam &}
  * @return       std::vector<std::vector<std::string>>
@@ -182,22 +175,6 @@ std::vector<SqlParam> Database::execute(const std::string &query, const SqlParam
           row.timestamps.emplace_back(i, rs->getTimestamp(i));
           break;
 
-        // case OCCI_SQLT_BLOB: {
-        //   oracle::occi::Blob blob = rs->getBlob(i);
-
-        //   if (blob.isNull()) // * For: ORA-32114: Cannot perform operation on a null LOB
-        //     break;
-
-        //   blob.open(OCCI_LOB_READONLY);
-
-        //   std::vector<unsigned char> blobData(blob.length());
-        //   blob.read(blob.length(), blobData.data(), blob.length());
-        //   blob.close();
-
-        //   row.blobs.emplace_back(i, blobData); // Store as std::vector<unsigned char>
-        //   break;
-        // }
-
         default:
           std::cerr << "Unknown data type encountered: " << dataType << std::endl;
         }
@@ -216,12 +193,12 @@ std::vector<SqlParam> Database::execute(const std::string &query, const SqlParam
 }
 
 /**
- * @brief ### Set the SQL parameters into `stmt`
- *
+ * @fn           Database::setSqlParams(Statement *, const SqlParam &)
+ * @brief        Set the SQL parameters into `stmt`
  * @details      Helper function
- * @class        Database
  * @param stmt   {Statement *}
  * @param params {const SqlParam &}
+ * @return       void
  */
 void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
   for (const auto &param : params.integers)
@@ -235,21 +212,6 @@ void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
 
   for (const auto &param : params.timestamps)
     stmt->setTimestamp(param.first, param.second);
-
-  // ! ORA-32102(invalid OCI handle) - @link https://docs.oracle.com/en/error-help/db/ora-32102/?r=23ai docs.oracle.com @endlink
-  // ! We will not support Blobs anymore
-  // for (const auto &param : params.blobs) {
-  //   try {
-  //     oracle::occi::Blob blob(conn); // Create a temporary BLOB
-  //     blob.open(OCCI_LOB_READWRITE);
-  //     blob.write(param.second.size(), (unsigned char *)param.second.data(), param.second.size());
-  //     blob.close();
-
-  //     stmt->setBlob(param.first, blob);
-  //   } catch (SQLException &e) {
-  //     std::cerr << "BLOB Binding Error: " << e.getMessage() << std::endl;
-  //   }
-  // }
 }
 
 // * ============================
