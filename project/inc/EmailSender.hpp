@@ -5,7 +5,7 @@
  * @version 0.1
  * @date 2025-02-23
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/smtp-mail.cpp smtp-mail.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/smtp-mail.hpp smtp-mail.hpp @endlink
  * @link https://raw.githubusercontent.com/curl/curl/master/docs/examples/smtp-mail.c smtp-mail.c @endlink
  */
 
@@ -68,16 +68,5 @@ public:
 private:
   EmailAuth *auth;
 }; // EmailSender class
-
-class EmailBody {
-public:
-  explicit EmailBody(const std::string, const std::unordered_map<std::string, const std::string> _param = {});
-  std::string get_inner_html();
-
-private:
-  void format_inner_html();
-  std::string inner_html;
-  const std::unordered_map<std::string, const std::string> param;
-}; // EmailBody class
 
 #endif // __SMTP_MAIL_HPP__

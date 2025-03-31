@@ -1,21 +1,17 @@
 /**
- * @file connect.cpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Oracle-db connection source file
- * @version 0.1
- * @date 2025-02-13
+ * @file      Database.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     Database source file
+ * @version   0.1
+ * @date      2025-02-13
  * @copyright Copyright (c) 2025
- * @link https://www.oracle.com oracle @std::endlink
+ * @link https://www.oracle.com oracle @endlink
  */
 
 //? Include prototype declaration part
-#include "../inc/connect.hpp"
+#include "../inc/Database.hpp"
 
-// ? Function/Class prototype dev part
-
-// * ============================
-// ? === SqlParam Constructor ===
-// * ============================
+//? Function/Class prototype dev part
 
 /**
  * @fn                     SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &, const std::vector<std::pair<unsigned int, int>> &, const std::vector<std::pair<unsigned int, oracle::occi::Date>> &, const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &)
@@ -33,11 +29,6 @@ SqlParam::SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strP
       integers(intParams),
       dates(dateParams),
       timestamps(timestampsParams) {};
-
-// * ===========================================
-// ? ========= / SqlParam Constructor ==========
-// ? === Database Constructor and destructor ===
-// * ===========================================
 
 /**
  * @fn      Database
@@ -84,11 +75,6 @@ Database::~Database() {
   env = nullptr;
   std::cout << "Database connection closed." << std::endl;
 }
-
-// * =============================================
-// ? === / Database Constructor and destructor ===
-// ? ============ Database functions =============
-// * =============================================
 
 /**
  * @fn                 Database::execute(const std::string &, const SqlParam &, int &)
@@ -213,7 +199,3 @@ void Database::setSqlParams(Statement *stmt, const SqlParam &params) {
   for (const auto &param : params.timestamps)
     stmt->setTimestamp(param.first, param.second);
 }
-
-// * ============================
-// ? === / Database functions ===
-// * ============================

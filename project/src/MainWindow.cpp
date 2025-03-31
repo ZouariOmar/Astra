@@ -1,7 +1,7 @@
 /**
  * @file      MainWindow.cpp
  * @author    @ZouariOmar (zouariomar20@gmail.com)
- * @brief     The Main interfaces lancer (default: login interface)
+ * @brief     MainWindow source file
  * @version   0.1
  * @date      2025-02-21
  * @copyright Copyright (c) 2025
@@ -11,7 +11,7 @@
 //? Include prototype declaration part
 #include "../inc/MainWindow.hpp"
 
-//? Function prototype dev part
+//? Function(s) prototype dev part
 
 /**
  * @fn    MainWindow::MainWindow()
@@ -19,14 +19,14 @@
  */
 MainWindow::MainWindow()
     : stackedWidget(new QStackedWidget(this)),
-      loginUI(new Login(this)), employee_ui(nullptr) {
+      loginUI(new LoginUI(this)), employee_ui(nullptr) {
 
   // Add interfaces to `stackWidget`
   stackedWidget->addWidget(loginUI);
   stackedWidget->setCurrentWidget(loginUI); // Set login interface as default interface
 
   // Switch to the next interface on `loginSuccessful` signal
-  connect(loginUI, &Login::loginSuccessful, this, [this]() {
+  connect(loginUI, &LoginUI::loginSuccessful, this, [this]() {
     employee_ui = new EmployeesUI(loginUI->get_employee(), this);
     stackedWidget->addWidget(employee_ui);
     stackedWidget->setCurrentWidget(employee_ui);

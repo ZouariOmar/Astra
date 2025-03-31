@@ -1,31 +1,30 @@
 /**
- * @file employees.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Employees management header file
- * @version 0.1
- * @date 2025-03-01
+ * @file      Employees.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     Employees header file
+ * @version   0.1
+ * @date      2025-03-01
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/employees.hpp employees.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/Employees.hpp Employees.hpp @endlink
  */
 
-// ? Pre-Processor prototype declaration part
+//? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_HPP__
 #define __EMPLOYEES_HPP__
 
-// ? Include prototype declaration part
-// * Include std C++ header
+//? Include prototype declaration part
+//* Include std C++ header
 #include <algorithm>
 #include <regex>
 
-// * Include custom header(s)
-#include "../inc/connect.hpp"
+//* Include custom header(s)
+#include "../inc/Database.hpp"
 
-// ? Namespaces declaration part
+//? Namespaces declaration part
 
 /**
  * @namespace Employees
  * @brief     Employees namespace
- *
  */
 namespace Employees {
 
@@ -104,6 +103,19 @@ enum EmployeeStatusFlags {
   SUSPENDED //!< 3
 }; // EmployeesStatusFlags
 
+/**
+ * @enum  EmployeeDepartmentFlags
+ * @brief EmployeeDepartmentFlags enum
+ */
+enum EmployeeDepartmentFlags {
+  COMMERCIAL, //!< 0
+  SHOPS,      //!< 1
+  PARTNERS,   //!< 2
+  EVENTS,     //!< 3
+  PERSONALS,  //!< 4
+  EMPLOYEES   //!< 5
+}; // EmployeeDepartmentFlags
+
 std::string EmployeeStatusString(const EmployeeStatusFlags &);
 template <typename T>
 struct EmployeeInfo;
@@ -115,7 +127,7 @@ class Delete;
 class EmployeeChecker;
 } // namespace Employees
 
-// ? Structure declaration part
+//? Structure declaration part
 
 /**
  * @struct Employees::EmployeeInfo
@@ -131,7 +143,7 @@ struct Employees::EmployeeInfo {
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_timestamps &);
 }; // EmployeeInfo struct
 
-// ? Classes prototype declaration part
+//? Classes prototype declaration part
 
 /**
  * @class Employees::Setup
@@ -153,7 +165,7 @@ public:
  */
 class Employees::Select : private Employees::Setup {
 public:
-  // * Employees::Select functions
+  //* Employees::Select functions
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &);
@@ -167,7 +179,7 @@ public:
  */
 class Employees::Insert : private Employees::Setup {
 public:
-  // * Employees::Insert function(s)
+  //* Employees::Insert function(s)
   int insert(const Employees::EmployeeInfo<std::string> &,
              const Employees::EmployeeInfo<std::string> &,
              const Employees::EmployeeInfo<std::string> &,
@@ -193,7 +205,7 @@ public:
  */
 class Employees::Update : private Employees::Setup {
 public:
-  // * Employees::Update functions
+  //* Employees::Update functions
   int update(const Employees::EmployeeInfo<std::string> &,
              const Employees::EmployeeInfo<std::string> &);
 
@@ -226,7 +238,7 @@ public:
  */
 class Employees::Delete : private Employees::Setup {
 public:
-  // * Employees::Delete functions
+  //* Employees::Delete functions
   int del(const Employees::EmployeeInfo<std::string> &);
 }; // Employees::Delete class
 
@@ -251,10 +263,10 @@ public:
                                                                                &flag = {Employees::EmployeeCheckerFlags::EMPTY, ""});
 }; // EmployeeChecker class
 
-#if __has_include("../templates/employees.tpp")
-#include "../templates/employees.tpp"
+#if __has_include("../templates/Employees.tpp")
+#include "../templates/Employees.tpp"
 #else
-#error "employees.tpp not found!"
+#error "Employees.tpp not found!"
 #endif
 
 #endif // __EMPLOYEES_HPP__

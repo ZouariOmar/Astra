@@ -1,9 +1,9 @@
 /**
- * @file passwordGen.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Password generator header file
- * @version 0.1
- * @date 2025-03-01
+ * @file      PasswordGenerator.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     PasswordGenerator header file
+ * @version   0.1
+ * @date      2025-03-01
  * @copyright Copyright (c) 2025
  * @link https://github.com/ZouariOmar/Astra/project/inc/passwordGen.hpp passwordGen.hpp @endlink
  * @link https://en.cppreference.com/w/cpp/numeric/random/random_device std::random_device @endlink
@@ -14,8 +14,8 @@
  */
 
 // ? Pre-Processor prototype declaration part
-#ifndef __PASSWORDGEN_HPP__
-#define __PASSWORDGEN_HPP__
+#ifndef __PASSWORDGENERATOR_HPP__
+#define __PASSWORDGENERATOR_HPP__
 
 // ? Error/Success Messages declaration part
 #define ERR_SHA256_CREATE std::cerr << "Error: Can't create a new EVP_MD_CTX!" << std::endl
@@ -32,10 +32,10 @@
 #include <sstream>
 
 // ? Class prototype declaration part
-class Password {
+class PasswordGenerator {
 public:
   static std::string generate(const int &length = 6, const std::string &pattern = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()_+");
   static std::string sha256sum(const std::string &);
-}; // Password class
+}; // PasswordGenerator class
 
-#endif // __PASSWORDGEN_HPP__
+#endif // __PASSWORDGENERATOR_HPP__

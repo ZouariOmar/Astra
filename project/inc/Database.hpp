@@ -1,29 +1,28 @@
 /**
- * @file connect.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Oracle-db connection header file
- * @version 0.1
- * @date 2025-02-13
+ * @file      Database.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     Database header file
+ * @version   0.1
+ * @date      2025-02-13
  * @copyright Copyright (c) 2025
  * @link https://www.oracle.com oracle @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/Database.hpp Database.hpp @endlink
  */
 
-// ? Pre-Processor prototype declaration part
-#ifndef __CONNECT_HPP__
-#define __CONNECT_HPP__
+//? Pre-Processor prototype declaration part
+#ifndef __DATABASE_HPP__
+#define __DATABASE_HPP__
 
-// ? Include prototype declaration part
-// * Include std includes (C++)
+//? Include prototype declaration part
+//* Include std c++ header(s)
 #include <iostream>
+#include <oracle/occi.h>
 #include <vector>
 
-// * Include oracle includes
-#include <oracle/occi.h>
-
-// * Use workspaces
+//* Use workspaces
 using namespace oracle::occi;
 
-// ? Struct prototype declaration part
+//? Struct prototype declaration part
 
 /**
  * @struct SqlParam
@@ -42,7 +41,7 @@ struct SqlParam {
                     const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams = {});
 }; // SqlParam struct
 
-// ? Classes prototype declaration part
+//? Classes prototype declaration part
 
 /**
  * @class Database
@@ -50,22 +49,22 @@ struct SqlParam {
  */
 class Database {
 private:
-  // * Database private vars
+  //* Database private vars
   Environment *env;
   Connection *conn;
 
-  // * Database private functions
+  //* Database private functions
   inline void setSqlParams(Statement *, const SqlParam &);
 
 public:
-  // * Database constructors and destructor
+  //* Database constructors and destructor
   Database();
   Database(const char *, const char *, const char *);
   ~Database();
 
-  // * Database public functions
+  //* Database public functions
   void execute(const std::string &query, const SqlParam &, int &affectedRows);
   std::vector<SqlParam> execute(const std::string &, const SqlParam &);
 }; // Database class
 
-#endif // __CONNECT_HPP__
+#endif // __DATABASE_HPP__

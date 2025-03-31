@@ -1,30 +1,26 @@
 /**
- * @file employeesUI.cpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # EmployeesUI source file
- * @version 0.1
- * @date 2025-03-08
+ * @file      EmployeesUI.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     EmployeesUI source file
+ * @version   0.1
+ * @date      2025-03-08
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/src/employeesUI.cpp employeesUI.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/EmployeesUI.cpp EmployeesUI.cpp @endlink
  */
 
 //? Include prototype declaration part
-#include "../inc/employeesUI.hpp"
-#include "../inc/employees.hpp"
+#include "../inc/EmployeesUI.hpp"
+#include "../inc/HtmlBodyFormater.hpp"
 
 //? Function/Class prototype dev part
 
-// * ==============================================
-// ? === EmployeesUI constructor and destructor ===
-// * ==============================================
-
 /**
- * @brief ### Construct a new EmployeesUI::EmployeesUI object
- *
- * @class        Solution
- * @param parent {QWidget *}
+ * @fn              EmployeesUI::EmployeesUI(std::vector<SqlParam>, QWidget *)
+ * @brief           Construct a new EmployeesUI::EmployeesUI object
+ * @param _employee {SqlParam}
+ * @param parent    {QWidget *}
  */
-EmployeesUI::EmployeesUI(std::vector<SqlParam> _employee, QWidget *parent)
+EmployeesUI::EmployeesUI(SqlParam _employee, QWidget *parent)
     : QMainWindow(parent),
       employee(_employee),
       ui(new Ui::EmployeesUI),
@@ -35,26 +31,26 @@ EmployeesUI::EmployeesUI(std::vector<SqlParam> _employee, QWidget *parent)
 }
 
 /**
- * @brief ### Destroy the EmployeesUI::EmployeesUI object
- *
- * @class Solution
+ * @fn    EmployeesUI::~EmployeesUI()
+ * @brief Destroy the EmployeesUI::EmployeesUI object
  */
 EmployeesUI::~EmployeesUI() {
   delete ui;
+  ui = nullptr;
   delete pdf_movie;
+  pdf_movie = nullptr;
   delete notification_movie;
+  notification_movie = nullptr;
   delete[] shadow_effect_components;
+  shadow_effect_components = nullptr;
 }
 
 /**
- * @brief ### Initialize Employees first view interface
- *
- * @details Helper fn --> EmployeesUI::EmployeesUI()
- * @class   EmployeesUI
- * @return  void
+ * @fn     EmployeesUI::__init__()
+ * @brief  Initialize Employees first view interface
+ * @return void
  */
-inline void
-EmployeesUI::__init__() {
+inline void EmployeesUI::__init__() {
   ui->setupUi(this);               // Default QWidget setup
   __init_current__employee_UI__(); // Init current employee
   __init_employees_table__();      // Init Employees table view
@@ -88,8 +84,8 @@ EmployeesUI::__init__() {
  */
 void EmployeesUI::__init_current__employee_UI__() {
   QString profileImgPath("");
-  if (!employee[0].strings.empty()) {
-    profileImgPath = QString::fromStdString(employee[0].strings[Employees::EmployeeQueueFlags_strings::PROFILE_IMAGE_PATH].second);
+  if (!employee.strings.empty()) {
+    profileImgPath = QString::fromStdString(employee.strings[Employees::EmployeeQueueFlags_strings::PROFILE_IMAGE_PATH].second);
     if (profileImgPath.isEmpty() || !QFile::exists(profileImgPath))
       profileImgPath = "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/default.jpg";
   }
@@ -155,13 +151,13 @@ void EmployeesUI::__init_employees_table__() {
   std::vector<SqlParam> employees;
   (ui->Filtre->currentIndex() == Employees::EmployeeStatusFlags::ALL)
       ? employees = sl->selectAllExcept(Employees::EmployeeInfo<std::string>(
-            std::to_string(employee[0].integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
+            std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
             Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID))
       : employees = sl->selectAllExcept(
             Employees::EmployeeInfo<std::string>(ui->Filtre->currentText().toStdString(),
                                                  Employees::EmployeeQueueFlags_strings::STATUS),
             Employees::EmployeeInfo<std::string>(
-                std::to_string(employee[0].integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
+                std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
                 Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID));
   delete sl;
   sl = nullptr;
@@ -297,55 +293,31 @@ void EmployeesUI::__clear_employees_table__() {
 /**
  * @fn              EmployeesUI::set_employee(const std::vector<SqlParam> &)
  * @brief           Set employee data
- * @param _employee {const std::vector<SqlParam> &}
+ * @param _employee {const SqlParam &}
  * @return          void
  */
-void EmployeesUI::set_employee(const std::vector<SqlParam> &_employee) {
+void EmployeesUI::set_employee(const SqlParam &_employee) {
   employee = _employee;
 }
 
 // * ================================================
-// ? === / EmployeesUI constructor and destructor ===
 // ? ============ Effects handling part =============
 // * ================================================
 
 /**
- * @brief ### Shape an image to be round depending of the `xRadius` and `yRadius` then put it in a label
- *
- * @class         EmployeesUI
- * @param path    {const QString &}
- * @param label   {QLabel *}
- * @param xRadius {const qreal}
- * @param yRadius {const qreal}
- * @return        void
- */
-void EmployeesUI::scaleImg(const QString &path, QLabel *label, const qreal xRadius, const qreal yRadius) const {
-  QPixmap Image(path);
-  QSize Size = label->size();
-  const int h = Size.height(),
-            w = Size.width();
-
-  // Initialize image
-  Image = Image.scaled(Size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-  // Create mask
-  QBitmap map(Size);
-  map.fill(Qt::color0);
-
-  QPainter painter(&map);
-  painter.setBrush(Qt::color1);
-  painter.drawRoundedRect(0, 0, w, h, xRadius, yRadius);
-
-  Image.setMask(map);
-  label->setPixmap(Image);
-}
-
-/**
- * @brief ### Set GIF as a button icon
+ * @brief ###
  *
  * @class       EmployeesUI
  * @param btn   {QPushButton *}
  * @param movie {QMovie *}
+ */
+
+/**
+ * @fn          EmployeesUI::set_pushButtonMovie(QPushButton *, QMovie *) const
+ * @brief       Set GIF as a button icon
+ * @param btn   {QPushButton *}
+ * @param movie {QMovie *}
+ * @return      void
  */
 void EmployeesUI::set_pushButtonMovie(QPushButton *btn, QMovie *movie) const {
   connect(movie, &QMovie::frameChanged, [=] {
@@ -356,9 +328,21 @@ void EmployeesUI::set_pushButtonMovie(QPushButton *btn, QMovie *movie) const {
 }
 
 /**
- * @brief ### Set the shadow effect on `effect` and affected to `obj`
+ * @brief ###
  *
  * @class            EmployeesUI
+ * @param obj        {QWidget *}
+ * @param effect     {QGraphicsDropShadowEffect *}
+ * @param xOffset    {const qreal}
+ * @param yOffset    {const qreal}
+ * @param blurRadius {const qreal}
+ * @param color      {const QColor}
+ * @return           void
+ */
+
+/**
+ * @fn               EmployeesUI::set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal, const qreal, const qreal, const QColor)
+ * @brief            Set the shadow effect on `effect` and affected to `obj`
  * @param obj        {QWidget *}
  * @param effect     {QGraphicsDropShadowEffect *}
  * @param xOffset    {const qreal}
@@ -499,18 +483,17 @@ void insertRow_employees_table() {
 // * ================================================
 
 /**
- * @brief Listen to "Cancel" button click action inside `ui->updateForm` QGroupBox
- *
- * @class         EmployeesUI
- * @return        void
+ * @fn     EmployeesUI::on_Cancel_form_2_clicked()
+ * @brief  Listen to "Cancel" button click action inside `ui->updateForm` QGroupBox
+ * @return void
  */
 void EmployeesUI::on_Cancel_form_2_clicked() {
   __init_update_form_group_box__();
 }
 
 /**
- * @brief ### Listen to "Show More/Less" button click action inside `ui->updateForm` QGroupBox
- *
+ * @fn            EmployeesUI::on_show_2_clicked(bool)
+ * @brief         Listen to "Show More/Less" button click action inside `ui->updateForm` QGroupBox
  * @class         EmployeesUI
  * @param checked bool
  * @return        void
@@ -607,41 +590,186 @@ void EmployeesUI::on_updateBtn_clicked() {
  * @fn          EmployeesUI::on_Filtre_activated(int)
  * @brief       Listen to `ui->Filtre` option activation
  * @param index int
+ * @return      void
  */
 void EmployeesUI::on_Filtre_activated(int index) {
   __init_employees_table__();
 }
 
-// * =================================================
-// ? ====== / `ui->updateForm` Events & signals ======
-// ? ===================== Utils =====================
-// * =================================================
+/**
+ * @brief
+ * @link https://www.qcustomplot.com/index.php/tutorials/specialcases/textdocument @endlink
+ */
+void EmployeesUI::on_PDF_clicked() {
+  QString pdfPath = QFileDialog::getSaveFileName(nullptr,
+                                                 "Save as PDF...", "Report",
+                                                 "PDF Files (*.pdf)");
+  if (pdfPath.isEmpty()) {
+    QMessageBox::warning(this, tr("Astra - Warning"), tr("No file selected!"));
+    return;
+  }
+
+  if (!pdfPath.endsWith(".pdf", Qt::CaseInsensitive))
+    pdfPath += ".pdf"; // Ensure it has the .pdf extension
+
+  (generatePdf(pdfPath, employee))
+      ? QMessageBox::warning(this, tr("Astra - PDF Generator"),
+                             tr("PDF Generated Failed!"),
+                             QMessageBox::Ok)
+      : QMessageBox::information(this, tr("Astra - Pdf Generator"),
+                                 tr(("PDF Generated Successfully at: \n" + pdfPath.toStdString()).c_str()),
+                                 QMessageBox::Ok);
+}
+
+// * ==========================================================
+// ? ====== / `ui->updateForm` Events & signals ===============
+// ? ===================== EmployeesUtils =====================
+// * ==========================================================
 
 /**
- * @fn    Utils::Utils()
- * @brief Construct a new Utils::Utils object
+ * @fn    EmployeesUtils::EmployeesUtils()
+ * @brief Construct a new EmployeesUtils::EmployeesUtils object
  */
-Utils::Utils()
+EmployeesUtils::EmployeesUtils()
     : profileImgInsertHolder(""), profileImgUpdateHolder("") {};
 
 /**
- * @fn           Utils::extractUsername(const std::string &) const
+ * @fn            EmployeesUtils::scaleImg(const QString &, QLabel *, const qreal, const qreal) const
+ * @brief         Shape an image to be round depending of the `xRadius` and `yRadius` then put it in a label
+ * @param path    {const QString &}
+ * @param label   {QLabel *}
+ * @param xRadius {const qreal}
+ * @param yRadius {const qreal}
+ * @return        void
+ */
+void EmployeesUtils::scaleImg(const QString &path, QLabel *label, const qreal xRadius, const qreal yRadius) const {
+  QPixmap Image(path);
+  QSize Size = label->size();
+  const int h = Size.height(),
+            w = Size.width();
+
+  // Initialize image
+  Image = Image.scaled(Size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+
+  // Create mask
+  QBitmap map(Size);
+  map.fill(Qt::color0);
+
+  QPainter painter(&map);
+  painter.setBrush(Qt::color1);
+  painter.drawRoundedRect(0, 0, w, h, xRadius, yRadius);
+
+  Image.setMask(map);
+  label->setPixmap(Image);
+}
+
+/**
+ * @fn           EmployeesUtils::extractUsername(const std::string &) const
  * @brief        Return the `username` from `ui->updateForm` title
  * @param title  {const std::string &}
  * @param length {const unsigned short &}
  * @return       std::string
  */
-std::string Utils::extractUsername(const std::string &title, const unsigned short &length) const {
+std::string EmployeesUtils::extractUsername(const std::string &title, const unsigned short &length) const {
   return title.substr(12, title.size());
 }
 
 /**
- * @fn      Utils::strToUpper(std::string) const
+ * @fn      EmployeesUtils::strToUpper(std::string) const
  * @brief   Transform `s` to uppercase string
  * @param s {std::string &}
  * @return  std::string
  */
-std::string Utils::strToUpper(std::string s) const {
+std::string EmployeesUtils::strToUpper(std::string s) const {
   std::transform(s.begin(), s.end(), s.begin(), ::toupper);
   return s;
+}
+
+/**
+ * @fn             EmployeesUtils::generatePdf(const QString &, const SqlParam &)
+ * @brief          Generate a .pdf file from `filePath`, it return `EXIT_SUCCESS` if the .pdf file generated successfully, otherwise return `EXIT_FAILURE`
+ * @param filePath {const QString &}
+ * @param emp      {const SqlParam &} - Main user/employee data
+ * @link https://forum.qt.io/topic/119534/proper-way-to-display-local-images-in-qtwebengineview/3 #BlankLocalImageIssue @endlink
+ * @return         const unsigned int
+ */
+const unsigned int EmployeesUtils::generatePdf(const QString &filePath, const SqlParam &emp) {
+  int pdf_generation_life_time_status{EXIT_SUCCESS};
+  QWebEngineView *webView(new QWebEngineView());
+  QWebEnginePage *page(webView->page());
+
+  // Give `QWebEnginePage` some access
+  page->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
+  page->settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
+  page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
+
+  EmployeesStatistics *stats = new EmployeesStatistics(emp);
+  const std::vector<unsigned int> statuses(stats->getStatusStats());
+  const std::vector<double> departments(stats->getDepartmentStats());
+  delete stats;
+  stats = nullptr;
+
+  // Load the .html file template
+  HtmlBodyFormater tmp("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/Report_template.html",
+                       {{"{{GENERATED_DATE}}", __DATE__},
+                        {"{{GENERATED_BY}}", emp.strings[Employees::EmployeeQueueFlags_strings::USERNAME].second},
+                        {"{{ACTIVE_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::ACTIVE - 1])},
+                        {"{{INACTIVE_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::INACTIVE - 1])},
+                        {"{{SUSPENDED_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::SUSPENDED - 1])},
+                        {"{{COMMERCIAL_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::COMMERCIAL])},
+                        {"{{SHOPS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::SHOPS])},
+                        {"{{EVENTS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::PARTNERS])},
+                        {"{{PARTNERS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::EVENTS])},
+                        {"{{PERSONALS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::PERSONALS])},
+                        {"{{EMPLOYEES_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::EMPLOYEES])}});
+
+  // Set the inner html to `QWebEnginePage`
+  page->setHtml(QString::fromStdString(tmp.get_inner_html()), QUrl::fromLocalFile("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/"));
+
+  // Wait for page load before generating PDF
+  QObject::connect(page, &QWebEnginePage::loadFinished, [=, &pdf_generation_life_time_status](bool success) -> void {
+    if (!success) {
+      qDebug() << "Failed to load the HTML file !";
+      pdf_generation_life_time_status = EXIT_FAILURE;
+      return;
+    }
+    // Generate PDF
+    page->printToPdf(filePath, QPageLayout(QPageSize(QPageSize::A4), QPageLayout::Portrait, QMarginsF(10, 10, 10, 10)));
+  });
+
+  page->deleteLater(), webView->deleteLater(); // Free allocated vars
+  // Return `pdf_generation_life_time_status`
+  // Show/Hide a preview (! need to comment the deleteLater instructions)
+  return /*webView->show(),*/ pdf_generation_life_time_status;
+}
+
+EmployeesStatistics::EmployeesStatistics(const SqlParam &_employee)
+    : employee(_employee), employees_length(0) {
+  Employees::Select *sl = new Employees::Select;
+  std::vector<SqlParam> employees = sl->selectAllExcept(Employees::EmployeeInfo<std::string>(
+      std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
+      Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID));
+  delete sl;
+  sl = nullptr;
+
+  employees_length = employees.size();
+
+  for (const SqlParam &emp : employees) {
+    statuses[emp.strings[Employees::EmployeeQueueFlags_strings::STATUS].second]++;
+    departments[emp.strings[Employees::EmployeeQueueFlags_strings::DEPARTMENT].second]++;
+  }
+}
+
+const std::vector<unsigned int> EmployeesStatistics::getStatusStats() {
+  return {statuses["ACTIVE"], statuses["INACTIVE"], statuses["SUSPENDED"]};
+}
+
+const std::vector<double> EmployeesStatistics::getDepartmentStats() {
+  if (!employees_length) // To avoid deviding on zero
+    return {};
+
+  for (std::pair<const std::string, double> &department : departments)
+    department.second = (department.second * 100.0) / employees_length;
+
+  return {departments["Commercial"], departments["Shops"], departments["Partners"], departments["Events"], departments["Personals"], departments["Employees"]};
 }

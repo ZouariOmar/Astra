@@ -1,11 +1,11 @@
 /**
- * @file employeesUI.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # EmployeesUI header file
- * @version 0.1
- * @date 2025-03-08
+ * @file      EmployeesUI.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     EmployeesUI header file
+ * @version   0.1
+ * @date      2025-03-08
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/employeesUI.hpp employeesUI.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/EmployeesUI.hpp EmployeesUI.hpp @endlink
  */
 
 // ? Pre-Processor prototype declaration part
@@ -14,17 +14,26 @@
 #define SHADOWS_EFFECT_COMBO_NUMBERS 9
 
 // ? Include prototype declaration part
-// * Include std libs (Qt)
+// * Include std Qt header(s)
 #include <QtGui/QBitmap>
 #include <QtGui/QMovie>
 #include <QtGui/QPainter>
+#include <QtGui/QPdfWriter>
 #include <QtGui/QPixmap>
+#include <QtGui/QTextDocument>
+#include <QtWebEngineCore/QWebEngineSettings>
+#include <QtWebEngineWidgets/QWebEngineView>
 #include <QtWidgets/QFileDialog>
 #include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
-#include "../inc/employees.hpp"
+
+// * Include std c++ header(s)
+#include <unordered_map>
+
+//* Include custom header(s)
+#include "../inc/Employees.hpp"
 
 // Include generated .ui files
 #include "../ui/ui_employees.h"
@@ -36,27 +45,50 @@ class EmployeesUI;
 }
 QT_END_NAMESPACE
 
-class Utils {
+class EmployeesStatistics {
+private:
+  SqlParam employee;
+  size_t employees_length;
+  std::unordered_map<std::string, unsigned int> statuses;
+  std::unordered_map<std::string, double> departments;
+
+public:
+  explicit EmployeesStatistics(const SqlParam &);
+  const std::vector<unsigned int> getStatusStats();
+  const std::vector<double> getDepartmentStats();
+}; // EmployeesStatistics
+
+/**
+ * @class EmployeesUtils
+ * @brief EmployeesUtils class
+ */
+class EmployeesUtils {
+public:
+  EmployeesUtils();
+
 protected:
   std::string profileImgInsertHolder,
       profileImgUpdateHolder;
+  void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
   std::string extractUsername(const std::string &, const unsigned short &length = 12) const;
   std::string strToUpper(std::string) const;
-
-public:
-  Utils();
+  const unsigned int generatePdf(const QString &filePath, const SqlParam &);
 }; // Utils class
 
-class EmployeesUI : public QMainWindow, private Utils {
+/**
+ * @class EmployeesUI
+ * @brief EmployeesUI class
+ */
+class EmployeesUI : public QMainWindow, private EmployeesUtils {
   Q_OBJECT
 
 public:
-  explicit EmployeesUI(std::vector<SqlParam>, QWidget *parent = nullptr);
+  explicit EmployeesUI(SqlParam, QWidget *parent = nullptr);
   ~EmployeesUI();
-  void set_employee(const std::vector<SqlParam> &);
+  void set_employee(const SqlParam &);
 
 private: // ? Private EmployeesUI vars
-  std::vector<SqlParam> employee;
+  SqlParam employee;
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie,
       *notification_movie;
@@ -72,8 +104,6 @@ private: // ? Private EmployeesUI function
   // void insertRow_employees_table();
   void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal xOffset = 5, const qreal yOffset = 5, const qreal blurRadius = 5, const QColor color = Qt::gray);
   void set_pushButtonMovie(QPushButton *, QMovie *) const;
-  void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
-  
 
 private slots:
   void on_show_clicked(bool);
@@ -86,6 +116,7 @@ private slots:
   void on_profileImageInsert_clicked();
   void on_profileImageInsert_2_clicked();
   void on_Filtre_activated(int);
+  void on_PDF_clicked();
 }; // EmployeesUI class
 
 #endif // __EMPLOYEES_UI__

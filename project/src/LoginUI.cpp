@@ -1,17 +1,18 @@
 /**
- * @file login.cpp
+ * @file LoginUI.cpp
  * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Login source file
+ * @brief # LoginUI source file
  * @version 0.1
  * @date 2025-02-18
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/src/login.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/LoginUI.cpp LoginUI.cpp @endlink
  */
 
 // ? Include prototype declaration part
-#include "../inc/login.hpp"
-#include "../inc/passwordGen.hpp"
-#include "../inc/smtp-mail.hpp"
+#include "../inc/LoginUI.hpp"
+#include "../inc/EmailSender.hpp"
+#include "../inc/HtmlBodyFormater.hpp"
+#include "../inc/PasswordGenerator.hpp"
 
 // ? Function/Class prototype dev part
 
@@ -20,12 +21,12 @@
 // * ========================================
 
 /**
- * @brief ### Construct a new Login::Login object
+ * @brief ### Construct a new LoginUI::LoginUI object
  *
- * @class        Login
+ * @class        LoginUI
  * @param parent {QWidget *}
  */
-Login::Login(QWidget *parent)
+LoginUI::LoginUI(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::Login),
       gifPaths({
@@ -42,7 +43,7 @@ Login::Login(QWidget *parent)
   ui->setupUi(this);
   setWindowTitle("Astra"); // Set window title
 
-  connect(gifTimer, &QTimer::timeout, this, &Login::updateGif); // Set movieAnimation gif
+  connect(gifTimer, &QTimer::timeout, this, &LoginUI::updateGif); // Set movieAnimation gif
   gifTimer->start(__LOGIN_GIF_ANIMATION__);
 
   // Install global events (make them detectable)
@@ -56,11 +57,11 @@ Login::Login(QWidget *parent)
 }
 
 /**
- * @brief ### Destroy the Login::Login object
+ * @brief ### Destroy the LoginUI::LoginUI object
  *
- * @class Login
+ * @class LoginUI
  */
-Login::~Login() {
+LoginUI::~LoginUI() {
   delete ui;
   delete gifTimer;
   delete currentMovie;
@@ -78,7 +79,7 @@ Login::~Login() {
  * @class   Login
  * @return  void
  */
-void Login::updateGif() {
+void LoginUI::updateGif() {
   currentGifIndex = (currentGifIndex + 1) % gifPaths.size(); // Cycle through GIFs
   QMovie *newMovie = new QMovie(gifPaths[currentGifIndex]);
 
@@ -99,7 +100,7 @@ void Login::updateGif() {
  * @class  Login
  * @return void
  */
-void Login::on_pushButton_clicked() {
+void LoginUI::on_pushButton_clicked() {
   std::string _username{ui->username->text().toStdString()},
       _password{ui->password->text().toStdString()};
 
@@ -138,10 +139,10 @@ void Login::on_pushButton_clicked() {
  * @brief ### Get verified employee data
  *
  * @class  Login
- * @return std::vector<SqlParam>
+ * @return {const SqlParam}
  */
-std::vector<SqlParam> Login::get_employee() {
-  return employee;
+const SqlParam LoginUI::get_employee() {
+  return employee[0];
 }
 
 // * ======================================
@@ -156,7 +157,7 @@ std::vector<SqlParam> Login::get_employee() {
  * @param event {QEvent *}
  * @return      bool
  */
-bool Login::eventFilter(QObject *obj, QEvent *event) {
+bool LoginUI::eventFilter(QObject *obj, QEvent *event) {
   if (obj == ui->pushButton) // ? Check if the event come form the login btn (login interface)
     return login_btn_events(obj, ui->lg, event);
   else if (obj == ui->reset && ui->reset->isEnabled()) // ? Check if the event come form the login btn (forget password interface)
@@ -174,7 +175,7 @@ bool Login::eventFilter(QObject *obj, QEvent *event) {
  * @param event {QEvent *}
  * @return      bool
  */
-bool Login::forget_password_events(QObject *obj, QEvent *event) {
+bool LoginUI::forget_password_events(QObject *obj, QEvent *event) {
   switch (event->type()) {
   case QEvent::Enter:                                                                     // * OnEnter event
     return ui->f_pwd->setText("<font color='blue'><u>Forget Password?</u></font>"), true; // Blue & underline
@@ -201,7 +202,7 @@ bool Login::forget_password_events(QObject *obj, QEvent *event) {
  * @param event {QEvent *}
  * @return      bool
  */
-bool Login::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
+bool LoginUI::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
   // Create animation object
   QPropertyAnimation *animation(new QPropertyAnimation(icon, "pos", this));
   animation->setDuration(1000);                      // 1s animation duration
@@ -235,7 +236,7 @@ bool Login::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
  * @param group2 {QGroupBox *}
  * @return       void
  */
-void Login::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
+void LoginUI::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
   QPropertyAnimation *animation1 = FadeEffect(group1, __FULL_VISIBLE__, __FULL_TRANSPARENT__); // Fade out group1
   QPropertyAnimation *animation2 = FadeEffect(group2, __FULL_TRANSPARENT__, __FULL_VISIBLE__); // Fade in group2
 
@@ -259,7 +260,7 @@ void Login::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
  * @param endVal   {const QVariant}
  * @return         {QPropertyAnimation *}
  */
-QPropertyAnimation *Login::FadeEffect(QGroupBox *group, const QVariant startVal, const QVariant endVal) {
+QPropertyAnimation *LoginUI::FadeEffect(QGroupBox *group, const QVariant startVal, const QVariant endVal) {
   QGraphicsOpacityEffect *effect = new QGraphicsOpacityEffect(group);
   group->setGraphicsEffect(effect);
 
@@ -280,7 +281,7 @@ QPropertyAnimation *Login::FadeEffect(QGroupBox *group, const QVariant startVal,
  * @details This button is included inside the `f_pwd_interface` QGroupBox
  * @class Login
  */
-void Login::on_returnBtn_clicked() {
+void LoginUI::on_returnBtn_clicked() {
   enableResetPassword(false);
   clearResetPassword();
   QGroupBoxFadeOutEffect(ui->f_pwd_interface, ui->login); // Redirect the user to login QGroupBox
@@ -292,7 +293,7 @@ void Login::on_returnBtn_clicked() {
  * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
  * @class   Login
  */
-void Login::on_hide_show_btn_clicked() {
+void LoginUI::on_hide_show_btn_clicked() {
   (ui->charCode->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn) : change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
 }
 
@@ -302,7 +303,7 @@ void Login::on_hide_show_btn_clicked() {
  * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
  * @class   Login
  */
-void Login::on_hide_show_btn_2_clicked() {
+void LoginUI::on_hide_show_btn_2_clicked() {
   (ui->password->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2) : change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
 }
 
@@ -316,7 +317,7 @@ void Login::on_hide_show_btn_2_clicked() {
  * @param mode     {const QLineEdit::EchoMode}
  * @param path     {const QString}
  */
-void Login::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const QLineEdit::EchoMode mode, const QString path) {
+void LoginUI::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const QLineEdit::EchoMode mode, const QString path) {
   btn->setIcon(QIcon(path));
   lineEdit->setEchoMode(mode);
 }
@@ -326,7 +327,7 @@ void Login::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const 
  *
  * @class Login
  */
-void Login::on_sendEmailBtn_clicked() {
+void LoginUI::on_sendEmailBtn_clicked() {
   std::string _email{ui->email->text().toStdString()}; // Hold the input it email
 
   // Select user information using 'email'
@@ -351,17 +352,17 @@ void Login::on_sendEmailBtn_clicked() {
 
   (void)QtConcurrent::run([this, _email, employee, progressDialog]() {
     try {
-      generated_password = Password::generate();
+      generated_password = PasswordGenerator::generate();
       EmailSender email{EmailAuth{}};
       email.send(EmailData(
           _email,
           "Astra: Password Reset Request",
-          EmailBody("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/forget_password_template.html",
-                    {
-                        {"{{name}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::FIRSTNAME].second},
-                        {"{{prename}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::LASTNAME].second},
-                        {"{{password}}", generated_password},
-                    })
+          HtmlBodyFormater("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/forget_password_template.html",
+                           {
+                               {"{{name}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::FIRSTNAME].second},
+                               {"{{prename}}", employee[0].strings[Employees::EmployeeQueueFlags_strings::LASTNAME].second},
+                               {"{{password}}", generated_password},
+                           })
               .get_inner_html()));
 
       // Update the UI after sending the email
@@ -384,7 +385,7 @@ void Login::on_sendEmailBtn_clicked() {
  *
  * @class Login
  */
-void Login::on_reset_clicked() {
+void LoginUI::on_reset_clicked() {
   if (ui->charCode->text().isEmpty() || ui->newPassword->text().isEmpty() || ui->confirmPassword->text().isEmpty()) {
     std::cerr << "Error: field(s) is/are empty!" << std::endl;
     return;
@@ -422,7 +423,7 @@ void Login::on_reset_clicked() {
  * @class        Login
  * @param status {const bool &}
  */
-void Login::enableResetPassword(const bool &status) {
+void LoginUI::enableResetPassword(const bool &status) {
   ui->email->setEnabled(!status);
   ui->sendEmailBtn->setEnabled(!status);
   ui->usr_2->setEnabled(!status);
@@ -441,7 +442,7 @@ void Login::enableResetPassword(const bool &status) {
  *
  * @class Login
  */
-void Login::clearResetPassword() {
+void LoginUI::clearResetPassword() {
   ui->email->setText("");
   ui->charCode->setText("");
   ui->newPassword->setText("");

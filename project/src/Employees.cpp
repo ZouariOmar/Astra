@@ -1,15 +1,15 @@
 /**
- * @file employees.cpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Employees management source file
- * @version 0.1
- * @date 2025-03-01
+ * @file      Employees.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     Employees source file
+ * @version   0.1
+ * @date      2025-03-01
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/src/employees.cpp employees.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/Employees.cpp Employees.cpp @endlink
  */
 
 //? Include prototype declaration part
-#include "../inc/employees.hpp"
+#include "../inc/Employees.hpp"
 
 //? Function/Class prototype dev part
 

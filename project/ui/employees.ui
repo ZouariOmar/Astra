@@ -15,7 +15,7 @@
   </property>
   <property name="windowIcon">
    <iconset>
-    <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/doc/imgs/logo.png</iconset>
+    <normaloff>../../doc/imgs/logo.png</normaloff>../../doc/imgs/logo.png</iconset>
   </property>
   <property name="styleSheet">
    <string notr="true">* {
@@ -158,7 +158,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+      <normaloff>../assets/global/icons8-shop-50.png</normaloff>../assets/global/icons8-shop-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -207,7 +207,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+      <normaloff>../assets/global/icons8-salesman-50.png</normaloff>../assets/global/icons8-salesman-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -253,7 +253,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+      <normaloff>../assets/global/icons8-event-50.png</normaloff>../assets/global/icons8-event-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -299,7 +299,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+      <normaloff>../assets/global/icons8-handshake-50.png</normaloff>../assets/global/icons8-handshake-50.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -345,7 +345,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+      <normaloff>../assets/global/icons8-employees-24.png</normaloff>../assets/global/icons8-employees-24.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -391,7 +391,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+      <normaloff>../assets/global/icons8-user-groups-48.png</normaloff>../assets/global/icons8-user-groups-48.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -471,7 +471,7 @@ background-color: white;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/images.jpg</pixmap>
+     <pixmap>../assets/global/images.jpg</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -497,7 +497,7 @@ background-color: white;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif</iconset>
+      <normaloff>../assets/global/icons8-notification.gif</normaloff>../assets/global/icons8-notification.gif</iconset>
     </property>
    </widget>
    <widget class="QPushButton" name="PDF">
@@ -520,7 +520,7 @@ background-color: white;</string>
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif</iconset>
+      <normaloff>../assets/global/icons8-pdf.gif</normaloff>../assets/global/icons8-pdf.gif</iconset>
     </property>
    </widget>
    <widget class="QComboBox" name="Filtre">
@@ -544,7 +544,7 @@ background-color: white;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-connection-status-on-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-connection-status-on-48.png</iconset>
+       <normaloff>../assets/Employees/icons8-connection-status-on-48.png</normaloff>../assets/Employees/icons8-connection-status-on-48.png</iconset>
      </property>
     </item>
     <item>
@@ -553,7 +553,7 @@ background-color: white;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-green-circle-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-green-circle-48.png</iconset>
+       <normaloff>../assets/Employees/icons8-green-circle-48.png</normaloff>../assets/Employees/icons8-green-circle-48.png</iconset>
      </property>
     </item>
     <item>
@@ -562,7 +562,7 @@ background-color: white;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-yellow-circle-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-yellow-circle-48.png</iconset>
+       <normaloff>../assets/Employees/icons8-yellow-circle-48.png</normaloff>../assets/Employees/icons8-yellow-circle-48.png</iconset>
      </property>
     </item>
     <item>
@@ -571,7 +571,7 @@ background-color: white;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-red-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-red-48.png</iconset>
+       <normaloff>../assets/Employees/icons8-red-48.png</normaloff>../assets/Employees/icons8-red-48.png</iconset>
      </property>
     </item>
    </widget>
@@ -720,7 +720,7 @@ color: #494d53;
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-search.gif</pixmap>
+     <pixmap>../assets/global/icons8-search.gif</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -746,7 +746,7 @@ color: #494d53;
     </property>
     <property name="icon">
      <iconset>
-      <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/Add.png</iconset>
+      <normaloff>../assets/global/Add.png</normaloff>../assets/global/Add.png</iconset>
     </property>
     <property name="iconSize">
      <size>
@@ -829,7 +829,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</iconset>
+       <normaloff>../assets/Employees/Close.png</normaloff>../assets/Employees/Close.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="insertBtn">
@@ -940,7 +940,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+        <normaloff>../assets/global/icons8-salesman-50.png</normaloff>../assets/global/icons8-salesman-50.png</iconset>
       </property>
      </item>
      <item>
@@ -949,7 +949,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+        <normaloff>../assets/global/icons8-shop-50.png</normaloff>../assets/global/icons8-shop-50.png</iconset>
       </property>
      </item>
      <item>
@@ -958,7 +958,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+        <normaloff>../assets/global/icons8-handshake-50.png</normaloff>../assets/global/icons8-handshake-50.png</iconset>
       </property>
      </item>
      <item>
@@ -967,7 +967,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+        <normaloff>../assets/global/icons8-event-50.png</normaloff>../assets/global/icons8-event-50.png</iconset>
       </property>
      </item>
      <item>
@@ -976,7 +976,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+        <normaloff>../assets/global/icons8-user-groups-48.png</normaloff>../assets/global/icons8-user-groups-48.png</iconset>
       </property>
      </item>
      <item>
@@ -985,7 +985,7 @@ color: #494d53;
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+        <normaloff>../assets/global/icons8-employees-24.png</normaloff>../assets/global/icons8-employees-24.png</iconset>
       </property>
      </item>
     </widget>
@@ -1002,7 +1002,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1021,7 +1021,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1040,7 +1040,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</pixmap>
+      <pixmap>../assets/login imgs/icons8-email-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1059,7 +1059,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-lock-24.png</pixmap>
+      <pixmap>../assets/global/icons8-lock-24.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1087,7 +1087,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</iconset>
+       <normaloff>../assets/Employees/icons8-right.png</normaloff>../assets/Employees/icons8-right.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1133,7 +1133,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-job-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-job-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1173,7 +1173,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-money-32.png</pixmap>
+      <pixmap>../assets/Employees/icons8-money-32.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1228,7 +1228,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-call-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-call-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1268,7 +1268,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-location-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-location-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1287,7 +1287,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-birthday-16.png</pixmap>
+      <pixmap>../assets/Employees/icons8-birthday-16.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1306,7 +1306,7 @@ color: #494d53;
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-department-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1332,7 +1332,7 @@ color: #494d53;
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</iconset>
+       <normaloff>../assets/Employees/icons8-profile-image-78.png</normaloff>../assets/Employees/icons8-profile-image-78.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1415,7 +1415,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      <string/>
     </property>
     <property name="pixmap">
-     <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/doc/imgs/logo.png</pixmap>
+     <pixmap>../assets/doc/imgs/logo.png</pixmap>
     </property>
     <property name="scaledContents">
      <bool>true</bool>
@@ -1538,7 +1538,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</iconset>
+       <normaloff>../assets/Employees/icons8-profile-image-78.png</normaloff>../assets/Employees/icons8-profile-image-78.png</iconset>
      </property>
     </column>
     <column>
@@ -1554,7 +1554,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</iconset>
+       <normaloff>../assets/global/icons8-letters-30.png</normaloff>../assets/global/icons8-letters-30.png</iconset>
      </property>
     </column>
     <column>
@@ -1575,7 +1575,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</iconset>
+       <normaloff>../assets/login imgs/icons8-email-50.png</normaloff>../assets/login imgs/icons8-email-50.png</iconset>
      </property>
     </column>
     <column>
@@ -1591,7 +1591,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</iconset>
+       <normaloff>../assets/Employees/icons8-department-50.png</normaloff>../assets/Employees/icons8-department-50.png</iconset>
      </property>
     </column>
     <column>
@@ -1607,7 +1607,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-connection-status-on-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-connection-status-on-48.png</iconset>
+       <normaloff>../assets/Employees/icons8-connection-status-on-48.png</normaloff>../assets/Employees/icons8-connection-status-on-48.png</iconset>
      </property>
     </column>
     <column>
@@ -1691,7 +1691,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/Close.png</iconset>
+       <normaloff>../assets/Employees/Close.png</normaloff>../assets/Employees/Close.png</iconset>
      </property>
     </widget>
     <widget class="QPushButton" name="updateBtn">
@@ -1802,7 +1802,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-salesman-50.png</iconset>
+        <normaloff>../assets/global/icons8-salesman-50.png</normaloff>../assets/global/icons8-salesman-50.png</iconset>
       </property>
      </item>
      <item>
@@ -1811,16 +1811,16 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-shop-50.png</iconset>
+        <normaloff>../assets/global/icons8-shop-50.png</normaloff>../assets/global/icons8-shop-50.png</iconset>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Partenaires</string>
+       <string>Partners</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-handshake-50.png</iconset>
+        <normaloff>../assets/global/icons8-handshake-50.png</normaloff>../assets/global/icons8-handshake-50.png</iconset>
       </property>
      </item>
      <item>
@@ -1829,16 +1829,16 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-event-50.png</iconset>
+        <normaloff>../assets/global/icons8-event-50.png</normaloff>../assets/global/icons8-event-50.png</iconset>
       </property>
      </item>
      <item>
       <property name="text">
-       <string>Personnels</string>
+       <string>Personals</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-user-groups-48.png</iconset>
+        <normaloff>../assets/global/icons8-user-groups-48.png</normaloff>../assets/global/icons8-user-groups-48.png</iconset>
       </property>
      </item>
      <item>
@@ -1847,7 +1847,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-employees-24.png</iconset>
+        <normaloff>../assets/global/icons8-employees-24.png</normaloff>../assets/global/icons8-employees-24.png</iconset>
       </property>
      </item>
     </widget>
@@ -1864,7 +1864,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1883,7 +1883,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-letters-30.png</pixmap>
+      <pixmap>../assets/global/icons8-letters-30.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1902,7 +1902,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/icons8-email-50.png</pixmap>
+      <pixmap>../assets/login imgs/icons8-email-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1921,7 +1921,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-lock-24.png</pixmap>
+      <pixmap>../assets/global/icons8-lock-24.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -1950,7 +1950,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-right.png</iconset>
+       <normaloff>../assets/Employees/icons8-right.png</normaloff>../assets/Employees/icons8-right.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -1996,7 +1996,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-job-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-job-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2036,7 +2036,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-money-32.png</pixmap>
+      <pixmap>../assets/Employees/icons8-money-32.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2091,7 +2091,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-call-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-call-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2131,7 +2131,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-location-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-location-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2150,7 +2150,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-birthday-16.png</pixmap>
+      <pixmap>../assets/Employees/icons8-birthday-16.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2169,7 +2169,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-department-50.png</pixmap>
+      <pixmap>../assets/Employees/icons8-department-50.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>
@@ -2192,7 +2192,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      </property>
      <property name="icon">
       <iconset>
-       <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-profile-image-78.png</iconset>
+       <normaloff>../assets/Employees/icons8-profile-image-78.png</normaloff>../assets/Employees/icons8-profile-image-78.png</iconset>
      </property>
      <property name="iconSize">
       <size>
@@ -2227,7 +2227,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-green-circle-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-green-circle-48.png</iconset>
+        <normaloff>../assets/Employees/icons8-green-circle-48.png</normaloff>../assets/Employees/icons8-green-circle-48.png</iconset>
       </property>
      </item>
      <item>
@@ -2236,7 +2236,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-yellow-circle-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-yellow-circle-48.png</iconset>
+        <normaloff>../assets/Employees/icons8-yellow-circle-48.png</normaloff>../assets/Employees/icons8-yellow-circle-48.png</iconset>
       </property>
      </item>
      <item>
@@ -2245,7 +2245,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       </property>
       <property name="icon">
        <iconset>
-        <normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-red-48.png</normaloff>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-red-48.png</iconset>
+        <normaloff>../assets/Employees/icons8-red-48.png</normaloff>../assets/Employees/icons8-red-48.png</iconset>
       </property>
      </item>
     </widget>
@@ -2262,7 +2262,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
       <string/>
      </property>
      <property name="pixmap">
-      <pixmap>/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-connection-status-on-48.png</pixmap>
+      <pixmap>../assets/Employees/icons8-connection-status-on-48.png</pixmap>
      </property>
      <property name="scaledContents">
       <bool>true</bool>

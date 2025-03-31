@@ -1,11 +1,11 @@
 /**
- * @file employees.tpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # `EmployeeInfo` template defintion part
- * @version 0.1
- * @date 2025-03-27
+ * @file      Employees.tpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     `EmployeeInfo` template defintion file
+ * @version   0.1
+ * @date      2025-03-27
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/templates/employees.tpp employees.tpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/templates/Employees.tpp Employees.tpp @endlink
  */
 
 // ? Pre-Processor prototype declaration part
@@ -15,7 +15,7 @@
 // ? Include prototype declaration part
 
 // * Include custom header(s)
-#include "../inc/employees.hpp"
+#include "../inc/Employees.hpp"
 
 // * ==============================================
 // ? === Employees::SetEmployeeInfo Constructors ==

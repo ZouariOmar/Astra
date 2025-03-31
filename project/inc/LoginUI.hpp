@@ -1,14 +1,14 @@
 /**
- * @file login.hpp
+ * @file LoginUI.hpp
  * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Login header file
+ * @brief # LoginUI header file
  * @version 0.1
  * @date 2025-02-18
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/login.hpp login.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/LoginUI.hpp LoginUI.hpp @endlink
  */
 
-// ? Pre-Processor prototype declaration part
+//? Pre-Processor prototype declaration part
 #ifndef __LOGIN_HPP__
 #define __LOGIN_HPP__
 #define __LOGIN_GIF_ANIMATION__ 5000 // 5sec
@@ -17,8 +17,8 @@
 #define __FULL_VISIBLE__ 1.0         // Fully visible (opacity)
 #define __FULL_TRANSPARENT__ 0.0     // Fully transparent (opacity)
 
-// ? Include prototype declaration part
-// * Include std headers (Qt)
+//? Include prototype declaration part
+//* Include std headers (Qt)
 #include <QtConcurrent/QtConcurrent>
 #include <QtCore/QDebug>
 #include <QtCore/QPropertyAnimation>
@@ -29,26 +29,37 @@
 #include <QtWidgets/QMessageBox>
 #include <QtWidgets/QProgressDialog>
 
-#include "../inc/employees.hpp"
+//* Include custom header(s)
+#include "../inc/Employees.hpp"
 
-// Include generated .ui files
+//* Include generated .ui files
 #include "../ui/ui_login.h"
 
-// ? Classes prototype declaration part
+//? Namespace(s) prototype declaration part
 
+/**
+ * @namespace Ui
+ * @brief     Ui namespace
+ */
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Login;
 }
 QT_END_NAMESPACE
 
-class Login : public QMainWindow {
+//? Class(es) prototype declaration part
+
+/**
+ * @class Login
+ * @brief Login class
+ */
+class LoginUI : public QMainWindow {
   Q_OBJECT
 
 public:
-  explicit Login(QWidget *parent = nullptr);
-  ~Login();
-  std::vector<SqlParam> get_employee();
+  explicit LoginUI(QWidget *parent = nullptr);
+  ~LoginUI();
+  const SqlParam get_employee();
 
 private: // ? Private vars
   Ui::Login *ui;
