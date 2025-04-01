@@ -1,16 +1,16 @@
 /**
- * @file LoginUI.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # LoginUI header file
- * @version 0.1
- * @date 2025-02-18
+ * @file      LoginUI.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     LoginUI header file
+ * @version   0.1
+ * @date      2025-02-18
  * @copyright Copyright (c) 2025
  * @link https://github.com/ZouariOmar/Astra/project/inc/LoginUI.hpp LoginUI.hpp @endlink
  */
 
 //? Pre-Processor prototype declaration part
-#ifndef __LOGIN_HPP__
-#define __LOGIN_HPP__
+#ifndef __LOGIN_UI_HPP__
+#define __LOGIN_UI_HPP__
 #define __LOGIN_GIF_ANIMATION__ 5000 // 5sec
 #define __START_LG_Q_LABEL_X__ 210   // Start l QLabel x position = 210px
 #define __END_LG_Q_LABEL_X__ 330     // End l QLabel x position = 210px
@@ -32,7 +32,7 @@
 //* Include custom header(s)
 #include "../inc/Employees.hpp"
 
-//* Include generated .ui files
+//* Include generated ui_.h files
 #include "../ui/ui_login.h"
 
 //? Namespace(s) prototype declaration part
@@ -44,7 +44,7 @@
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class Login;
-}
+}; // Namespace Ui
 QT_END_NAMESPACE
 
 //? Class(es) prototype declaration part
@@ -61,46 +61,43 @@ public:
   ~LoginUI();
   const SqlParam get_employee();
 
-private: // ? Private vars
+private:
   Ui::Login *ui;
-  const QStringList gifPaths;
-  int currentGifIndex;
   QTimer *gifTimer;
   QMovie *currentMovie;
+  int currentGifIndex;
+  const QStringList gifPaths;
   std::string generated_password;
   std::vector<SqlParam> employee;
 
-private: // ? Private fns
-  // * Events
-  bool
-  eventFilter(QObject *, QEvent *) override;
+  //* Events
+  bool eventFilter(QObject *, QEvent *) override;
   bool forget_password_events(QObject *, QEvent *);
   bool login_btn_events(QObject *, QLabel *, QEvent *);
 
-  // * Effects
+  //* Effects
   void updateGif();
   void QGroupBoxFadeOutEffect(QGroupBox *, QGroupBox *);
   QPropertyAnimation *FadeEffect(QGroupBox *, const QVariant, const QVariant);
   void change_hideShowBtnIcon(QLineEdit *, QPushButton *, const QLineEdit::EchoMode mode = QLineEdit::Password, const QString path = "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/closedEye.png");
 
-  // * Helpers
+  //* Helpers
   void enableResetPassword(const bool &);
   void clearResetPassword();
 
-private slots: // ? Private slots fns
-  // * Login sub-inteface group box slots
+private slots:
+  //* Login sub-inteface group box slots
   void on_pushButton_clicked();
   void on_hide_show_btn_clicked();
   void on_reset_clicked();
 
-  // * Forget password sub-inteface group box slots
+  //* Forget password sub-inteface group box slots
   void on_hide_show_btn_2_clicked();
   void on_returnBtn_clicked();
   void on_sendEmailBtn_clicked();
 
-signals: // ? Signals fns
-  // * Login sub-inteface group box signals
+signals: //? Signals fns
   void loginSuccessful(); // Signal to notify successful login
 }; // Login class
 
-#endif // __LOGIN_HPP__
+#endif // __LOGIN_UI_HPP__

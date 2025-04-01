@@ -11,6 +11,7 @@
 //? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_HPP__
 #define __EMPLOYEES_HPP__
+#define EMAIL_MATCHER_PATTERN "(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+"
 
 //? Include prototype declaration part
 //* Include std C++ header
@@ -143,12 +144,11 @@ struct Employees::EmployeeInfo {
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_timestamps &);
 }; // EmployeeInfo struct
 
-//? Classes prototype declaration part
+//? Class(es) prototype declaration part
 
 /**
  * @class Employees::Setup
  * @brief Generale database setup
- *
  */
 class Employees::Setup {
 protected:
@@ -160,12 +160,13 @@ public:
 }; // Employees::Setup class
 
 /**
- * @brief C`R`UD
  * @class Employees::Select
+ * @brief C`R`UD
  */
 class Employees::Select : private Employees::Setup {
 public:
   //* Employees::Select functions
+  std::vector<SqlParam> selectAll();
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &);
@@ -174,8 +175,8 @@ public:
 }; // Employees::Select class
 
 /**
- * @brief Insert new employee
  * @class Employees::Insert
+ * @brief Insert new employee
  */
 class Employees::Insert : private Employees::Setup {
 public:
@@ -200,8 +201,8 @@ public:
 }; // Employees::Insert class
 
 /**
- * @brief CR`U`D
  * @class Employees::Update
+ * @brief CR`U`D
  */
 class Employees::Update : private Employees::Setup {
 public:
@@ -233,8 +234,8 @@ public:
 }; // Employees::Update class
 
 /**
- * @brief CRU`D`
  * @class Employees::Delete
+ * @brief CRU`D`
  */
 class Employees::Delete : private Employees::Setup {
 public:

@@ -24,7 +24,8 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUI.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmailSender.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Employees.cpp
-  ${CMAKE_SOURCE_DIR}/../project/src/HtmlBodyFormater.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/EmployeesStatistics.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/HtmlBodyFormatter.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/PasswordGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Database.cpp
 )
@@ -37,7 +38,8 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUI.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmailSender.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Employees.hpp
-  ${CMAKE_SOURCE_DIR}/../project/inc/HtmlBodyFormater.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesStatistics.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/HtmlBodyFormatter.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/PasswordGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Database.hpp
 )

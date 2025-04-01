@@ -1,9 +1,9 @@
 /**
- * @file PasswordGenerator.cpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Password generator source file
- * @version 0.1
- * @date 2025-03-01
+ * @file      PasswordGenerator.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     PasswordGenerator source file
+ * @version   0.1
+ * @date      2025-03-01
  * @copyright Copyright (c) 2025
  * @link https://github.com/ZouariOmar/Astra/project/src/PasswordGenerator.cpp PasswordGenerator.cpp @endlink
  */
@@ -11,18 +11,17 @@
 //? Include prototype declaration part
 #include "../inc/PasswordGenerator.hpp"
 
-//? Function/Class prototype dev part
+//? Function(s) prototype dev part
 
 /**
- * @brief ### Generate a random password using the system seed and "Mersenne twister algorithm"
- *
- * @class         Password
+ * @fn            PasswordGenerator::generate(const int &, const std::string &)
+ * @brief         Generate a random password using the system seed and "Mersenne twister algorithm"
  * @param pattern {const std::string}
  * @param length  {const int}
  * @return        std::string
  */
 std::string PasswordGenerator::generate(const int &length, const std::string &pattern) {
-  std::random_device rd;                                            // Obtain a random seed from the system (or i can obtain it from `std::srand(std::time(0))`)
+  std::random_device rd;                                            // Obtlengthain a random seed from the system (or i can obtain it from `std::srand(std::time(0))`)
   std::mt19937 gen(rd());                                           // Use the random device to initialize the generator
   std::uniform_int_distribution<size_t> dis(0, pattern.size() - 1); // Define a distribution for selecting indices
 
@@ -34,16 +33,13 @@ std::string PasswordGenerator::generate(const int &length, const std::string &pa
 }
 
 /**
- * @brief ### Hash the given `data` on 32-bit format using sha256 encryption protocol
- *
- * @details SHA-256 is used for secure password hashing
- * ! Test with:
- * @code
- *   $printf "Terminal Root" | sha256sum
- * @endcode
- * @class      Password
+ * @fn         PasswordGenerator::sha256sum(const std::string &)
+ * @brief      Hash the given `data` on 32-bit format using sha256 encryption protocol
+ * @details    SHA-256 is used for secure password hashing
  * @param data {const std::string}
  * @return     std::string
+ * @note       Test with:
+ * @code $printf "Terminal Root" | sha256sum @endcode
  */
 std::string PasswordGenerator::sha256sum(const std::string &data) {
   unsigned char hash[EVP_MAX_MD_SIZE]; // Store hex strings

@@ -1,19 +1,16 @@
 /**
- * @file smtp-mail.hpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # Send email with SMTP (header file)
- * @version 0.1
- * @date 2025-02-23
+ * @file      EmailSender.hpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     EmailSender header file
+ * @version   0.1
+ * @date      2025-02-23
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/smtp-mail.hpp smtp-mail.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/EmailSender.hpp EmailSender.hpp @endlink
  * @link https://raw.githubusercontent.com/curl/curl/master/docs/examples/smtp-mail.c smtp-mail.c @endlink
  */
 
 /**
- * @brief ### How to use EmailSender object ?
- * ################################################
  * @example Simple example using EmailSender object
- * ################################################
  * @code
  * std::vector<string> cc = {"<zouariomar20@gmail.com>"};
  * std::vector<string> attachments = {"/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp", "/home/zouari_omar/Downloads/test.png"};
@@ -25,48 +22,54 @@
  * @endcode
  */
 
-// ? Pre-Processor prototype declaration part
-#ifndef __SMTP_MAIL_HPP__
-#define __SMTP_MAIL_HPP__
+//? Pre-Processor prototype declaration part
+#ifndef __EMAIL_SENDER_HPP__
+#define __EMAIL_SENDER_HPP__
 
-// ? Include prototype declaration part
+//? Include prototype declaration part
 // * Include std C++ header
+#include <curl/curl.h>
 #include <fstream>
 #include <iostream>
 #include <unordered_map>
 #include <vector>
 
-// * Include main libcurl header (.h)
-#include <curl/curl.h>
+//? Structres prototype declaration part
 
-// ? Structres prototype declaration part
+/**
+ * @struct EmailAuth
+ * @brief  EmailAuth struct
+ */
 struct EmailAuth {
-  std::string from_addr,
-      from_app_password,
-      mail_server;
+  std::string from_addr, from_app_password, mail_server;
   explicit EmailAuth();
-  explicit EmailAuth(const std::string _from_addr, const std::string, const std::string _mail_server = std::getenv("MAIL_SERVER"));
+  explicit EmailAuth(const std::string, const std::string, const std::string _mail_server = std::getenv("MAIL_SERVER"));
 }; // EmailAuth struct
 
+/**
+ * @struct EmailData
+ * @brief  EmailData struct
+ */
 struct EmailData {
-  std::string
-      to_addr,
-      subject,
-      body;
-  std::vector<std::string>
-      cc_addr,
-      attachments;
+  std::string to_addr, subject, body;
+  std::vector<std::string> cc_addr, attachments;
   explicit EmailData(const std::string, const std::string, const std::string, const std::vector<std::string> _cc_addr = {}, const std::vector<std::string> _attachments = {});
 }; // EmailData struct
 
-// ? Classes prototype declaration part
+//? Classes prototype declaration part
+
+/**
+ * @class EmailSender
+ * @brief EmailSender class
+ */
 class EmailSender {
 public:
   explicit EmailSender(const EmailAuth);
+  ~EmailSender();
   int send(EmailData);
 
 private:
   EmailAuth *auth;
 }; // EmailSender class
 
-#endif // __SMTP_MAIL_HPP__
+#endif // __EMAIL_SENDER_HPP__

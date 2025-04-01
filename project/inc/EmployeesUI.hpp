@@ -8,13 +8,13 @@
  * @link https://github.com/ZouariOmar/Astra/project/inc/EmployeesUI.hpp EmployeesUI.hpp @endlink
  */
 
-// ? Pre-Processor prototype declaration part
+//? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_UI__
 #define __EMPLOYEES_UI__
 #define SHADOWS_EFFECT_COMBO_NUMBERS 9
 
-// ? Include prototype declaration part
-// * Include std Qt header(s)
+//? Include prototype declaration part
+//* Include std Qt header(s)
 #include <QtGui/QBitmap>
 #include <QtGui/QMovie>
 #include <QtGui/QPainter>
@@ -29,34 +29,23 @@
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
 
-// * Include std c++ header(s)
-#include <unordered_map>
-
 //* Include custom header(s)
 #include "../inc/Employees.hpp"
 
-// Include generated .ui files
+//* Include generated ui_.h file(s)
 #include "../ui/ui_employees.h"
 
-// ? Classes prototype declaration part
+//? Classes prototype declaration part
+
+/**
+ * @namespace Ui
+ * @brief     Ui namespace
+ */
 QT_BEGIN_NAMESPACE
 namespace Ui {
 class EmployeesUI;
-}
+}; // Namespace Ui
 QT_END_NAMESPACE
-
-class EmployeesStatistics {
-private:
-  SqlParam employee;
-  size_t employees_length;
-  std::unordered_map<std::string, unsigned int> statuses;
-  std::unordered_map<std::string, double> departments;
-
-public:
-  explicit EmployeesStatistics(const SqlParam &);
-  const std::vector<unsigned int> getStatusStats();
-  const std::vector<double> getDepartmentStats();
-}; // EmployeesStatistics
 
 /**
  * @class EmployeesUtils
@@ -67,8 +56,7 @@ public:
   EmployeesUtils();
 
 protected:
-  std::string profileImgInsertHolder,
-      profileImgUpdateHolder;
+  std::string profileImgInsertHolder, profileImgUpdateHolder;
   void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
   std::string extractUsername(const std::string &, const unsigned short &length = 12) const;
   std::string strToUpper(std::string) const;
@@ -87,14 +75,14 @@ public:
   ~EmployeesUI();
   void set_employee(const SqlParam &);
 
-private: // ? Private EmployeesUI vars
+private: //? Private EmployeesUI vars
   SqlParam employee;
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie,
       *notification_movie;
   QGraphicsDropShadowEffect *shadow_effect_components;
 
-private: // ? Private EmployeesUI function
+private: //? Private EmployeesUI function
   inline void __init__();
   void __init_employees_table__();
   inline void __init_form_group_box__();

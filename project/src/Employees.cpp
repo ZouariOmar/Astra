@@ -51,8 +51,7 @@ Employees::Setup::Setup()
  * @brief Destroy the Employees::Setup::Setup object
  */
 Employees::Setup::~Setup() {
-  if (db)
-    delete db;
+  delete db;
   db = nullptr;
 };
 
@@ -60,6 +59,15 @@ Employees::Setup::~Setup() {
 // ? ========= / Employees::Setup  ========
 // ? ========= Employees::Select  =========
 // * ======================================
+
+/**
+ * @fn     Employees::Select::selectAll()
+ * @brief  Return all users without any exceptions
+ * @return std::vector<SqlParam>
+ */
+std::vector<SqlParam> Employees::Select::selectAll() {
+  return db->execute("SELECT * FROM Employees", SqlParam());
+}
 
 /**
  * @fn         Employees::Select::selectAll(const Employees::EmployeeInfo &)
@@ -329,8 +337,8 @@ bool Employees::EmployeeChecker::is_empty(const std::string &email, const std::s
  * @return      bool
  */
 bool Employees::EmployeeChecker::is_validEmail(const std::string &email) {
-  const std::regex emailMatchPattern("(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+"); // Regular expression definition
-  return std::regex_match(email, emailMatchPattern);                             // Match the string pattern with regular expression
+  const std::regex emailMatchPattern(EMAIL_MATCHER_PATTERN); // Regular expression definition
+  return std::regex_match(email, emailMatchPattern);         // Match the string pattern with regular expression
 }
 
 /**

@@ -10,7 +10,8 @@
 
 //? Include prototype declaration part
 #include "../inc/EmployeesUI.hpp"
-#include "../inc/HtmlBodyFormater.hpp"
+#include "../inc/EmployeesStatistics.hpp"
+#include "../inc/HtmlBodyFormatter.hpp"
 
 //? Function/Class prototype dev part
 
@@ -741,35 +742,4 @@ const unsigned int EmployeesUtils::generatePdf(const QString &filePath, const Sq
   // Return `pdf_generation_life_time_status`
   // Show/Hide a preview (! need to comment the deleteLater instructions)
   return /*webView->show(),*/ pdf_generation_life_time_status;
-}
-
-EmployeesStatistics::EmployeesStatistics(const SqlParam &_employee)
-    : employee(_employee), employees_length(0) {
-  Employees::Select *sl = new Employees::Select;
-  std::vector<SqlParam> employees = sl->selectAllExcept(Employees::EmployeeInfo<std::string>(
-      std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
-      Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID));
-  delete sl;
-  sl = nullptr;
-
-  employees_length = employees.size();
-
-  for (const SqlParam &emp : employees) {
-    statuses[emp.strings[Employees::EmployeeQueueFlags_strings::STATUS].second]++;
-    departments[emp.strings[Employees::EmployeeQueueFlags_strings::DEPARTMENT].second]++;
-  }
-}
-
-const std::vector<unsigned int> EmployeesStatistics::getStatusStats() {
-  return {statuses["ACTIVE"], statuses["INACTIVE"], statuses["SUSPENDED"]};
-}
-
-const std::vector<double> EmployeesStatistics::getDepartmentStats() {
-  if (!employees_length) // To avoid deviding on zero
-    return {};
-
-  for (std::pair<const std::string, double> &department : departments)
-    department.second = (department.second * 100.0) / employees_length;
-
-  return {departments["Commercial"], departments["Shops"], departments["Partners"], departments["Events"], departments["Personals"], departments["Employees"]};
 }

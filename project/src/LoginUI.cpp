@@ -1,9 +1,9 @@
 /**
- * @file LoginUI.cpp
- * @author @ZouariOmar (zouariomar20@gmail.com)
- * @brief # LoginUI source file
- * @version 0.1
- * @date 2025-02-18
+ * @file      LoginUI.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     LoginUI source file
+ * @version   0.1
+ * @date      2025-02-18
  * @copyright Copyright (c) 2025
  * @link https://github.com/ZouariOmar/Astra/project/src/LoginUI.cpp LoginUI.cpp @endlink
  */
@@ -11,7 +11,7 @@
 // ? Include prototype declaration part
 #include "../inc/LoginUI.hpp"
 #include "../inc/EmailSender.hpp"
-#include "../inc/HtmlBodyFormater.hpp"
+#include "../inc/HtmlBodyFormatter.hpp"
 #include "../inc/PasswordGenerator.hpp"
 
 // ? Function/Class prototype dev part
@@ -21,14 +21,16 @@
 // * ========================================
 
 /**
- * @brief ### Construct a new LoginUI::LoginUI object
- *
- * @class        LoginUI
+ * @fn           LoginUI::LoginUI(QWidget *)
+ * @brief        Construct a new LoginUI::LoginUI object
  * @param parent {QWidget *}
  */
 LoginUI::LoginUI(QWidget *parent)
     : QMainWindow(parent),
       ui(new Ui::Login),
+      gifTimer(new QTimer(this)),
+      currentMovie(nullptr),
+      currentGifIndex(0),
       gifPaths({
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an00.gif",
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an01.gif",
@@ -36,10 +38,8 @@ LoginUI::LoginUI(QWidget *parent)
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an03.gif",
           "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/animations/an04.gif",
       }),
-      currentGifIndex(0),
-      gifTimer(new QTimer(this)),
-      currentMovie(nullptr),
-      generated_password("") {
+      generated_password(""),
+      employee({}) {
   ui->setupUi(this);
   setWindowTitle("Astra"); // Set window title
 
@@ -52,19 +52,20 @@ LoginUI::LoginUI(QWidget *parent)
   ui->f_pwd->installEventFilter(this);
 
   ui->f_pwd_interface->hide(); // Hide the forget password QGroupBox
-
-  updateGif(); // Initialize the first GIF
+  updateGif();                 // Initialize the first GIF
 }
 
 /**
- * @brief ### Destroy the LoginUI::LoginUI object
- *
- * @class LoginUI
+ * @fn    LoginUI::~LoginUI()
+ * @brief Destroy the LoginUI::LoginUI object
  */
 LoginUI::~LoginUI() {
   delete ui;
+  ui = nullptr;
   delete gifTimer;
+  gifTimer = nullptr;
   delete currentMovie;
+  currentMovie = nullptr;
 }
 
 // * ==========================================
@@ -72,11 +73,9 @@ LoginUI::~LoginUI() {
 // * ==========================================
 
 /**
- * @brief ### Update the Gif every `__LOGIN_GIF_ANIMATION__`
- *
- *
+ * @fn      LoginUI::updateGif()
+ * @brief   Update the Gif every `__LOGIN_GIF_ANIMATION__`
  * @details This change make a beautiful animation
- * @class   Login
  * @return  void
  */
 void LoginUI::updateGif() {
@@ -84,8 +83,7 @@ void LoginUI::updateGif() {
   QMovie *newMovie = new QMovie(gifPaths[currentGifIndex]);
 
   newMovie->setScaledSize(ui->movieAnimation->size()); // Scale the GIF to match QLabel size
-
-  ui->movieAnimation->setMovie(newMovie); // Update QLabel
+  ui->movieAnimation->setMovie(newMovie);              // Update QLabel
 
   if (currentMovie) // Delete the old movie after setting the new one
     delete currentMovie;
@@ -95,9 +93,8 @@ void LoginUI::updateGif() {
 }
 
 /**
- * @brief ### Listen to Login button click action
- *
- * @class  Login
+ * @fn     LoginUI::on_pushButton_clicked()
+ * @brief  Listen to Login button click action
  * @return void
  */
 void LoginUI::on_pushButton_clicked() {
@@ -112,33 +109,26 @@ void LoginUI::on_pushButton_clicked() {
     return;
   }
 
-  // Assuming `Select` does not need to be dynamically allocated, we can use stack allocation.
-  Employees::Select *sl(new Employees::Select);
-
-  // Execute the select query with the given parameters.
-  std::vector<SqlParam> res = sl->selectAll(
+  Employees::Select *sl(new Employees::Select); // Assuming `Select` does not need to be dynamically allocated, we can use stack allocation.
+  std::vector<SqlParam> res = sl->selectAll(    // Execute the select query with the given parameters.
       Employees::EmployeeInfo<std::string>(_username, Employees::EmployeeQueueFlags_strings::USERNAME),
       Employees::EmployeeInfo<std::string>(_password, Employees::EmployeeQueueFlags_strings::PASSWORD));
   delete sl;
   sl = nullptr;
 
-  // Check if the result is empty
-  if (res.empty()) {
-    // Show error message if the result is empty (i.e., login failed)
-    QMessageBox::warning(
+  if (res.empty()) {      // Check if the result is empty
+    QMessageBox::warning( // Show error message if the result is empty (i.e., login failed)
         this, tr("Astra"), tr("Username or password are incorrect!\nPlease try to login again!"),
         QMessageBox::Ok);
-  } else {
-    // Store the verified employee data and proceed to the next interface
+  } else {                  // Store the verified employee data and proceed to the next interface
     employee = res;         // Hold the verified employees data
     emit loginSuccessful(); // Emit the signal for successful login
   }
 }
 
 /**
- * @brief ### Get verified employee data
- *
- * @class  Login
+ * @fn     LoginUI::get_employee()
+ * @brief  Get verified employee data
  * @return {const SqlParam}
  */
 const SqlParam LoginUI::get_employee() {
@@ -150,9 +140,8 @@ const SqlParam LoginUI::get_employee() {
 // * ======================================
 
 /**
- * @brief ### Manage global events in login interface
- *
- * @class       Login
+ * @fn          LoginUI::eventFilter(QObject *, QEvent *)
+ * @brief       Manage global events in login interface
  * @param obj   {QObject *}
  * @param event {QEvent *}
  * @return      bool
@@ -168,9 +157,8 @@ bool LoginUI::eventFilter(QObject *obj, QEvent *event) {
 }
 
 /**
- * @brief ### Manage forget password events
- *
- * @class       Login
+ * @fn          LoginUI::forget_password_events(QObject *, QEvent *)
+ * @brief       Manage forget password events
  * @param obj   {QObject *}
  * @param event {QEvent *}
  * @return      bool
@@ -190,13 +178,12 @@ bool LoginUI::forget_password_events(QObject *obj, QEvent *event) {
     return false;
   }
 
-  return false; // Just to make compiler run
+  return false; // Just to make compiler run (dummy)
 }
 
 /**
- * @brief ### Manage login button in the login/forgetPassword QGroups
- *
- * @class       Login
+ * @fn          LoginUI::login_btn_events(QObject *, QLabel *, QEvent *)
+ * @brief       Manage login button in the login/forgetPassword QGroups
  * @param obj   {QObject *}
  * @param icon  {QLabel *}
  * @param event {QEvent *}
@@ -227,9 +214,8 @@ bool LoginUI::login_btn_events(QObject *obj, QLabel *icon, QEvent *event) {
 }
 
 /**
- * @brief #### Make a "fade out" effect to `group1` using opacity transition from `__FULL_VISIBLE__` to `__FULL_TRANSPARENT__` and hide `group1`, overwise for `group2`
- *
- * @class        Login
+ * @fn           LoginUI::QGroupBoxFadeOutEffect(QGroupBox *, QGroupBox *)
+ * @brief        Make a "fade out" effect to `group1` using opacity transition from `__FULL_VISIBLE__` to `__FULL_TRANSPARENT__` and hide `group1`, overwise for `group2`
  * @details      This effect work only with `QGroupBox`
  * @include      QGraphicsOpacityEffect | QPropertyAnimation
  * @param group1 {QGroupBox *}
@@ -252,9 +238,8 @@ void LoginUI::QGroupBoxFadeOutEffect(QGroupBox *group1, QGroupBox *group2) {
 }
 
 /**
- * @brief ### Make fade In/Out for `group`
- *
- * @class          Login
+ * @fn             LoginUI::FadeEffect(QGroupBox *, const QVariant, const QVariant)
+ * @brief          Make fade In/Out for `group`
  * @param group    {QGroupBox *}
  * @param startVal {const QVariant}
  * @param endVal   {const QVariant}
@@ -276,10 +261,10 @@ QPropertyAnimation *LoginUI::FadeEffect(QGroupBox *group, const QVariant startVa
 }
 
 /**
- * @brief ### Listen to Return button click action
- *
+ * @fn      LoginUI::on_returnBtn_clicked()
+ * @brief   Listen to Return button click action
  * @details This button is included inside the `f_pwd_interface` QGroupBox
- * @class Login
+ * @return  void
  */
 void LoginUI::on_returnBtn_clicked() {
   enableResetPassword(false);
@@ -288,34 +273,34 @@ void LoginUI::on_returnBtn_clicked() {
 }
 
 /**
- * @brief ### Listen to `hide_show_btn` click action
- *
+ * @fn      LoginUI::on_hide_show_btn_clicked()
+ * @brief   Listen to `hide_show_btn` click action
  * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
- * @class   Login
+ * @return  void
  */
 void LoginUI::on_hide_show_btn_clicked() {
   (ui->charCode->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn) : change_hideShowBtnIcon(ui->charCode, ui->hide_show_btn, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
 }
 
 /**
- * @brief ### Listen to `hide_show_btn` click action
- *
+ * @fn      LoginUI::on_hide_show_btn_2_clicked()
+ * @brief   Listen to `hide_show_btn` click action
  * @details Change the echomode of the `QLineEdit` & the button icon of `QPushButton`
- * @class   Login
+ * @return  void
  */
 void LoginUI::on_hide_show_btn_2_clicked() {
   (ui->password->echoMode() == QLineEdit::Normal) ? change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2) : change_hideShowBtnIcon(ui->password, ui->hide_show_btn_2, QLineEdit::Normal, "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/login imgs/eye.png");
 }
 
 /**
- * @brief ### Helper function
- *
+ * @fn             LoginUI::change_hideShowBtnIcon(QLineEdit *, QPushButton *, const QLineEdit::EchoMode, const QString)
+ * @brief          Helper function
  * @details        this->on_hide_show_btn_clicked() | this->on_hide_show_btn_clicked()
- * @class          Login
  * @param lineEdit {QLineEdit *}
  * @param btn      {QPushButton *}
  * @param mode     {const QLineEdit::EchoMode}
  * @param path     {const QString}
+ * @return         void
  */
 void LoginUI::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, const QLineEdit::EchoMode mode, const QString path) {
   btn->setIcon(QIcon(path));
@@ -323,9 +308,9 @@ void LoginUI::change_hideShowBtnIcon(QLineEdit *lineEdit, QPushButton *btn, cons
 }
 
 /**
- * @brief ### Verify the given mail and send a 6-chars reset code to reset the password
- *
- * @class Login
+ * @fn     LoginUI::on_sendEmailBtn_clicked()
+ * @brief  Verify the given mail and send a 6-chars reset code to reset the password
+ * @return void
  */
 void LoginUI::on_sendEmailBtn_clicked() {
   std::string _email{ui->email->text().toStdString()}; // Hold the input it email
@@ -381,9 +366,9 @@ void LoginUI::on_sendEmailBtn_clicked() {
 }
 
 /**
- * @brief ### Verify the taped code and new/confirm password
- *
- * @class Login
+ * @fn     LoginUI::on_reset_clicked()
+ * @brief  Verify the taped code and new/confirm password
+ * @return void
  */
 void LoginUI::on_reset_clicked() {
   if (ui->charCode->text().isEmpty() || ui->newPassword->text().isEmpty() || ui->confirmPassword->text().isEmpty()) {
@@ -418,16 +403,15 @@ void LoginUI::on_reset_clicked() {
 // * ========================================
 
 /**
- * @brief ### Reset the forget password QGroupBox to the default view (enable/disable proccess)
- *
- * @class        Login
+ * @fn           LoginUI::enableResetPassword(const bool &)
+ * @brief        Reset the forget password QGroupBox to the default view (enable/disable proccess)
  * @param status {const bool &}
+ * @return       void
  */
 void LoginUI::enableResetPassword(const bool &status) {
   ui->email->setEnabled(!status);
   ui->sendEmailBtn->setEnabled(!status);
   ui->usr_2->setEnabled(!status);
-
   ui->charCode->setEnabled(status);
   ui->hide_show_btn->setEnabled(status);
   ui->lock_3->setEnabled(status);
@@ -438,9 +422,9 @@ void LoginUI::enableResetPassword(const bool &status) {
 }
 
 /**
- * @brief ### Reset all forget password QLineEdit's to the default state (empty)
- *
- * @class Login
+ * @fn     LoginUI::clearResetPassword()
+ * @brief  Reset all forget password QLineEdit's to the default state (empty)
+ * @return void
  */
 void LoginUI::clearResetPassword() {
   ui->email->setText("");

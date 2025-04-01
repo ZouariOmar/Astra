@@ -9,7 +9,7 @@
  */
 
 //? Include prototype declaration part
-#include "../inc/HtmlBodyFormater.hpp"
+#include "../inc/HtmlBodyFormatter.hpp"
 
 //? Function/Class prototype dev part
 

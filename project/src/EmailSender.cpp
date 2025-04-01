@@ -16,9 +16,8 @@
 //? Function/Class prototype dev part
 
 /**
- * @brief ### Construct a new EmailAuth::EmailAuth object
- *
- * @struct EmailAuth
+ * @fn    EmailAuth::EmailAuth()
+ * @brief Construct a new EmailAuth::EmailAuth object
  */
 EmailAuth::EmailAuth()
     : from_addr(getenv("ASTRA_ADDR")),
@@ -27,23 +26,20 @@ EmailAuth::EmailAuth()
 }
 
 /**
- * @brief ### Construct a new EmailAuth::EmailAuth object
- *
- * @struct                       EmailAuth
+ * @fn                           EmailAuth(const std::string, const std::string, const std::string)
+ * @brief                        Construct a new EmailAuth::EmailAuth object
  * @param _from_addr             {const std::string}
- * @param _from_app_app_password {const std::string}
+ * @param _from_app_password     {const std::string}
  * @param _mail_server           {const std::string}
  */
-EmailAuth::EmailAuth(const std::string _from_addr, const std::string _from_app_app_password, const std::string _mail_server)
+EmailAuth::EmailAuth(const std::string _from_addr, const std::string _from_app_password, const std::string _mail_server)
     : from_addr(_from_addr),
-      from_app_password(_from_app_app_password),
-      mail_server(_mail_server) {
-}
+      from_app_password(_from_app_password),
+      mail_server(_mail_server) {};
 
 /**
- * @brief ### Construct a new EmailData::EmailData object
- *
- * @struct             EmailAuth
+ * @fn                 EmailData(const std::string, const std::string, const std::string, const std::vector<std::string>, const std::vector<std::string>);
+ * @brief              Construct a new EmailData::EmailData object
  * @param _to_addr     {const std::string}
  * @param _subject     {const std::string}
  * @param _body        {const std::string}
@@ -54,25 +50,30 @@ EmailData::EmailData(const std::string _to_addr, const std::string _subject, con
     : to_addr(_to_addr),
       subject(_subject),
       body(_body), cc_addr(_cc_addr),
-      attachments(_attachments) {
-}
+      attachments(_attachments) {};
 
 /**
- * @brief ### Construct a new EmailSender::EmailSender object
- *
- * @class            EmailSender
- * @param _emailAuth EmailAuth
+ * @fn               EmailSender::EmailSender(const EmailAuth)
+ * @brief            Construct a new EmailSender::EmailSender object
+ * @param _emailAuth {const EmailAuth}
  */
 EmailSender::EmailSender(const EmailAuth _emailAuth)
-    : auth(new EmailAuth(_emailAuth)) {
+    : auth(new EmailAuth(_emailAuth)) {};
+
+/**
+ * @fn    EmailSender::~EmailSender()
+ * @brief Destroy the EmailSender::EmailSender object
+ */
+EmailSender::~EmailSender() {
+  delete auth;
+  auth = nullptr;
 }
 
 /**
- * @brief ### Send the given data using SMTP protocol (support it with libcurl)
- *
- * @class      EmailSender
+ * @fn         EmailSender::send(EmailData)
+ * @brief      Send the given data using SMTP protocol (support it with libcurl)
  * @param data EmailData
- * @return int
+ * @return     int
  */
 int EmailSender::send(EmailData data) {
   // Init part

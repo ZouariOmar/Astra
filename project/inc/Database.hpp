@@ -64,7 +64,7 @@ public:
 
   //* Database public functions
   void execute(const std::string &query, const SqlParam &, int &affectedRows);
-  std::vector<SqlParam> execute(const std::string &, const SqlParam &);
+  std::vector<SqlParam> execute(const std::string &, const SqlParam &params);
 }; // Database class
 
 #endif // __DATABASE_HPP__
