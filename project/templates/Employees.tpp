@@ -8,18 +8,15 @@
  * @link https://github.com/ZouariOmar/Astra/project/templates/Employees.tpp Employees.tpp @endlink
  */
 
-// ? Pre-Processor prototype declaration part
+//? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_TPP__
 #define __EMPLOYEES_TPP__
 
-// ? Include prototype declaration part
-
-// * Include custom header(s)
+//? Include prototype declaration part
+//* Include custom header(s)
 #include "../inc/Employees.hpp"
 
-// * ==============================================
-// ? === Employees::SetEmployeeInfo Constructors ==
-// * ==============================================
+//? Function prototype dev part
 
 /**
  * @fn          EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_integers &)
@@ -143,9 +140,5 @@ Employees::EmployeeInfo<T>::EmployeeInfo(const T &_data, const Employees::Employ
     break;
   }
 }
-
-// * ===================================================
-// ? ==== / Employees::SetEmployeeInfo Constructors ====
-// * ===================================================
 
 #endif // __EMPLOYEES_TPP__

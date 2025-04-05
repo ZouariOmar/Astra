@@ -4,7 +4,7 @@
 CREATE TABLE Employees (
   EmployeeID NUMBER GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   Username VARCHAR2(100) GENERATED ALWAYS AS (LOWER(FirstName || LastName || EmployeeID)) UNIQUE NOT NULL,
-  FirstName  VARCHAR2(20) NOT NULL,
+  FirstName VARCHAR2(20) NOT NULL,
   LastName VARCHAR2(20) NOT NULL,
   Email VARCHAR2(255) UNIQUE NOT NULL,
   JobTitle VARCHAR2(20) DEFAULT NULL,
@@ -18,24 +18,23 @@ CREATE TABLE Employees (
   BirthDate DATE DEFAULT NULL,
   Department VARCHAR2(20) DEFAULT NULL,
   LastLogin TIMESTAMP DEFAULT NULL,
-  LastPasswordReset TIMESTAMP DEFAULT NULL
-  ProfileImagePath VARCHAR2(255) DEFAULT NULL,
+  LastPasswordReset TIMESTAMP DEFAULT NULL ProfileImagePath VARCHAR2(255) DEFAULT NULL,
   PhoneNumber NUMBER(10) DEFAULT NULL
 );
-
 CREATE TABLE personnel(t INT);
 CREATE TABLE Boutique(t INT);
 CREATE TABLE Commercant(t INT);
 CREATE TABLE Partenaire(t INT);
 CREATE TABLE Evenements(t INT);
 CREATE TABLE Sponsoring (
-    id_evenement NUMBER,
-    id_partenaire NUMBER,
-    PRIMARY KEY (id_evenement, id_partenaire),
-    FOREIGN KEY (id_evenement) REFERENCES Evenements(id_evenement),
-    FOREIGN KEY (id_partenaire) REFERENCES Partenaire(id_partenaire)
+  id_evenement NUMBER,
+  id_partenaire NUMBER,
+  PRIMARY KEY (id_evenement, id_partenaire),
+  FOREIGN KEY (id_evenement) REFERENCES Evenements(id_evenement),
+  FOREIGN KEY (id_partenaire) REFERENCES Partenaire(id_partenaire)
 );
-
+-- ALTER TABLE Employees
+-- ADD Gender VARCHAR2(10) CHECK (Gender IN ('Male', 'Female'));
 /*
  List all Astra tables - SELECT table_name FROM user_tables;
  Admin info            - INSERT INTO Employees (FirstName, LastName, Email, JobTitle, Status, Password) VALUES ('Omar', 'Zouari', 'zouariomar20@gmail.com', 'Admin', 'ACTIVE', '1234')

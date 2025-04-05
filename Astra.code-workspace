@@ -110,7 +110,10 @@
 			"qpixmap": "cpp",
 			"qwebengineview": "cpp",
 			"*.tpp": "cpp",
-			"regex": "cpp"
+			"regex": "cpp",
+			"qpieseries": "cpp",
+			"qtcharts": "cpp",
+			"qchartview": "cpp"
 		},
 		"cSpell.words": [
 			"occi",

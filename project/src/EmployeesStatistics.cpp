@@ -27,6 +27,7 @@ EmployeesStatistics::EmployeesStatistics(const SqlParam &_employee)
   for (const SqlParam &emp : employees) {
     statuses[emp.strings[Employees::EmployeeQueueFlags_strings::STATUS].second]++;
     departments[emp.strings[Employees::EmployeeQueueFlags_strings::DEPARTMENT].second]++;
+    salaries[emp.strings[Employees::EmployeeQueueFlags_strings::DEPARTMENT].second] += emp.integers[Employees::EmployeeQueueFlags_integers::SALARY].second;
   }
 }
 
@@ -42,4 +43,8 @@ const std::vector<double> EmployeesStatistics::getDepartmentStats() {
     department.second = (department.second * 100.0) / employees_length;
 
   return {departments["Commercial"], departments["Shops"], departments["Partners"], departments["Events"], departments["Personals"], departments["Employees"]};
+}
+
+const std::vector<double> EmployeesStatistics::getSalaryStats() {
+  return {salaries["Commercial"], salaries["Shops"], salaries["Partners"], salaries["Events"], salaries["Personals"], salaries["Employees"]};
 }

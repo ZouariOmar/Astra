@@ -22,6 +22,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/LoginUI.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUI.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUICharts.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmailSender.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Employees.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmployeesStatistics.cpp
@@ -36,6 +37,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/MainWindow.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/LoginUI.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUI.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUICharts.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmailSender.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Employees.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesStatistics.hpp
@@ -54,7 +56,7 @@ include_directories(/usr/local/include/oracle)
 link_directories(/usr/local/lib/oracle)
 
 # Find Qt6 packages
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEngineCore Concurrent)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEngineCore Concurrent Charts)
 
 # Find libcurl package
 find_package(CURL REQUIRED) 
@@ -65,7 +67,7 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEMPLATES})
 
 target_link_libraries(${PROJECT_NAME} PRIVATE 
   Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Concurrent Qt6::Pdf # Link Qt libraries
-  Qt6::WebEngineWidgets Qt6::WebEngineCore
+  Qt6::WebEngineWidgets Qt6::WebEngineCore Qt6::Charts
   clntsh occi                                              # Link oracle libraries
   CURL::libcurl                                            # Link libcurl libraries
   -lssl -lcrypto                                           # Link openssl libraries

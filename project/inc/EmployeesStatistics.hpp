@@ -31,11 +31,13 @@ private:
   size_t employees_length;
   std::unordered_map<std::string, unsigned int> statuses;
   std::unordered_map<std::string, double> departments;
+  std::unordered_map<std::string, double> salaries;
 
 public:
   explicit EmployeesStatistics(const SqlParam &);
   const std::vector<unsigned int> getStatusStats();
   const std::vector<double> getDepartmentStats();
+  const std::vector<double> getSalaryStats();
 }; // EmployeesStatistics class
 
 #endif // __EMPLOYEES_STATISTICS__

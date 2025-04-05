@@ -96,9 +96,7 @@ Line {
 	border-radius: 8px;
 	padding-left: 30px;
 }
-/* ### / Employees Table View ### */
-
-</string>
+/* ### / Employees Table View ### */</string>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -440,7 +438,7 @@ QPushButton:hover {background-color: rgba(149, 194, 229, 1) }
      <rect>
       <x>270</x>
       <y>6</y>
-      <width>681</width>
+      <width>781</width>
       <height>31</height>
      </rect>
     </property>
@@ -480,7 +478,7 @@ background-color: white;</string>
    <widget class="QPushButton" name="Notification">
     <property name="geometry">
      <rect>
-      <x>1800</x>
+      <x>1790</x>
       <y>10</y>
       <width>25</width>
       <height>25</height>
@@ -503,7 +501,7 @@ background-color: white;</string>
    <widget class="QPushButton" name="PDF">
     <property name="geometry">
      <rect>
-      <x>1110</x>
+      <x>1210</x>
       <y>10</y>
       <width>25</width>
       <height>25</height>
@@ -523,10 +521,10 @@ background-color: white;</string>
       <normaloff>../assets/global/icons8-pdf.gif</normaloff>../assets/global/icons8-pdf.gif</iconset>
     </property>
    </widget>
-   <widget class="QComboBox" name="Filtre">
+   <widget class="QComboBox" name="Filter">
     <property name="geometry">
      <rect>
-      <x>955</x>
+      <x>1055</x>
       <y>8</y>
       <width>121</width>
       <height>28</height>
@@ -729,7 +727,7 @@ color: #494d53;
    <widget class="QPushButton" name="Add_button">
     <property name="geometry">
      <rect>
-      <x>1080</x>
+      <x>1180</x>
       <y>10</y>
       <width>25</width>
       <height>25</height>
@@ -954,7 +952,7 @@ color: #494d53;
      </item>
      <item>
       <property name="text">
-       <string>Partenaires</string>
+       <string>Partners</string>
       </property>
       <property name="icon">
        <iconset>
@@ -972,7 +970,7 @@ color: #494d53;
      </item>
      <item>
       <property name="text">
-       <string>Personnels</string>
+       <string>Personals</string>
       </property>
       <property name="icon">
        <iconset>
@@ -1426,7 +1424,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      <rect>
       <x>270</x>
       <y>45</y>
-      <width>977</width>
+      <width>921</width>
       <height>331</height>
      </rect>
     </property>
@@ -1491,10 +1489,13 @@ font: 35pt &quot;Sylfaen&quot;;</string>
      <bool>true</bool>
     </attribute>
     <attribute name="horizontalHeaderMinimumSectionSize">
-     <number>25</number>
+     <number>150</number>
     </attribute>
     <attribute name="horizontalHeaderDefaultSectionSize">
      <number>160</number>
+    </attribute>
+    <attribute name="horizontalHeaderHighlightSections">
+     <bool>false</bool>
     </attribute>
     <attribute name="horizontalHeaderShowSortIndicator" stdset="0">
      <bool>true</bool>
@@ -1504,6 +1505,12 @@ font: 35pt &quot;Sylfaen&quot;;</string>
     </attribute>
     <attribute name="verticalHeaderCascadingSectionResizes">
      <bool>true</bool>
+    </attribute>
+    <attribute name="verticalHeaderMinimumSectionSize">
+     <number>30</number>
+    </attribute>
+    <attribute name="verticalHeaderDefaultSectionSize">
+     <number>30</number>
     </attribute>
     <attribute name="verticalHeaderShowSortIndicator" stdset="0">
      <bool>true</bool>
@@ -2295,6 +2302,73 @@ font: 35pt &quot;Sylfaen&quot;;</string>
     <zorder>label_21</zorder>
     <zorder>profileImageInsert_2</zorder>
    </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget">
+    <property name="geometry">
+     <rect>
+      <x>270</x>
+      <y>380</y>
+      <width>821</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="pieChartFrame"/>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_2">
+    <property name="geometry">
+     <rect>
+      <x>1200</x>
+      <y>50</y>
+      <width>611</width>
+      <height>331</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="BarChartFrame"/>
+   </widget>
+   <widget class="QLabel" name="welcome">
+    <property name="geometry">
+     <rect>
+      <x>1260</x>
+      <y>10</y>
+      <width>461</width>
+      <height>31</height>
+     </rect>
+    </property>
+    <property name="font">
+     <font>
+      <pointsize>15</pointsize>
+      <bold>false</bold>
+     </font>
+    </property>
+    <property name="layoutDirection">
+     <enum>Qt::LayoutDirection::LeftToRight</enum>
+    </property>
+    <property name="autoFillBackground">
+     <bool>true</bool>
+    </property>
+    <property name="frameShape">
+     <enum>QFrame::Shape::NoFrame</enum>
+    </property>
+    <property name="frameShadow">
+     <enum>QFrame::Shadow::Plain</enum>
+    </property>
+    <property name="text">
+     <string/>
+    </property>
+    <property name="alignment">
+     <set>Qt::AlignmentFlag::AlignCenter</set>
+    </property>
+   </widget>
+   <widget class="QWidget" name="horizontalLayoutWidget_3">
+    <property name="geometry">
+     <rect>
+      <x>1090</x>
+      <y>380</y>
+      <width>821</width>
+      <height>431</height>
+     </rect>
+    </property>
+    <layout class="QHBoxLayout" name="BarLineChartFrame"/>
+   </widget>
    <zorder>EmployeesTableWidget</zorder>
    <zorder>Background_navigation</zorder>
    <zorder>Lower_line</zorder>
@@ -2303,7 +2377,7 @@ font: 35pt &quot;Sylfaen&quot;;</string>
    <zorder>User_Image</zorder>
    <zorder>Notification</zorder>
    <zorder>PDF</zorder>
-   <zorder>Filtre</zorder>
+   <zorder>Filter</zorder>
    <zorder>Privacy</zorder>
    <zorder>Policy</zorder>
    <zorder>Support</zorder>
@@ -2321,6 +2395,10 @@ font: 35pt &quot;Sylfaen&quot;;</string>
    <zorder>Astra</zorder>
    <zorder>Logo</zorder>
    <zorder>updateForm</zorder>
+   <zorder>horizontalLayoutWidget</zorder>
+   <zorder>horizontalLayoutWidget_2</zorder>
+   <zorder>welcome</zorder>
+   <zorder>horizontalLayoutWidget_3</zorder>
   </widget>
  </widget>
  <resources/>

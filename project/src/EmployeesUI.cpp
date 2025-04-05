@@ -11,9 +11,10 @@
 //? Include prototype declaration part
 #include "../inc/EmployeesUI.hpp"
 #include "../inc/EmployeesStatistics.hpp"
+#include "../inc/EmployeesUICharts.hpp"
 #include "../inc/HtmlBodyFormatter.hpp"
 
-//? Function/Class prototype dev part
+//? Function prototype dev part
 
 /**
  * @fn              EmployeesUI::EmployeesUI(std::vector<SqlParam>, QWidget *)
@@ -55,11 +56,13 @@ inline void EmployeesUI::__init__() {
   ui->setupUi(this);               // Default QWidget setup
   __init_current__employee_UI__(); // Init current employee
   __init_employees_table__();      // Init Employees table view
+  __init_employees_charts__();     // Init Employees charts
 
   // Hide forms and their components
   ui->Form->hide();
   ui->updateForm->hide();
   ui->profileImageInsert->hide();
+  ui->EmployeesTableWidget->horizontalHeader()->setFixedHeight(40);
 
   // Set pushButtons Movie (as QIcon)
   set_pushButtonMovie(ui->PDF, pdf_movie);
@@ -70,7 +73,7 @@ inline void EmployeesUI::__init__() {
   set_shadowEffect(ui->Search_bar, &shadow_effect_components[1]);
   set_shadowEffect(ui->Add_button, &shadow_effect_components[2]);
   set_shadowEffect(ui->PDF, &shadow_effect_components[3]);
-  set_shadowEffect(ui->Filtre, &shadow_effect_components[4]);
+  set_shadowEffect(ui->Filter, &shadow_effect_components[4]);
   set_shadowEffect(ui->Notification, &shadow_effect_components[5]);
   set_shadowEffect(ui->Form, &shadow_effect_components[6]);
   set_shadowEffect(ui->updateForm, &shadow_effect_components[7]);
@@ -91,6 +94,7 @@ void EmployeesUI::__init_current__employee_UI__() {
       profileImgPath = "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/default.jpg";
   }
   scaleImg(profileImgPath, ui->User_Image, 35, 35);
+  ui->welcome->setText(QString::fromStdString("Welcome 👋, " + employee.strings[Employees::EmployeeQueueFlags_strings::USERNAME].second + " 📅 " __DATE__));
 }
 
 /**
@@ -150,12 +154,12 @@ void EmployeesUI::__init_employees_table__() {
   // Select all employees except the root admin
   Employees::Select *sl = new Employees::Select;
   std::vector<SqlParam> employees;
-  (ui->Filtre->currentIndex() == Employees::EmployeeStatusFlags::ALL)
+  (ui->Filter->currentIndex() == Employees::EmployeeStatusFlags::ALL)
       ? employees = sl->selectAllExcept(Employees::EmployeeInfo<std::string>(
             std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
             Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID))
       : employees = sl->selectAllExcept(
-            Employees::EmployeeInfo<std::string>(ui->Filtre->currentText().toStdString(),
+            Employees::EmployeeInfo<std::string>(ui->Filter->currentText().toStdString(),
                                                  Employees::EmployeeQueueFlags_strings::STATUS),
             Employees::EmployeeInfo<std::string>(
                 std::to_string(employee.integers[Employees::EmployeeQueueFlags_integers::EMPLOYEE_ID].second),
@@ -218,6 +222,7 @@ void EmployeesUI::__init_employees_table__() {
 
     QPointer<QPushButton> button(new QPushButton);
     button->setIcon(QIcon("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-menu-vertical-50.png"));
+    button->setStyleSheet("border-radius: 0px;padding-left: 0px;");
 
     // Create the menu
     QPointer<QMenu> menu(new QMenu(button));
@@ -245,6 +250,7 @@ void EmployeesUI::__init_employees_table__() {
       ui->telInsert_2->setText(QString::fromStdString(std::to_string(employees[row].integers[Employees::EmployeeQueueFlags_integers::PHONE_NUMBER].second)));
       ui->addressInsert_2->setText(QString::fromStdString(employees[row].strings[Employees::EmployeeQueueFlags_strings::ADDRESS].second));
       oracle::occi::Date date = employees[row].dates[Employees::EmployeeQueueFlags_dates::BIRTHDATE].second;
+      profileImgUpdateHolder = employees[row].strings[Employees::EmployeeQueueFlags_strings::PROFILE_IMAGE_PATH].second;
       if (!date.isNull()) {
         // Declare variables to hold date components
         u_int month, day, hour, min, sec;
@@ -262,6 +268,7 @@ void EmployeesUI::__init_employees_table__() {
       (affRow) ? QMessageBox::information(this, "Deletion Successful", "The employee has been successfully deleted!")
                : QMessageBox::warning(this, "Deletion Failed", "Failed to delete the employee.\nPlease try again.");
       ui->EmployeesTableWidget->removeRow(row);
+      __init_employees_charts__();
     });
 
     ui->EmployeesTableWidget->setCellWidget(row, 5, button);
@@ -289,6 +296,47 @@ void EmployeesUI::__clear_employees_table__() {
   ui->EmployeesTableWidget->clearContents();
   ui->EmployeesTableWidget->setRowCount(0);
   QApplication::processEvents();
+}
+
+/**
+ * @fn     EmployeesUI::__init_employees_charts__()
+ * @brief  Init/Async employees charts view
+ * @return void
+ */
+void EmployeesUI::__init_employees_charts__() {
+  EmployeesStatistics *stats = new EmployeesStatistics(employee);
+  const std::vector<unsigned int> statuses(stats->getStatusStats());
+  const std::vector<double> departments(stats->getDepartmentStats());
+  const std::vector<double> salaries(stats->getSalaryStats());
+  delete stats;
+  stats = nullptr;
+
+  Employees::EmployeesUICharts charts(this);
+  charts.setPieChart(ui->pieChartFrame, {{"Commercial", departments[Employees::EmployeeDepartmentFlags::COMMERCIAL]},
+                                         {"Shops", departments[Employees::EmployeeDepartmentFlags::SHOPS]},
+                                         {"Partners", departments[Employees::EmployeeDepartmentFlags::PARTNERS]},
+                                         {"Events", departments[Employees::EmployeeDepartmentFlags::EVENTS]},
+                                         {"Personals", departments[Employees::EmployeeDepartmentFlags::PERSONALS]},
+                                         {"Employees", departments[Employees::EmployeeDepartmentFlags::EMPLOYEES]}});
+  charts.setBarChart(ui->BarChartFrame, {{"Active", statuses[Employees::EmployeeStatusFlags::ACTIVE - 1]},
+                                         {"Inactive", statuses[Employees::EmployeeStatusFlags::INACTIVE - 1]},
+                                         {"Suspended", statuses[Employees::EmployeeStatusFlags::SUSPENDED - 1]}});
+  charts.setBarLineChart(ui->BarLineChartFrame, {{"Commercial", salaries[Employees::EmployeeDepartmentFlags::COMMERCIAL]},
+                                                 {"Shops", salaries[Employees::EmployeeDepartmentFlags::SHOPS]},
+                                                 {"Partners", salaries[Employees::EmployeeDepartmentFlags::PARTNERS]},
+                                                 {"Events", salaries[Employees::EmployeeDepartmentFlags::EVENTS]},
+                                                 {"Personals", salaries[Employees::EmployeeDepartmentFlags::PERSONALS]},
+                                                 {"Employees", salaries[Employees::EmployeeDepartmentFlags::EMPLOYEES]}});
+}
+
+/**
+ * @fn     EmployeesUI::syncUI()
+ * @brief  Synchronies UI data
+ * @return void
+ */
+void EmployeesUI::syncUI() {
+  __init_employees_table__();
+  __init_employees_charts__();
 }
 
 /**
@@ -469,7 +517,7 @@ void EmployeesUI::on_insertBtn_clicked() {
                              QMessageBox::Ok);
 
   // 5. Refresh the table (just add the last(new) inserted employee)
-  __init_employees_table__();
+  syncUI();
 
   // 6. Reset the form (optional)
   __init_form_group_box__();
@@ -581,19 +629,19 @@ void EmployeesUI::on_updateBtn_clicked() {
                                   QMessageBox::Ok);
 
   // 5. Refresh the table (just show the update it employee)
-  __init_employees_table__();
+  syncUI();
 
   // 6. Reset the form (optional)
   __init_update_form_group_box__();
 }
 
 /**
- * @fn          EmployeesUI::on_Filtre_activated(int)
- * @brief       Listen to `ui->Filtre` option activation
+ * @fn          EmployeesUI::on_Filter_activated(int)
+ * @brief       Listen to `ui->Filter` option activation
  * @param index int
  * @return      void
  */
-void EmployeesUI::on_Filtre_activated(int index) {
+void EmployeesUI::on_Filter_activated(int index) {
   __init_employees_table__();
 }
 
@@ -691,8 +739,8 @@ std::string EmployeesUtils::strToUpper(std::string s) const {
  * @brief          Generate a .pdf file from `filePath`, it return `EXIT_SUCCESS` if the .pdf file generated successfully, otherwise return `EXIT_FAILURE`
  * @param filePath {const QString &}
  * @param emp      {const SqlParam &} - Main user/employee data
- * @link https://forum.qt.io/topic/119534/proper-way-to-display-local-images-in-qtwebengineview/3 #BlankLocalImageIssue @endlink
  * @return         const unsigned int
+ * @link https://forum.qt.io/topic/119534/proper-way-to-display-local-images-in-qtwebengineview/3 #BlankLocalImageIssue @endlink
  */
 const unsigned int EmployeesUtils::generatePdf(const QString &filePath, const SqlParam &emp) {
   int pdf_generation_life_time_status{EXIT_SUCCESS};

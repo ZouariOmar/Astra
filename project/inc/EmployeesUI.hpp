@@ -87,9 +87,11 @@ private: //? Private EmployeesUI function
   void __init_employees_table__();
   inline void __init_form_group_box__();
   inline void __init_update_form_group_box__();
+  inline void __init_employees_charts__();
   void __clear_employees_table__();
   void __init_current__employee_UI__();
   // void insertRow_employees_table();
+  void syncUI();
   void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal xOffset = 5, const qreal yOffset = 5, const qreal blurRadius = 5, const QColor color = Qt::gray);
   void set_pushButtonMovie(QPushButton *, QMovie *) const;
 
@@ -103,7 +105,7 @@ private slots:
   void on_updateBtn_clicked();
   void on_profileImageInsert_clicked();
   void on_profileImageInsert_2_clicked();
-  void on_Filtre_activated(int);
+  void on_Filter_activated(int);
   void on_PDF_clicked();
 }; // EmployeesUI class
 
