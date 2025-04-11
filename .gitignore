@@ -9,3 +9,7 @@ doc/Helper.txt
 
 # Ignore Doxygen dirs/files
 doc/Doxygen/*
+
+# Ignore pio generated files
+project/Arduino/Astra Door Access/.pio
+project/Arduino/Astra Door Access/.vscode

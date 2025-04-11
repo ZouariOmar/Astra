@@ -1,7 +1,7 @@
 /**
  * @file      Employees.tpp
  * @author    @ZouariOmar (zouariomar20@gmail.com)
- * @brief     `EmployeeInfo` template defintion file
+ * @brief     `EmployeeInfo` template file
  * @version   0.1
  * @date      2025-03-27
  * @copyright Copyright (c) 2025

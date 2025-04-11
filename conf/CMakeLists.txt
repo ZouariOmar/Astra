@@ -29,6 +29,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/HtmlBodyFormatter.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/PasswordGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Database.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/PdfGenerator.cpp
 )
 
 # Add header(s) files
@@ -44,6 +45,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/HtmlBodyFormatter.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/PasswordGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Database.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/PdfGenerator.hpp
 )
 
 # Add the templates files

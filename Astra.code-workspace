@@ -3,6 +3,10 @@
 		{
 			"name": "Astra",
 			"path": "."
+		},
+		{
+			"name": "Astra Door Access",
+			"path": "project/Arduino/Astra Door Access"
 		}
 	],
 	"settings": {

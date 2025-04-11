@@ -12,7 +12,8 @@
 #include "../inc/EmployeesUI.hpp"
 #include "../inc/EmployeesStatistics.hpp"
 #include "../inc/EmployeesUICharts.hpp"
-#include "../inc/HtmlBodyFormatter.hpp"
+
+#include "../inc/PdfGenerator.hpp"
 
 //? Function prototype dev part
 
@@ -86,7 +87,7 @@ inline void EmployeesUI::__init__() {
  * @details - Set profile image
  * @return  void
  */
-void EmployeesUI::__init_current__employee_UI__() {
+void EmployeesUI::__init_current__employee_UI__() const {
   QString profileImgPath("");
   if (!employee.strings.empty()) {
     profileImgPath = QString::fromStdString(employee.strings[Employees::EmployeeQueueFlags_strings::PROFILE_IMAGE_PATH].second);
@@ -102,7 +103,7 @@ void EmployeesUI::__init_current__employee_UI__() {
  * @brief  Init/Reset `ui->Form` components
  * @return void
  */
-inline void EmployeesUI::__init_form_group_box__() {
+inline void EmployeesUI::__init_inset_form_group_box__() {
   ui->Form->hide();
 
   // Init/Reset form edit-elements
@@ -226,17 +227,14 @@ void EmployeesUI::__init_employees_table__() {
 
     // Create the menu
     QPointer<QMenu> menu(new QMenu(button));
-    QPointer<QAction> updateAction(new QAction("Update", menu));
-    QPointer<QAction> deleteAction(new QAction("Delete", menu));
+    QPointer<QAction> updateAction(new QAction("Update", menu)), deleteAction(new QAction("Delete", menu));
     updateAction->setIcon(QIcon("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-edit-50.png"));
     deleteAction->setIcon(QIcon("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-delete-50.png"));
-    menu->addAction(updateAction);
-    menu->addAction(deleteAction);
-    button->setMenu(menu);
+    menu->addAction(updateAction), menu->addAction(deleteAction), button->setMenu(menu);
 
     connect(updateAction, &QAction::triggered, this, [this, row, employees]() { // * On update signal
       ui->updateForm->show();
-      __init_form_group_box__();
+      __init_inset_form_group_box__();
       ui->updateForm->setTitle(QString::fromStdString("     Update " +
                                                       employees[row].strings[Employees::EmployeeQueueFlags_strings::USERNAME].second));
       // Hold the actual employee data into the `ui->updateForm`
@@ -280,9 +278,8 @@ void EmployeesUI::__init_employees_table__() {
  * @brief  Clears the contents of the Employees Table `ui->EmployeesTableWidget`
  * @return void
  */
-void EmployeesUI::__clear_employees_table__() {
-  int rows = ui->EmployeesTableWidget->rowCount();
-  int cols = ui->EmployeesTableWidget->columnCount();
+void EmployeesUI::__clear_employees_table__() const {
+  int rows = ui->EmployeesTableWidget->rowCount(), cols = ui->EmployeesTableWidget->columnCount();
 
   for (int row{}; row < rows; ++row)
     for (int col{}; col < cols; ++col) {
@@ -306,8 +303,7 @@ void EmployeesUI::__clear_employees_table__() {
 void EmployeesUI::__init_employees_charts__() {
   EmployeesStatistics *stats = new EmployeesStatistics(employee);
   const std::vector<unsigned int> statuses(stats->getStatusStats());
-  const std::vector<double> departments(stats->getDepartmentStats());
-  const std::vector<double> salaries(stats->getSalaryStats());
+  const std::vector<double> departments(stats->getDepartmentStats()), salaries(stats->getSalaryStats());
   delete stats;
   stats = nullptr;
 
@@ -335,8 +331,7 @@ void EmployeesUI::__init_employees_charts__() {
  * @return void
  */
 void EmployeesUI::syncUI() {
-  __init_employees_table__();
-  __init_employees_charts__();
+  __init_employees_table__(), __init_employees_charts__();
 }
 
 /**
@@ -354,14 +349,6 @@ void EmployeesUI::set_employee(const SqlParam &_employee) {
 // * ================================================
 
 /**
- * @brief ###
- *
- * @class       EmployeesUI
- * @param btn   {QPushButton *}
- * @param movie {QMovie *}
- */
-
-/**
  * @fn          EmployeesUI::set_pushButtonMovie(QPushButton *, QMovie *) const
  * @brief       Set GIF as a button icon
  * @param btn   {QPushButton *}
@@ -374,38 +361,6 @@ void EmployeesUI::set_pushButtonMovie(QPushButton *btn, QMovie *movie) const {
       btn->setIcon(movie->currentPixmap());
   });
   movie->start();
-}
-
-/**
- * @brief ###
- *
- * @class            EmployeesUI
- * @param obj        {QWidget *}
- * @param effect     {QGraphicsDropShadowEffect *}
- * @param xOffset    {const qreal}
- * @param yOffset    {const qreal}
- * @param blurRadius {const qreal}
- * @param color      {const QColor}
- * @return           void
- */
-
-/**
- * @fn               EmployeesUI::set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal, const qreal, const qreal, const QColor)
- * @brief            Set the shadow effect on `effect` and affected to `obj`
- * @param obj        {QWidget *}
- * @param effect     {QGraphicsDropShadowEffect *}
- * @param xOffset    {const qreal}
- * @param yOffset    {const qreal}
- * @param blurRadius {const qreal}
- * @param color      {const QColor}
- * @return           void
- */
-void EmployeesUI::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect *effect, const qreal xOffset, const qreal yOffset, const qreal blurRadius, const QColor color) {
-  effect->setXOffset(xOffset);
-  effect->setYOffset(yOffset);
-  effect->setBlurRadius(blurRadius);
-  effect->setColor(color);
-  obj->setGraphicsEffect(effect);
 }
 
 // * ==========================================
@@ -429,7 +384,7 @@ void EmployeesUI::on_Add_button_clicked() {
  * @return void
  */
 void EmployeesUI::on_Cancel_form_clicked() {
-  __init_form_group_box__();
+  __init_inset_form_group_box__();
 }
 
 /**
@@ -520,7 +475,7 @@ void EmployeesUI::on_insertBtn_clicked() {
   syncUI();
 
   // 6. Reset the form (optional)
-  __init_form_group_box__();
+  __init_inset_form_group_box__();
 }
 
 void insertRow_employees_table() {
@@ -661,7 +616,7 @@ void EmployeesUI::on_PDF_clicked() {
   if (!pdfPath.endsWith(".pdf", Qt::CaseInsensitive))
     pdfPath += ".pdf"; // Ensure it has the .pdf extension
 
-  (generatePdf(pdfPath, employee))
+  (PdfGenerator::generatePdf(pdfPath, employee))
       ? QMessageBox::warning(this, tr("Astra - PDF Generator"),
                              tr("PDF Generated Failed!"),
                              QMessageBox::Ok)
@@ -735,59 +690,19 @@ std::string EmployeesUtils::strToUpper(std::string s) const {
 }
 
 /**
- * @fn             EmployeesUtils::generatePdf(const QString &, const SqlParam &)
- * @brief          Generate a .pdf file from `filePath`, it return `EXIT_SUCCESS` if the .pdf file generated successfully, otherwise return `EXIT_FAILURE`
- * @param filePath {const QString &}
- * @param emp      {const SqlParam &} - Main user/employee data
- * @return         const unsigned int
- * @link https://forum.qt.io/topic/119534/proper-way-to-display-local-images-in-qtwebengineview/3 #BlankLocalImageIssue @endlink
+ * @fn               EmployeesUtils::set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal, const qreal, const qreal, const QColor)
+ * @brief            Set the shadow effect on `effect` and affected to `obj`
+ * @param obj        {QWidget *}
+ * @param effect     {QGraphicsDropShadowEffect *}
+ * @param xOffset    {const qreal}
+ * @param yOffset    {const qreal}
+ * @param blurRadius {const qreal}
+ * @param color      {const QColor}
+ * @return           void
  */
-const unsigned int EmployeesUtils::generatePdf(const QString &filePath, const SqlParam &emp) {
-  int pdf_generation_life_time_status{EXIT_SUCCESS};
-  QWebEngineView *webView(new QWebEngineView());
-  QWebEnginePage *page(webView->page());
-
-  // Give `QWebEnginePage` some access
-  page->settings()->setAttribute(QWebEngineSettings::JavascriptEnabled, true);
-  page->settings()->setAttribute(QWebEngineSettings::AutoLoadImages, true);
-  page->settings()->setAttribute(QWebEngineSettings::LocalContentCanAccessRemoteUrls, true);
-
-  EmployeesStatistics *stats = new EmployeesStatistics(emp);
-  const std::vector<unsigned int> statuses(stats->getStatusStats());
-  const std::vector<double> departments(stats->getDepartmentStats());
-  delete stats;
-  stats = nullptr;
-
-  // Load the .html file template
-  HtmlBodyFormater tmp("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/Report_template.html",
-                       {{"{{GENERATED_DATE}}", __DATE__},
-                        {"{{GENERATED_BY}}", emp.strings[Employees::EmployeeQueueFlags_strings::USERNAME].second},
-                        {"{{ACTIVE_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::ACTIVE - 1])},
-                        {"{{INACTIVE_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::INACTIVE - 1])},
-                        {"{{SUSPENDED_VALUE}}", std::to_string(statuses[Employees::EmployeeStatusFlags::SUSPENDED - 1])},
-                        {"{{COMMERCIAL_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::COMMERCIAL])},
-                        {"{{SHOPS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::SHOPS])},
-                        {"{{EVENTS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::PARTNERS])},
-                        {"{{PARTNERS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::EVENTS])},
-                        {"{{PERSONALS_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::PERSONALS])},
-                        {"{{EMPLOYEES_VALUE}}", std::to_string(departments[Employees::EmployeeDepartmentFlags::EMPLOYEES])}});
-
-  // Set the inner html to `QWebEnginePage`
-  page->setHtml(QString::fromStdString(tmp.get_inner_html()), QUrl::fromLocalFile("/home/zouari_omar/Documents/Daily/Projects/Astra/project/html/"));
-
-  // Wait for page load before generating PDF
-  QObject::connect(page, &QWebEnginePage::loadFinished, [=, &pdf_generation_life_time_status](bool success) -> void {
-    if (!success) {
-      qDebug() << "Failed to load the HTML file !";
-      pdf_generation_life_time_status = EXIT_FAILURE;
-      return;
-    }
-    // Generate PDF
-    page->printToPdf(filePath, QPageLayout(QPageSize(QPageSize::A4), QPageLayout::Portrait, QMarginsF(10, 10, 10, 10)));
-  });
-
-  page->deleteLater(), webView->deleteLater(); // Free allocated vars
-  // Return `pdf_generation_life_time_status`
-  // Show/Hide a preview (! need to comment the deleteLater instructions)
-  return /*webView->show(),*/ pdf_generation_life_time_status;
+void EmployeesUtils::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect *effect, const qreal xOffset, const qreal yOffset, const qreal blurRadius, const QColor color) {
+  effect->setXOffset(xOffset), effect->setYOffset(yOffset);
+  effect->setBlurRadius(blurRadius);
+  effect->setColor(color);
+  obj->setGraphicsEffect(effect);
 }
