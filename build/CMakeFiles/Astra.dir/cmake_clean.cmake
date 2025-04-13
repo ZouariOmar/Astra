@@ -1,0 +1,43 @@
+file(REMOVE_RECURSE
+  "Astra_autogen"
+  "CMakeFiles/Astra.dir/link.d"
+  "CMakeFiles/Astra_autogen.dir/AutogenUsed.txt"
+  "CMakeFiles/Astra_autogen.dir/ParseCache.txt"
+  "Astra"
+  "Astra.pdb"
+  "CMakeFiles/Astra.dir/Astra_autogen/mocs_compilation.cpp.o"
+  "CMakeFiles/Astra.dir/Astra_autogen/mocs_compilation.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/Database.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/Database.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmailSender.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmailSender.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/Employees.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/Employees.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesStatistics.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesStatistics.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUI.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUI.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUICharts.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUICharts.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUIUtils.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/EmployeesUIUtils.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/FaceRecognizer.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/FaceRecognizer.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/HtmlBodyFormatter.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/HtmlBodyFormatter.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/LoginUI.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/LoginUI.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/MainWindow.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/PasswordGenerator.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/PasswordGenerator.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/PdfGenerator.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/PdfGenerator.cpp.o.d"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp.o"
+  "CMakeFiles/Astra.dir/home/zouari_omar/Documents/Daily/Projects/Astra/project/src/main.cpp.o.d"
+)
+
+# Per-language clean rules from dependency scanning.
+foreach(lang CXX)
+  include(CMakeFiles/Astra.dir/cmake_clean_${lang}.cmake OPTIONAL)
+endforeach()

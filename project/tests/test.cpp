@@ -2,7 +2,7 @@
 #include <gtest/gtest.h>
 
 // Include the tested declared functions
-#include "../inc/inc.hpp"
+#include "../inc/FaceRecognizer.hpp"
 
 /**
  * @brief The Main Testing Function

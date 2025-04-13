@@ -12,7 +12,6 @@
 #include "../inc/EmployeesUI.hpp"
 #include "../inc/EmployeesStatistics.hpp"
 #include "../inc/EmployeesUICharts.hpp"
-
 #include "../inc/PdfGenerator.hpp"
 
 //? Function prototype dev part
@@ -29,6 +28,8 @@ EmployeesUI::EmployeesUI(SqlParam _employee, QWidget *parent)
       ui(new Ui::EmployeesUI),
       pdf_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif")),
       notification_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif")),
+      csv_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-document.gif")),
+      refresh_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-refresh.gif")),
       shadow_effect_components(new QGraphicsDropShadowEffect[SHADOWS_EFFECT_COMBO_NUMBERS]) {
   __init__();
 }
@@ -44,6 +45,10 @@ EmployeesUI::~EmployeesUI() {
   pdf_movie = nullptr;
   delete notification_movie;
   notification_movie = nullptr;
+  delete csv_movie;
+  csv_movie = nullptr;
+  delete refresh_movie;
+  refresh_movie = nullptr;
   delete[] shadow_effect_components;
   shadow_effect_components = nullptr;
 }
@@ -68,6 +73,8 @@ inline void EmployeesUI::__init__() {
   // Set pushButtons Movie (as QIcon)
   set_pushButtonMovie(ui->PDF, pdf_movie);
   set_pushButtonMovie(ui->Notification, notification_movie);
+  set_pushButtonMovie(ui->CSV, csv_movie);
+  set_pushButtonMovie(ui->refresh, refresh_movie);
 
   // Set Shadow Effect for `NB_SHADOWS` componenets
   set_shadowEffect(ui->Background_navigation, &shadow_effect_components[0]);
@@ -627,82 +634,4 @@ void EmployeesUI::on_PDF_clicked() {
 
 // * ==========================================================
 // ? ====== / `ui->updateForm` Events & signals ===============
-// ? ===================== EmployeesUtils =====================
 // * ==========================================================
-
-/**
- * @fn    EmployeesUtils::EmployeesUtils()
- * @brief Construct a new EmployeesUtils::EmployeesUtils object
- */
-EmployeesUtils::EmployeesUtils()
-    : profileImgInsertHolder(""), profileImgUpdateHolder("") {};
-
-/**
- * @fn            EmployeesUtils::scaleImg(const QString &, QLabel *, const qreal, const qreal) const
- * @brief         Shape an image to be round depending of the `xRadius` and `yRadius` then put it in a label
- * @param path    {const QString &}
- * @param label   {QLabel *}
- * @param xRadius {const qreal}
- * @param yRadius {const qreal}
- * @return        void
- */
-void EmployeesUtils::scaleImg(const QString &path, QLabel *label, const qreal xRadius, const qreal yRadius) const {
-  QPixmap Image(path);
-  QSize Size = label->size();
-  const int h = Size.height(),
-            w = Size.width();
-
-  // Initialize image
-  Image = Image.scaled(Size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-  // Create mask
-  QBitmap map(Size);
-  map.fill(Qt::color0);
-
-  QPainter painter(&map);
-  painter.setBrush(Qt::color1);
-  painter.drawRoundedRect(0, 0, w, h, xRadius, yRadius);
-
-  Image.setMask(map);
-  label->setPixmap(Image);
-}
-
-/**
- * @fn           EmployeesUtils::extractUsername(const std::string &) const
- * @brief        Return the `username` from `ui->updateForm` title
- * @param title  {const std::string &}
- * @param length {const unsigned short &}
- * @return       std::string
- */
-std::string EmployeesUtils::extractUsername(const std::string &title, const unsigned short &length) const {
-  return title.substr(12, title.size());
-}
-
-/**
- * @fn      EmployeesUtils::strToUpper(std::string) const
- * @brief   Transform `s` to uppercase string
- * @param s {std::string &}
- * @return  std::string
- */
-std::string EmployeesUtils::strToUpper(std::string s) const {
-  std::transform(s.begin(), s.end(), s.begin(), ::toupper);
-  return s;
-}
-
-/**
- * @fn               EmployeesUtils::set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal, const qreal, const qreal, const QColor)
- * @brief            Set the shadow effect on `effect` and affected to `obj`
- * @param obj        {QWidget *}
- * @param effect     {QGraphicsDropShadowEffect *}
- * @param xOffset    {const qreal}
- * @param yOffset    {const qreal}
- * @param blurRadius {const qreal}
- * @param color      {const QColor}
- * @return           void
- */
-void EmployeesUtils::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect *effect, const qreal xOffset, const qreal yOffset, const qreal blurRadius, const QColor color) {
-  effect->setXOffset(xOffset), effect->setYOffset(yOffset);
-  effect->setBlurRadius(blurRadius);
-  effect->setColor(color);
-  obj->setGraphicsEffect(effect);
-}

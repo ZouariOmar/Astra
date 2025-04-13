@@ -117,7 +117,12 @@
 			"regex": "cpp",
 			"qpieseries": "cpp",
 			"qtcharts": "cpp",
-			"qchartview": "cpp"
+			"qchartview": "cpp",
+			"typeindex": "cpp",
+			"qlabel": "cpp",
+			"qtimer": "cpp",
+			"qobject": "cpp",
+			"qimage": "cpp"
 		},
 		"cSpell.words": [
 			"occi",

@@ -10,7 +10,7 @@
 
 //? Include prototype declaration part
 //* Include std Qt header(s)
-#include "../inc/PdfGenerator.hpp"
+
 #include <QtGui/QPdfWriter>
 #include <QtWebEngineCore/QWebEngineSettings>
 #include <QtWebEngineWidgets/QWebEngineView>
@@ -18,6 +18,7 @@
 //* Include custom header(s)
 #include "../inc/EmployeesStatistics.hpp"
 #include "../inc/HtmlBodyFormatter.hpp"
+#include "../inc/PdfGenerator.hpp"
 
 //? Function prototype dev part
 

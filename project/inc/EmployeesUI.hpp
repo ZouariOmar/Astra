@@ -17,16 +17,15 @@
 //* Include std Qt header(s)
 #include <QtGui/QBitmap>
 #include <QtGui/QMovie>
-#include <QtGui/QPainter>
 #include <QtGui/QPixmap>
 #include <QtWidgets/QFileDialog>
-#include <QtWidgets/QGraphicsDropShadowEffect>
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
 
 //* Include custom header(s)
-#include "../inc/Employees.hpp"
+#include "Employees.hpp"
+#include "EmployeesUIUtils.hpp"
 
 //* Include generated ui_.h file(s)
 #include "../ui/ui_employees.h"
@@ -44,26 +43,10 @@ class EmployeesUI;
 QT_END_NAMESPACE
 
 /**
- * @class EmployeesUtils
- * @brief EmployeesUtils class
- */
-class EmployeesUtils {
-public:
-  EmployeesUtils();
-
-protected:
-  std::string profileImgInsertHolder, profileImgUpdateHolder;
-  void scaleImg(const QString &, QLabel *, const qreal, const qreal) const;
-  std::string extractUsername(const std::string &, const unsigned short &length = 12) const;
-  std::string strToUpper(std::string) const;
-  void set_shadowEffect(QWidget *, QGraphicsDropShadowEffect *, const qreal xOffset = 5, const qreal yOffset = 5, const qreal blurRadius = 5, const QColor color = Qt::gray);
-}; // Utils class
-
-/**
  * @class EmployeesUI
  * @brief EmployeesUI class
  */
-class EmployeesUI : public QMainWindow, private EmployeesUtils {
+class EmployeesUI : public QMainWindow, private EmployeesUIUtils {
   Q_OBJECT
 
 public:
@@ -75,7 +58,9 @@ private: //? Private EmployeesUI vars
   SqlParam employee;
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie,
-      *notification_movie;
+      *notification_movie,
+      *csv_movie,
+      *refresh_movie;
   QGraphicsDropShadowEffect *shadow_effect_components;
 
 private: //? Private EmployeesUI function

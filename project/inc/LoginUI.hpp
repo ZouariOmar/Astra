@@ -30,7 +30,8 @@
 #include <QtWidgets/QProgressDialog>
 
 //* Include custom header(s)
-#include "../inc/Employees.hpp"
+#include "Employees.hpp"
+#include "FaceRecognizer.hpp"
 
 //* Include generated ui_.h files
 #include "../ui/ui_login.h"
@@ -47,7 +48,7 @@ class Login;
 }; // Namespace Ui
 QT_END_NAMESPACE
 
-//? Class(es) prototype declaration part
+//? Class prototype declaration part
 
 /**
  * @class Login
@@ -63,12 +64,13 @@ public:
 
 private:
   Ui::Login *ui;
-  QTimer *gifTimer;
+  QTimer *gifTimer, *camTimer;
   QMovie *currentMovie;
   int currentGifIndex;
   const QStringList gifPaths;
   std::string generated_password;
-  std::vector<SqlParam> employee;
+  SqlParam employee;
+  FaceRecognizer *faceRecognition;
 
   //* Events
   bool eventFilter(QObject *, QEvent *) override;
@@ -90,6 +92,8 @@ private slots:
   void on_pushButton_clicked();
   void on_hide_show_btn_clicked();
   void on_reset_clicked();
+  void on_faceId_clicked();
+  void on_fp_returnBtn_clicked();
 
   //* Forget password sub-inteface group box slots
   void on_hide_show_btn_2_clicked();

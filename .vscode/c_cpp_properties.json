@@ -6,7 +6,8 @@
                 "${workspaceFolder}/**",
                 "/usr/include/qt6",
                 "/usr/local/include/oracle/",
-                "${workspaceFolder}/bin/build/Astra_autogen/ui"
+                "${workspaceFolder}/bin/build/Astra_autogen/ui",
+                "/usr/include/opencv4"
             ],
             "compilerPath": "/usr/bin/gcc",
             "cStandard": "${default}",

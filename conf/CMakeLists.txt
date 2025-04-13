@@ -22,6 +22,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/MainWindow.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/LoginUI.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUI.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUIUtils.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmployeesUICharts.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/EmailSender.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Employees.cpp
@@ -30,6 +31,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/PasswordGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Database.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/PdfGenerator.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/FaceRecognizer.cpp
 )
 
 # Add header(s) files
@@ -38,6 +40,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/MainWindow.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/LoginUI.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUI.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUIUtils.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmployeesUICharts.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/EmailSender.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Employees.hpp
@@ -46,6 +49,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/PasswordGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Database.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/PdfGenerator.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/FaceRecognizer.hpp
 )
 
 # Add the templates files
@@ -63,6 +67,9 @@ find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEn
 # Find libcurl package
 find_package(CURL REQUIRED) 
 
+# Find OpenCV package
+find_package(OpenCV REQUIRED)
+
 # Add the executable target
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEMPLATES})
 
@@ -73,6 +80,7 @@ target_link_libraries(${PROJECT_NAME} PRIVATE
   clntsh occi                                              # Link oracle libraries
   CURL::libcurl                                            # Link libcurl libraries
   -lssl -lcrypto                                           # Link openssl libraries
+  ${OpenCV_LIBS}                                           # Link OpenCV libraries
 )
 
 # Add the tests subdirectory

@@ -51,8 +51,9 @@ LoginUI::LoginUI(QWidget *parent)
   ui->reset->installEventFilter(this);
   ui->f_pwd->installEventFilter(this);
 
-  ui->f_pwd_interface->hide(); // Hide the forget password QGroupBox
-  updateGif();                 // Initialize the first GIF
+  ui->f_pwd_interface->hide();          // Hide the forget password QGroupBox
+  ui->FaceRecognitionInterface->hide(); // Hide the face recognition QGroupBox
+  updateGif();                          // Initialize the first GIF
 }
 
 /**
@@ -121,7 +122,7 @@ void LoginUI::on_pushButton_clicked() {
         this, tr("Astra"), tr("Username or password are incorrect!\nPlease try to login again!"),
         QMessageBox::Ok);
   } else {                  // Store the verified employee data and proceed to the next interface
-    employee = res;         // Hold the verified employees data
+    employee = res[0];      // Hold the verified employees data
     emit loginSuccessful(); // Emit the signal for successful login
   }
 }
@@ -132,7 +133,74 @@ void LoginUI::on_pushButton_clicked() {
  * @return {const SqlParam}
  */
 const SqlParam LoginUI::get_employee() {
-  return employee[0];
+  return employee;
+}
+
+/**
+ * @fn     LoginUI::on_faceId_clicked()
+ * @brief  Listen to FaceID button click action
+ * @return void
+ */
+void LoginUI::on_faceId_clicked() {
+  QGroupBoxFadeOutEffect(ui->login, ui->FaceRecognitionInterface);
+
+  faceRecognition = new FaceRecognizer;
+  camTimer = new QTimer(this);
+
+  static bool processing{}, // To avoid threads stack overflow (can cause Empty frame)
+      loginCompleted{};     // To avoid threads infinite run
+
+  if (loginCompleted) {
+    std::cerr << "User already logged in!" << '\n';
+    return; // Skip further threads
+  }
+
+  (void)QtConcurrent::run([this]() {
+    faceRecognition->load();
+    QMetaObject::invokeMethod(this, [this]() {
+      connect(camTimer, &QTimer::timeout, this, [this]() {
+        if (processing)
+          return;
+        processing = true;
+        std::string username = faceRecognition->recognize(ui->Cam);
+        // faceRecognition->captureFrame(ui->Cam); //! Debugin mode
+        (void)QtConcurrent::run([this, username]() {
+          // std::string username = faceRecognition->recognize(ui->Cam); //! It cause ORA-24550 error
+          processing = false;
+          if (username.empty())
+            return;
+          std::cerr << "username..." << username << '\n';
+          Employees::Select *sl(new Employees::Select);
+          std::vector<SqlParam> employees = sl->selectAll(Employees::EmployeeInfo<std::string>(username, Employees::EmployeeQueueFlags_strings::USERNAME));
+          if (employees.empty()) { // The given `username` not found in the database
+            std::cerr << "The given `username` not found in the database..." << username << '\n';
+            return;
+          }
+          employee = employees[0];
+
+          QMetaObject::invokeMethod(this, [this]() {
+            on_fp_returnBtn_clicked();
+            emit loginSuccessful();
+          });
+          loginCompleted = true;
+        });
+      });
+      camTimer->start(__CAMERA_DEFAULT_FPS__);
+    });
+  });
+}
+
+void LoginUI::on_fp_returnBtn_clicked() {
+  if (faceRecognition) {
+    delete faceRecognition;
+    faceRecognition = nullptr;
+  }
+  if (camTimer) {
+    camTimer->stop();
+    delete camTimer;
+    camTimer = nullptr;
+  }
+  QGroupBoxFadeOutEffect(ui->FaceRecognitionInterface, ui->login);
 }
 
 // * ======================================

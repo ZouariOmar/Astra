@@ -5,7 +5,7 @@
  * @version   0.1
  * @date      2025-02-23
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/src/smtp-mail.cpp smtp-mail.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/EmailSender.cpp EmailSender.cpp @endlink
  * @link https://raw.githubusercontent.com/curl/curl/master/docs/examples/smtp-mail.c smtp-mail.c @endlink
  * @link https://curl.se/libcurl/c/curl_mime_type.html "In the absence of a mime type!" @endlink
  */
