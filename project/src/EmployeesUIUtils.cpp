@@ -25,38 +25,46 @@ EmployeesUIUtils::EmployeesUIUtils()
     : profileImgInsertHolder(""), profileImgUpdateHolder("") {};
 
 /**
- * @fn            EmployeesUIUtils::scaleImg(const QString &, QLabel *, const qreal, const qreal) const
+ * @fn            EmployeesUIUtils::scaleImg(const QString &, QLabel *) const
  * @brief         Shape an image to be round depending of the `xRadius` and `yRadius` then put it in a label
  * @param path    {const QString &}
  * @param label   {QLabel *}
- * @param xRadius {const qreal}
- * @param yRadius {const qreal}
  * @return        void
  */
-void EmployeesUIUtils::scaleImg(const QString &path, QLabel *label, const qreal xRadius, const qreal yRadius) const {
-  QPixmap Image(path);
-  QSize Size = label->size();
-  const int h = Size.height(),
-            w = Size.width();
+void EmployeesUIUtils::scaleImg(const QString &path, QLabel *label) const {
+  QPixmap image(path);
+  if (image.isNull()) {
+    qWarning("Failed to load image: %s", qUtf8Printable(path));
+    return;
+  }
 
-  // Initialize image
-  Image = Image.scaled(Size, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+  QSize labelSize = label->size();
+  int w = labelSize.width(), h = labelSize.height();
 
-  // Create mask
-  QBitmap map(Size);
-  map.fill(Qt::color0);
+  // Scale the image to cover the label area
+  QPixmap scaled = image.scaled(w, h, Qt::KeepAspectRatioByExpanding, Qt::SmoothTransformation);
 
-  QPainter painter(&map);
-  painter.setBrush(Qt::color1);
-  painter.drawRoundedRect(0, 0, w, h, xRadius, yRadius);
+  // Prepare final transparent canvas
+  QPixmap result(w, h);
+  result.fill(Qt::transparent);
 
-  Image.setMask(map);
-  label->setPixmap(Image);
+  // Clip image into a circle/ellipse
+  QPainter painter(&result);
+  painter.setRenderHint(QPainter::Antialiasing), painter.setRenderHint(QPainter::SmoothPixmapTransform);
+
+  QPainterPath clipPath;
+  clipPath.addEllipse(0, 0, w, h), painter.setClipPath(clipPath);
+
+  // Center the image inside the clipped area
+  int xOffset = (scaled.width() - w) / 2, yOffset = (scaled.height() - h) / 2;
+  painter.drawPixmap(0, 0, scaled.copy(xOffset, yOffset, w, h));
+
+  label->setPixmap(result); // Set the final rounded image to the QLabel
 }
 
 /**
  * @fn           EmployeesUIUtils::extractUsername(const std::string &) const
- * @brief        Return the `username` from `ui->updateForm` title
+ * @brief        Return the `username` from `updateForm` title
  * @param title  {const std::string &}
  * @param length {const unsigned short &}
  * @return       std::string
@@ -92,4 +100,67 @@ void EmployeesUIUtils::set_shadowEffect(QWidget *obj, QGraphicsDropShadowEffect 
   effect->setBlurRadius(blurRadius);
   effect->setColor(color);
   obj->setGraphicsEffect(effect);
+}
+
+/** @brief Extract all the data from a `QTableWidget *` into a `vector<vector<string>>`
+ *
+ * @param tableWidget {QTableWidget *}
+ * @return            std::vector<std::vector<std::string>>
+ */
+std::vector<std::vector<std::string>> EmployeesUIUtils::extractTableData(QTableWidget *tableWidget) {
+  std::vector<std::vector<std::string>> data;
+
+  int rowCount(tableWidget->rowCount()),
+      columnCount(tableWidget->columnCount() - 1); // Ignore the `Actions` column
+
+  for (int row{}; row < rowCount; ++row) {
+    std::vector<std::string> rowData;
+    for (int col{}; col < columnCount; ++col) {
+      QTableWidgetItem *item = tableWidget->item(row, col);
+      if (col == 0) {
+        rowData.push_back(item->data(Qt::UserRole).toString().toStdString());
+        continue;
+      }
+      if (col == 4) {
+        rowData.push_back(item->data(Qt::UserRole).toString().toStdString());
+        continue;
+      }
+      (item) ? rowData.push_back(item->text().toStdString()) : rowData.push_back("");
+    }
+    data.push_back(rowData);
+  }
+
+  return data; // Return the result
+}
+
+void EmployeesUIUtils::filterEmployees(QTableWidget *tableWidget, QComboBox *filter, QLineEdit *searchBar) {
+  QString searchText(searchBar->text().trimmed()),
+      currentStatusFilter(filter->currentText());
+
+  int rowCount = tableWidget->rowCount(),
+      columnCount(tableWidget->columnCount() - 1); // Ignore the `Actions` column
+
+  for (int row{}; row < rowCount; ++row) {
+    bool matchesSearch{}, matchesStatus{};
+
+    // Check search match in any column
+    for (int col{}; col < columnCount; ++col) {
+      QTableWidgetItem *item = tableWidget->item(row, col);
+      if (item && item->text().contains(searchText, Qt::CaseInsensitive)) {
+        matchesSearch = true;
+        break;
+      }
+    }
+
+    // Check status match in column 4 (status column)
+    QTableWidgetItem *statusItem(tableWidget->item(row, 4));
+    if (currentStatusFilter == "ALL") {
+      matchesStatus = true;
+    } else if (statusItem) {
+      QVariant statusData = statusItem->data(Qt::UserRole);
+      if (statusData.isValid() && statusData.toString() == currentStatusFilter)
+        matchesStatus = true;
+    }
+    tableWidget->setRowHidden(row, !(matchesSearch && matchesStatus)); // Final row visibility based on both conditions
+  }
 }

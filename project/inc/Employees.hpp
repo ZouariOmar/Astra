@@ -5,7 +5,8 @@
  * @version   0.1
  * @date      2025-03-01
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/Employees.hpp Employees.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/Employees.hpp
+ * Employees.hpp @endlink
  */
 
 //? Pre-Processor prototype declaration part
@@ -14,10 +15,6 @@
 #define EMAIL_MATCHER_PATTERN "(\\w+)(\\.|_)?(\\w*)@(\\w+)(\\.(\\w+))+"
 
 //? Include prototype declaration part
-//* Include std C++ header
-#include <algorithm>
-#include <regex>
-
 //* Include custom header(s)
 #include "../inc/Database.hpp"
 
@@ -78,8 +75,7 @@ enum EmployeeQueueFlags_timestamps {
  * @enum  EmployeeQueueFlags_blobs
  * @brief EmployeeQueueFlags_blobs enum
  */
-enum EmployeeQueueFlags_blobs {
-}; // EmployeeQueueFlags_blobs enum
+enum EmployeeQueueFlags_blobs {}; // EmployeeQueueFlags_blobs enum
 
 /**
  * @enum  EmployeeCheckerFlags
@@ -138,10 +134,13 @@ template <typename T>
 struct Employees::EmployeeInfo {
   T data;
   std::string arg;
-  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_integers &);
-  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_strings &);
+  explicit EmployeeInfo(const T &,
+                        const Employees::EmployeeQueueFlags_integers &);
+  explicit EmployeeInfo(const T &,
+                        const Employees::EmployeeQueueFlags_strings &);
   explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_dates &);
-  explicit EmployeeInfo(const T &, const Employees::EmployeeQueueFlags_timestamps &);
+  explicit EmployeeInfo(const T &,
+                        const Employees::EmployeeQueueFlags_timestamps &);
 }; // EmployeeInfo struct
 
 //? Class(es) prototype declaration part
@@ -168,9 +167,13 @@ public:
   //* Employees::Select functions
   std::vector<SqlParam> selectAll();
   std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &);
-  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
-  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &);
-  std::vector<SqlParam> selectAllExcept(const Employees::EmployeeInfo<std::string> &, const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam> selectAll(const Employees::EmployeeInfo<std::string> &,
+                                  const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam>
+  selectAllExcept(const Employees::EmployeeInfo<std::string> &);
+  std::vector<SqlParam>
+  selectAllExcept(const Employees::EmployeeInfo<std::string> &,
+                  const Employees::EmployeeInfo<std::string> &);
   std::vector<SqlParam> selectLastInsertedRow();
 }; // Employees::Select class
 
@@ -250,18 +253,17 @@ public:
 class Employees::EmployeeChecker {
 private:
   static bool is_validEmail(const std::string &);
-  static bool is_empty(const std::string &, const std::string &, const std::string &, const std::string &, const std::string &);
+  static bool is_empty(const std::string &, const std::string &,
+                       const std::string &, const std::string &,
+                       const std::string &);
   static bool is_alphaDigit(const std::string &);
 
 public:
-  static std::pair<Employees::EmployeeCheckerFlags, const char *> is_valid(const std::string &,
-                                                                           const std::string &,
-                                                                           const std::string &,
-                                                                           const std::string &,
-                                                                           const std::string &,
-                                                                           std::string status,
-                                                                           const std::pair<Employees::EmployeeCheckerFlags, const char *>
-                                                                               &flag = {Employees::EmployeeCheckerFlags::EMPTY, ""});
+  static std::pair<Employees::EmployeeCheckerFlags, const char *> is_valid(
+      const std::string &, const std::string &, const std::string &,
+      const std::string &, const std::string &, std::string status,
+      const std::pair<Employees::EmployeeCheckerFlags, const char *> &flag = {
+          Employees::EmployeeCheckerFlags::EMPTY, ""});
 }; // EmployeeChecker class
 
 #if __has_include("../templates/Employees.tpp")

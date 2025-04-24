@@ -39,6 +39,9 @@ void FaceRecognizer::load() {
   loadIndexer(__FACES_DEFAULT_DIR__); //! Security issue (`X` can change folders names and make spoofing attack)
   loadCascadeModel(__CASCADE_DEFAULT_MODEL__);
   loadEmbeddedModel(__FACE_RECOGNIZER_DEFAULT_MODEL__);
+
+  // for (auto it : indexer)
+  //   std::cout << it.first << " +++++++++++++ " << it.second << '\n';
 }
 
 /**
@@ -128,14 +131,12 @@ std::string FaceRecognizer::recognize(QLabel *cameraLabel) {
       std::cout << "[username] " << username << " ### [confidence] " << confidence << '\n';
       return username; // Return user information
     } else
-      std::cerr << "No confident match found!" << '\n';
-  }
+      std::cerr << "No confident match found (face detected)!" << '\n';
+  } else
+    std::cerr << "No confident match found!" << '\n';
 
   // Convert OpenCV Mat to QImage
-  QImage img = matToQImage(currentFrame).scaled(cameraLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
-  // Ensure this is done in the main thread
-  QMetaObject::invokeMethod(cameraLabel, [img, cameraLabel]() { cameraLabel->setPixmap(QPixmap::fromImage(img)); }, Qt::QueuedConnection);
+  cameraLabel->setPixmap(QPixmap::fromImage(matToQImage(currentFrame).scaled(cameraLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation)));
   return ""; // Not found
 }
 
@@ -163,7 +164,7 @@ void FaceRecognizer::captureFrame(QLabel *cameraLabel) {
     gray = currentFrame;
 
   std::vector<cv::Rect> faces;
-  faceCascade.detectMultiScale(gray, faces, 1.1, 5, 0, cv::Size(100, 100));
+  faceCascade.detectMultiScale(gray, faces);
 
   if (!faces.empty()) {
     cv::Mat faceROI = gray(faces[0]);
@@ -174,14 +175,16 @@ void FaceRecognizer::captureFrame(QLabel *cameraLabel) {
 
     confidence = 1.0 - (confidence / 100.0);
     std::string name(indexer[label]);
+    // cv::imwrite("test" + std::to_string(confidence) + ".png", faceROI);
 
     if (confidence >= __CONFIDENCE_DEFAULT_SCORE__) {
       std::cout << "[username] " << name << " ### [confidence] " << confidence << '\n';
       cv::putText(currentFrame, name + " - " + std::to_string(confidence), faces[0].tl(), cv::FONT_HERSHEY_SIMPLEX, 1, cv::Scalar(255, 0, 0), 2);
       cv::rectangle(currentFrame, faces[0], cv::Scalar(255, 0, 0), 2);
     } else
-      std::cerr << "No confident match found!" << '\n';
-  }
+      std::cerr << "No confident match found (face detected)!" << '\n';
+  } else
+    std::cerr << "No confident match found!" << '\n';
 
   cameraLabel->setPixmap(QPixmap::fromImage(matToQImage(currentFrame).scaled(cameraLabel->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation)));
 }
@@ -207,39 +210,45 @@ QImage FaceRecognizer::matToQImage(const cv::Mat &mat) const {
 std::pair<std::vector<cv::Mat>, std::vector<int>> FaceRecognizer::loadData(const std::string &dataDir) {
   std::vector<cv::Mat> images;
   std::vector<int> labels;
-  int label = 0;
+  int label{}, counter{};
 
   for (const auto &entry : std::filesystem::directory_iterator(dataDir)) {
     if (entry.is_directory()) {
       std::string personName = entry.path().filename().string();
       qDebug() << "Processing folder:" << QString::fromStdString(personName);
 
-      for (const auto &imageEntry : std::filesystem::directory_iterator(entry.path())) {
-        if (imageEntry.is_regular_file()) {
-          std::string imagePath = imageEntry.path().string();
-          cv::Mat img = cv::imread(imagePath, cv::IMREAD_COLOR);
-          if (img.empty()) {
-            std::cerr << "Image not found: " << imagePath;
+      for (const auto &videoEntry : std::filesystem::directory_iterator(entry.path())) {
+        if (videoEntry.is_regular_file()) {
+          std::string videoPath = videoEntry.path().string();
+          cv::VideoCapture cap(videoPath);
+          if (!cap.isOpened()) {
+            std::cerr << "Could not open video: " << videoPath << '\n';
             continue;
           }
 
-          cv::Mat gray;
-          if (img.channels() == 3)
-            cv::cvtColor(img, gray, cv::COLOR_BGR2GRAY);
-          else
-            gray = img;
+          cv::Mat frame;
+          while (cap.read(frame)) {
+            if (frame.empty())
+              continue;
 
-          std::vector<cv::Rect> faces;
-          faceCascade.detectMultiScale(gray, faces, 1.1, 3, 0, cv::Size(100, 100));
+            cv::Mat gray;
+            cv::cvtColor(frame, gray, cv::COLOR_BGR2GRAY);
+            std::vector<cv::Rect> faces;
+            faceCascade.detectMultiScale(gray, faces);
 
-          if (!faces.empty()) // Take the first detected face
-            images.push_back(gray(faces[0])), labels.push_back(label);
+            for (const cv::Rect &face : faces) {
+              cv::Mat faceROI = gray(face);
+              images.push_back(faceROI), labels.push_back(label), counter++;
+            }
+          }
+          cap.release();
         }
       }
       label++;
     }
   }
 
+  std::cout << "Total Detected Faces from All Frames: " << counter << '\n';
   return {images, labels};
 }
 
@@ -252,13 +261,12 @@ std::pair<std::vector<cv::Mat>, std::vector<int>> FaceRecognizer::loadData(const
  * @return                  void
  */
 void FaceRecognizer::trainEmbeddedModel(const std::string &modelSavePath, const std::string &cascadeModelPath, const std::string &dataLoadPath) {
-  loadCascadeModel(cascadeModelPath);
   recognizer = cv::face::LBPHFaceRecognizer::create();
+  loadCascadeModel(cascadeModelPath);
   auto [images, labels] = loadData(dataLoadPath);
   if (!images.empty() && !labels.empty()) {
-    recognizer->train(images, labels);
-    recognizer->save(modelSavePath);
-    std::cout << "Training complete and model saved!" << '\n';
+    recognizer->train(images, labels), recognizer->save(modelSavePath);
+    std::cout << "Training complete and model saved!\n";
   } else
-    std::cerr << "No faces found for training!" << '\n';
+    std::cerr << "No faces found for training!\n";
 }

@@ -13,13 +13,13 @@
 #define __FACE_RECOGNITION_HPP__
 #define __FACES_DEFAULT_DIR__ "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/faces"
 #define __CASCADE_DEFAULT_MODEL__ "/home/zouari_omar/Documents/Daily/Projects/Astra/project/models/haarcascade_frontalface_default.xml"
-#define __FACE_RECOGNIZER_DEFAULT_MODEL__ "/home/zouari_omar/Documents/Daily/Projects/Astra/project/models/face_recognizer.yml"
+#define __FACE_RECOGNIZER_DEFAULT_MODEL__ "/home/zouari_omar/Documents/Daily/Projects/Astra/project/models/face_recognizer(final version).yaml"
 #define __CAMERA_DEFAULT_FPS__ 30 // ~33 times per second - 30 milliseconds
 #define __CONFIDENCE_DEFAULT_SCORE__ 0.5
 
 //? Include prototype declaration part
 //* Include std c++ header(s)
-#include <unordered_map>
+#include <map>
 
 //* Include std headers (Qt)
 #include <QtCore/QObject>
@@ -44,7 +44,7 @@ private:
   cv::Mat currentFrame;                             // Holds the current captured frame
   cv::CascadeClassifier faceCascade;                // Haar Cascade for face detection
   cv::Ptr<cv::face::LBPHFaceRecognizer> recognizer; // LBPH face recognizer
-  std::unordered_map<int, std::string> indexer;     // Map to store labels and corresponding names
+  std::map<int, std::string> indexer;     // Map to store labels and corresponding names
 
   QImage matToQImage(const cv::Mat &mat) const;
   std::pair<std::vector<cv::Mat>, std::vector<int>> loadData(const std::string &dataDir);

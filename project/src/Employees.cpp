@@ -9,6 +9,11 @@
  */
 
 //? Include prototype declaration part
+//* Include std C++ header
+#include <algorithm>
+#include <regex>
+
+//* Include =custom header(s)
 #include "../inc/Employees.hpp"
 
 //? Function/Class prototype dev part

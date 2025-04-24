@@ -15,4 +15,7 @@ project/Arduino/Astra Door Access/.pio
 project/Arduino/Astra Door Access/.vscode
 
 # Ignore faces dir
-Projects/Astra/project/assets/faces/
+project/assets/faces/*
+
+# Ignore models
+project/models/*

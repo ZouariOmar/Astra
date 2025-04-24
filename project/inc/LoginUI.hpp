@@ -100,7 +100,7 @@ private slots:
   void on_returnBtn_clicked();
   void on_sendEmailBtn_clicked();
 
-signals: //? Signals fns
+signals:                  //? Signals fns
   void loginSuccessful(); // Signal to notify successful login
 }; // Login class
 

@@ -9,6 +9,10 @@
  */
 
 //? Include prototype declaration part
+//* Include stander header(s)
+#include <iostream>
+
+//* Include custom header(s)
 #include "../inc/Database.hpp"
 
 //? Function/Class prototype dev part

@@ -1,0 +1,7 @@
+CompileFlags:
+  Add: [
+    -I/usr/include/opencv4,
+    -I/usr/include/qt6,
+    -I/usr/local/include/oracle,
+    -I/home/zouari_omar/Documents/Daily/Projects/Astra/bin/build/Astra_autogen/ui,
+  ]

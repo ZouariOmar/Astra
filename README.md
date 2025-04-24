@@ -63,10 +63,10 @@ $ cd Astra
 $ ./downloads/requirements.sh
 
 # Build the C++ components
-$ ./run.sh ninja build --root
+$ ./run.sh ninja --root
 
 # Run the app
-$ ./run.sh ninja run
+$ ./run.sh run
 ```
 
 ## Download
@@ -85,7 +85,7 @@ This software uses the following open source packages:
 - [CMake](https://cmake.org)
 - [OpenCV (cv2)](https://opencv.org)
 
-## You may also like
+## Related
 
 - [QRME](https://github.com/ZouariOmar/QRME) - A QR code generator app
 - [Tic Tac Toe](https://github.com/ZouariOmar/Tic-Tac-Toe) - A classic game built with SDL and C++

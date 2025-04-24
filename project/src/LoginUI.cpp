@@ -54,6 +54,11 @@ LoginUI::LoginUI(QWidget *parent)
   ui->f_pwd_interface->hide();          // Hide the forget password QGroupBox
   ui->FaceRecognitionInterface->hide(); // Hide the face recognition QGroupBox
   updateGif();                          // Initialize the first GIF
+
+  // faceRecognition = new FaceRecognizer;
+  // faceRecognition->trainEmbeddedModel(__FACE_RECOGNIZER_DEFAULT_MODEL__, __CASCADE_DEFAULT_MODEL__, __FACES_DEFAULT_DIR__); //! Debugin mode
+  // delete faceRecognition;
+  // faceRecognition = nullptr;
 }
 
 /**
@@ -151,7 +156,7 @@ void LoginUI::on_faceId_clicked() {
       loginCompleted{};     // To avoid threads infinite run
 
   if (loginCompleted) {
-    std::cerr << "User already logged in!" << '\n';
+    std::cerr << "User already logged in!\n";
     return; // Skip further threads
   }
 

@@ -1,3 +1,0 @@
-# Hashes of file build rules.
-e54c60004c3c2866f932af54703148a2 Astra_autogen/timestamp
-2a07bef1d63927bd3a92977fa0e696c5 CMakeFiles/Astra_autogen

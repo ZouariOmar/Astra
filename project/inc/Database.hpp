@@ -6,7 +6,8 @@
  * @date      2025-02-13
  * @copyright Copyright (c) 2025
  * @link https://www.oracle.com oracle @endlink
- * @link https://github.com/ZouariOmar/Astra/project/inc/Database.hpp Database.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/Database.hpp
+ * Database.hpp @endlink
  */
 
 //? Pre-Processor prototype declaration part
@@ -15,7 +16,6 @@
 
 //? Include prototype declaration part
 //* Include std c++ header(s)
-#include <iostream>
 #include <oracle/occi.h>
 #include <vector>
 
@@ -31,14 +31,20 @@ using namespace oracle::occi;
  * ? And param.second as the passed data
  */
 struct SqlParam {
-  std::vector<std::pair<unsigned int, std::string>> strings;                // Parameters of type string
-  std::vector<std::pair<unsigned int, int>> integers;                       // Parameters of type int
-  std::vector<std::pair<unsigned int, oracle::occi::Date>> dates;           // Parameters of type dates
-  std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> timestamps; // Parameters of type timestamp
-  explicit SqlParam(const std::vector<std::pair<unsigned int, std::string>> &strParams = {},
-                    const std::vector<std::pair<unsigned int, int>> &intParams = {},
-                    const std::vector<std::pair<unsigned int, oracle::occi::Date>> &dateParams = {},
-                    const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>> &timestampsParams = {});
+  std::vector<std::pair<unsigned int, std::string>>
+      strings; // Parameters of type string
+  std::vector<std::pair<unsigned int, int>> integers; // Parameters of type int
+  std::vector<std::pair<unsigned int, oracle::occi::Date>>
+      dates; // Parameters of type dates
+  std::vector<std::pair<unsigned int, oracle::occi::Timestamp>>
+      timestamps; // Parameters of type timestamp
+  explicit SqlParam(
+      const std::vector<std::pair<unsigned int, std::string>> &strParams = {},
+      const std::vector<std::pair<unsigned int, int>> &intParams = {},
+      const std::vector<std::pair<unsigned int, oracle::occi::Date>>
+          &dateParams = {},
+      const std::vector<std::pair<unsigned int, oracle::occi::Timestamp>>
+          &timestampsParams = {});
 }; // SqlParam struct
 
 //? Classes prototype declaration part

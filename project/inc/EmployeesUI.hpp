@@ -5,13 +5,14 @@
  * @version   0.1
  * @date      2025-03-08
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/inc/EmployeesUI.hpp EmployeesUI.hpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/inc/EmployeesUI.hpp
+ * EmployeesUI.hpp @endlink
  */
 
 //? Pre-Processor prototype declaration part
 #ifndef __EMPLOYEES_UI_HPP__
 #define __EMPLOYEES_UI_HPP__
-#define SHADOWS_EFFECT_COMBO_NUMBERS 9
+#define SHADOWS_EFFECT_COMBO_NUMBERS 11
 
 //? Include prototype declaration part
 //* Include std Qt header(s)
@@ -22,6 +23,8 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenu>
 #include <QtWidgets/QMessageBox>
+// #include <QtMultimedia/QAudioOutput>
+// #include <QtMultimedia/QMediaPlayer>
 
 //* Include custom header(s)
 #include "Employees.hpp"
@@ -57,15 +60,12 @@ public:
 private: //? Private EmployeesUI vars
   SqlParam employee;
   Ui::EmployeesUI *ui;
-  QMovie *pdf_movie,
-      *notification_movie,
-      *csv_movie,
-      *refresh_movie;
+  QMovie *pdf_movie, *notification_movie, *csv_movie, *refresh_movie;
   QGraphicsDropShadowEffect *shadow_effect_components;
 
 private: //? Private EmployeesUI function
   inline void __init__();
-  void __init_current__employee_UI__() const;
+  void __init_current_employee_UI__() const;
   inline void __init_inset_form_group_box__();
   inline void __init_update_form_group_box__();
   void __init_employees_table__();
@@ -85,8 +85,11 @@ private slots:
   void on_updateBtn_clicked();
   void on_profileImageInsert_clicked();
   void on_profileImageInsert_2_clicked();
-  void on_Filter_activated(int);
+  void on_Filter_currentTextChanged(const QString &);
   void on_PDF_clicked();
+  void on_refresh_clicked();
+  void on_CSV_clicked();
+  void on_Search_bar_textChanged(const QString &);
 }; // EmployeesUI class
 
 #endif // __EMPLOYEES_UI_HPP__

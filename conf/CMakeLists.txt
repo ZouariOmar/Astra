@@ -4,6 +4,9 @@ cmake_minimum_required(VERSION 3.31.5)
 # Set the project name
 project(Astra VERSION 0.1 LANGUAGES CXX)
 
+# Generate `compile_commands.json` file
+# set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
 # Add Qt's uic for processing .ui files
 set(CMAKE_AUTOUIC ON)
 set(CMAKE_AUTOMOC ON)
@@ -31,7 +34,9 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/PasswordGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/Database.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/PdfGenerator.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/CSVGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/FaceRecognizer.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/MediaPlayer.cpp
 )
 
 # Add header(s) files
@@ -49,7 +54,9 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/PasswordGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/Database.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/PdfGenerator.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/CSVGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/FaceRecognizer.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/MediaPlayer.hpp
 )
 
 # Add the templates files
@@ -62,10 +69,10 @@ include_directories(/usr/local/include/oracle)
 link_directories(/usr/local/lib/oracle)
 
 # Find Qt6 packages
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEngineCore Concurrent Charts)
+find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEngineCore Concurrent Charts Multimedia)
 
 # Find libcurl package
-find_package(CURL REQUIRED) 
+find_package(CURL REQUIRED)
 
 # Find OpenCV package
 find_package(OpenCV REQUIRED)
@@ -74,9 +81,9 @@ find_package(OpenCV REQUIRED)
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEMPLATES})
 
 
-target_link_libraries(${PROJECT_NAME} PRIVATE 
+target_link_libraries(${PROJECT_NAME} PRIVATE
   Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Concurrent Qt6::Pdf # Link Qt libraries
-  Qt6::WebEngineWidgets Qt6::WebEngineCore Qt6::Charts
+  Qt6::WebEngineWidgets Qt6::WebEngineCore Qt6::Charts Qt6::Multimedia
   clntsh occi                                              # Link oracle libraries
   CURL::libcurl                                            # Link libcurl libraries
   -lssl -lcrypto                                           # Link openssl libraries

@@ -13,6 +13,8 @@
 #define __EMPLOYEES_TPP__
 
 //? Include prototype declaration part
+//* Include stdander C++ header(s)
+#include <iostream>
 //* Include custom header(s)
 #include "../inc/Employees.hpp"
 
