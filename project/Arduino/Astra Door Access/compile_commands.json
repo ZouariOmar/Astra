@@ -174,13 +174,79 @@
         "output": ".pio/build/uno/lib609/MFRC522_PN512/PN512.cpp.o"
     },
     {
-        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/RfidRecognizer.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/RfidRecognizer.cpp",
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/avr/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/avr/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/avr/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/avr/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/mbed/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/mbed/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/mbed/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/mbed/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/megaavr/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/megaavr/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/megaavr/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/megaavr/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/nrf52/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/nrf52/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/nrf52/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/nrf52/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/renesas/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/renesas/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/renesas/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/renesas/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/sam/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/sam/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/sam/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/sam/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/samd/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/samd/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/samd/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/samd/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/stm32f4/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/stm32f4/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/stm32f4/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/stm32f4/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/lib517/Servo/xmc/Servo.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -I.pio/libdeps/uno/Servo/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard .pio/libdeps/uno/Servo/src/xmc/Servo.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": ".pio/libdeps/uno/Servo/src/xmc/Servo.cpp",
+        "output": ".pio/build/uno/lib517/Servo/xmc/Servo.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/Melody.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/Servo/src -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/Melody.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": "src/Melody.cpp",
+        "output": ".pio/build/uno/src/Melody.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/RfidRecognizer.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/Servo/src -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/RfidRecognizer.cpp",
         "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
         "file": "src/RfidRecognizer.cpp",
         "output": ".pio/build/uno/src/RfidRecognizer.cpp.o"
     },
     {
-        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/main.cpp",
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/Uid.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/Servo/src -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/Uid.cpp",
+        "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
+        "file": "src/Uid.cpp",
+        "output": ".pio/build/uno/src/Uid.cpp.o"
+    },
+    {
+        "command": "/home/zouari_omar/.platformio/packages/toolchain-atmelavr/bin/avr-g++ -o .pio/build/uno/src/main.cpp.o -c -fno-exceptions -fno-threadsafe-statics -fpermissive -std=gnu++11 -mmcu=atmega328p -Os -Wall -ffunction-sections -fdata-sections -flto -DPLATFORMIO=60118 -DARDUINO_AVR_UNO -DF_CPU=16000000L -DARDUINO_ARCH_AVR -DARDUINO=10808 -Iinclude -Isrc -I.pio/libdeps/uno/Servo/src -I.pio/libdeps/uno/MFRC522_PN512/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/libraries/SPI/src -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/cores/arduino -I/home/zouari_omar/.platformio/packages/framework-arduino-avr/variants/standard src/main.cpp",
         "directory": "/home/zouari_omar/Documents/Daily/Projects/Astra/project/Arduino/Astra Door Access",
         "file": "src/main.cpp",
         "output": ".pio/build/uno/src/main.cpp.o"

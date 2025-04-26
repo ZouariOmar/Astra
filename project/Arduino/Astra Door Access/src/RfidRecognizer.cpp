@@ -11,6 +11,7 @@
 //? Include prototype declaration part
 //* Include custom header(s)
 #include "../include/RfidRecognizer.hpp"
+#include "../include/Melody.hpp"
 
 // Functions prototype dev part
 
@@ -52,7 +53,7 @@ void RfidRecognizer::setup() {
 void RfidRecognizer::recognize() {
   if (listenFromExternal()) {
     if (is_exist())
-      detectedCard.print();
+      detectedCard.print(), detectedCard.clear();
     else {
       notify(ACCESS_DENIED_LED_PIN);
       return;
@@ -122,6 +123,7 @@ const String RfidRecognizer::listenFromInternal() const {
 void RfidRecognizer::notify(const uint8_t &led_pin) const {
   digitalWrite(led_pin, HIGH);
   delay(2000);
+  (led_pin == ACCESS_SUCCESS_LED_PIN) ? Melody::play(Melody::succesSound) : Melody::play(Melody::failSound);
   digitalWrite(led_pin, LOW);
   delay(500);
 };

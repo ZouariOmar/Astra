@@ -9,8 +9,8 @@
  */
 
 //? Pre-proccessor prototype declaration part
-#ifndef __RFID_RECOGNIZER__
-#define __RFID_RECOGNIZER__
+#ifndef __RFID_RECOGNIZER_HPP__
+#define __RFID_RECOGNIZER_HPP__
 #define MAX_CARDS 2
 #define ACCESS_SUCCESS_LED_PIN 6
 #define ACCESS_DENIED_LED_PIN 7
@@ -51,4 +51,4 @@ private:
   void notify(const uint8_t &) const;
 }; // RfidRecognizer class
 
-#endif // __RFID_RECOGNIZER__
+#endif // __RFID_RECOGNIZER_HPP__
