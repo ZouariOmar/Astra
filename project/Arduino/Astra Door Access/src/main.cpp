@@ -14,11 +14,12 @@
  */
 
 //? Include prototype declaration part
-/// #include "../include/inc.hpp"
 #include "../include/RfidRecognizer.hpp"
 
-//? Functions prototype dev part
+// Global vars prototype declaration part
 RfidRecognizer rfid;
+
+//? Functions prototype dev part
 
 /**
  * @fn     setup()
@@ -28,8 +29,6 @@ RfidRecognizer rfid;
 void setup() {
   Serial.begin(9600);
   rfid.setup();
-  pinMode(ACCESS_SUCCESS_LED_PIN, OUTPUT); // led for authorised
-  pinMode(ACCESS_DENIED_LED_PIN, OUTPUT);  // led for not authorised
 }
 
 /**

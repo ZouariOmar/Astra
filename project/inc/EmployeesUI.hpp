@@ -29,6 +29,7 @@
 //* Include custom header(s)
 #include "Employees.hpp"
 #include "EmployeesUIUtils.hpp"
+#include "SerialPortManager.hpp"
 
 //* Include generated ui_.h file(s)
 #include "../ui/ui_employees.h"
@@ -62,6 +63,7 @@ private: //? Private EmployeesUI vars
   Ui::EmployeesUI *ui;
   QMovie *pdf_movie, *notification_movie, *csv_movie, *refresh_movie;
   QGraphicsDropShadowEffect *shadow_effect_components;
+  SerialPortManager spm;
 
 private: //? Private EmployeesUI function
   inline void __init__();

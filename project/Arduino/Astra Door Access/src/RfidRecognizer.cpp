@@ -1,14 +1,18 @@
 /**
- * @file    RfidRecognizer.cpp
- * @author  @ZouariOmar (zouariomar20@gmail.com)
- * @brief   RfidRecognizer source file
- * @version 0.1
- * @date    2025-04-23
+ * @file      RfidRecognizer.cpp
+ * @author    @ZouariOmar (zouariomar20@gmail.com)
+ * @brief     RfidRecognizer source file
+ * @version   0.1
+ * @date      2025-04-23
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar ZouariOmar @endlink
+ * @link https://github.com/ZouariOmar/Astra/blob/main/project/Arduino/Astra%20Door%20Access/src/RfidRecognizer.cpp RfidRecognizer.cpp @endlink
  */
 
+//? Include prototype declaration part
+//* Include custom header(s)
 #include "../include/RfidRecognizer.hpp"
+
+// Functions prototype dev part
 
 /**
  * @fn    RfidRecognizer::RfidRecognizer()
@@ -18,22 +22,48 @@ RfidRecognizer::RfidRecognizer()
     : rc(SSPIN, RSTPIN) {
   // Index Me :°
   byte uid[4] = {0x7E, 0x00, 0x18, 0x2};
-  authorized_cards[0] = UID(uid, "omarzouari1");
+  authorized_cards[0] = Uid(uid, "omarzouari1");
 
   // Index `Rayen`
   byte uid1[4] = {0x25, 0x52, 0xC1, 0x01};
-  authorized_cards[1] = UID(uid1, "rayen");
+  authorized_cards[1] = Uid(uid1, "rayen97");
 }
 
 /**
- * @fn     RfidRecognizer::setup()
- * @brief  Setup RfidRecognizer object
- * @return void
+ * @fn      RfidRecognizer::setup()
+ * @details The main RfidRecognizer setup function!
+ * @brief   Setup RfidRecognizer object
+ * @return  void
  */
 void RfidRecognizer::setup() {
-  SPI.begin();                  // Init Serial Peripheral Interface
-  rc.PCD_Init();                // Init the receiver
-  rc.PCD_DumpVersionToSerial(); // Show details of card reader module
+  pinMode(ACCESS_SUCCESS_LED_PIN, OUTPUT); // led for authorised
+  pinMode(ACCESS_DENIED_LED_PIN, OUTPUT);  // led for not authorised
+  SPI.begin();                             // Init Serial Peripheral Interface
+  rc.PCD_Init();                           // Init the receiver
+  rc.PCD_DumpVersionToSerial();            // Show details of card reader module
+}
+
+/**
+ * @fn      RfidRecognizer::recognize()
+ * @brief   Listen to the `RFID-RC522` detector and verify thte existence of the `detectedCard`
+ * @details The main RfidRecognizer lancer function!
+ * @return  void
+ */
+void RfidRecognizer::recognize() {
+  if (listenFromExternal()) {
+    if (is_exist())
+      detectedCard.print();
+    else {
+      notify(ACCESS_DENIED_LED_PIN);
+      return;
+    }
+  }
+  // notify("CARD NOT AUTHORISED", ACCESS_DENIED_LED_PIN);
+  const String appMsg = listenFromInternal();
+  if (appMsg.indexOf(AUTHORIZATION_SUCCESS_MSG) != -1)
+    notify(ACCESS_SUCCESS_LED_PIN);
+  else if (appMsg.indexOf(AUTHORIZATION_DENIED_MSG) != -1)
+    notify(ACCESS_DENIED_LED_PIN);
 }
 
 /**
@@ -46,35 +76,50 @@ inline void RfidRecognizer::get_UID() {
 }
 
 /**
- * @fn     RfidRecognizer::listen()
- * @brief  Return `false` if no card present, otherwise retrun `true`
+ * @fn    RfidRecognizer::is_exist()
+ * @brief  Return `true` if the UID of the `detectedCard` exist in `authorized_cards`, otherwise return `false`
  * @return {const bool}
  */
-const bool RfidRecognizer::listen() {
+const bool RfidRecognizer::is_exist() {
+  for (size_t i{}; i < MAX_CARDS; i++)
+    if (authorized_cards[i] == detectedCard) {
+      detectedCard << authorized_cards[i].get_name();
+      return true; // UID found in `authorized_cards`
+    }
+  return detectedCard.clear(), false; // UID not found
+}
+
+/**
+ * @fn     RfidRecognizer::listen()
+ * @brief  Return `false` if no card present/detected, otherwise retrun `true`
+ * @return {const bool}
+ */
+const bool RfidRecognizer::listenFromExternal() {
   if (!rc.PICC_IsNewCardPresent() || !rc.PICC_ReadCardSerial())
     return false;
   return get_UID(), rc.PICC_HaltA(), true;
 }
 
-const bool RfidRecognizer::is_exist() {
-  for (size_t i{}; i < MAX_CARDS; i++)
-    if (authorized_cards[i] == detectedCard) {
-      detectedCard << authorized_cards[i].name;
-      detectedCard.print();
-      return true; // UID found in `authorized_cards`
-    }
-  detectedCard << "";
-  detectedCard.print();
-  return false; // UID not found
+const String RfidRecognizer::listenFromInternal() const {
+  String incomingData("");
+
+  // Read data from serial buffer
+  while (Serial.available()) {
+    incomingData += (char)Serial.read();
+    delay(10); // Add delay to allow more data to arrive
+  }
+
+  return incomingData; // Return the recived msg
 }
 
-void RfidRecognizer::recognize() {
-  if (listen())
-    (is_exist()) ? notify("CARD AUTHORISED", ACCESS_SUCCESS_LED_PIN) : notify("CARD NOT Authorised", ACCESS_DENIED_LED_PIN);
-}
-
-void RfidRecognizer::notify(const String &msg, const uint8_t &led_pin) const {
-  Serial.println(msg);
+/**
+ * @fn           RfidRecognizer::notify(const String &, const uint8_t &)
+ * @brief         Notify the user/employee physically
+ * @param msg     {const String &}
+ * @param led_pin {const uint8_t &}
+ * @return        void
+ */
+void RfidRecognizer::notify(const uint8_t &led_pin) const {
   digitalWrite(led_pin, HIGH);
   delay(2000);
   digitalWrite(led_pin, LOW);

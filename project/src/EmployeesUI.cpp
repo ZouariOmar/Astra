@@ -5,8 +5,7 @@
  * @version   0.1
  * @date      2025-03-08
  * @copyright Copyright (c) 2025
- * @link https://github.com/ZouariOmar/Astra/project/src/EmployeesUI.cpp
- * EmployeesUI.cpp @endlink
+ * @link https://github.com/ZouariOmar/Astra/project/src/EmployeesUI.cpp EmployeesUI.cpp @endlink
  */
 
 //? Include prototype declaration part
@@ -26,23 +25,20 @@
  * @param parent    {QWidget *}
  */
 EmployeesUI::EmployeesUI(SqlParam _employee, QWidget *parent)
-    : QMainWindow(parent), employee(_employee), ui(new Ui::EmployeesUI),
-      pdf_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/"
-                           "project/assets/global/icons8-pdf.gif")),
-      notification_movie(
-          new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/"
-                     "assets/global/icons8-notification.gif")),
-      csv_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/"
-                           "project/assets/Employees/icons8-document.gif")),
-      refresh_movie(
-          new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/"
-                     "assets/Employees/icons8-refresh.gif")),
-      shadow_effect_components(
-          new QGraphicsDropShadowEffect[SHADOWS_EFFECT_COMBO_NUMBERS]) {
+    : QMainWindow(parent),
+      employee(_employee),
+      ui(new Ui::EmployeesUI),
+      pdf_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-pdf.gif")),
+      notification_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/global/icons8-notification.gif")),
+      csv_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-document.gif")),
+      refresh_movie(new QMovie("/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/Employees/icons8-refresh.gif")),
+      shadow_effect_components(new QGraphicsDropShadowEffect[SHADOWS_EFFECT_COMBO_NUMBERS]),
+      spm(parent) {
   __init__();
   MediaPlayer::playNotif(
       "/home/zouari_omar/Documents/Daily/Projects/Astra/project/assets/sounds/"
       "mixkit-software-interface-start-2574.wav");
+  spm.listen();
 }
 
 /**
@@ -515,7 +511,9 @@ void EmployeesUI::on_Add_button_clicked() {
  * @brief  Listen to "Cancel" button click action inside `ui->Form` QGroupBox
  * @return void
  */
-void EmployeesUI::on_Cancel_form_clicked() { __init_inset_form_group_box__(); }
+void EmployeesUI::on_Cancel_form_clicked() {
+  __init_inset_form_group_box__();
+}
 
 /**
  * @fn            EmployeesUI::on_show_clicked(bool)
@@ -636,7 +634,8 @@ void EmployeesUI::on_insertBtn_clicked() {
   __init_inset_form_group_box__();
 }
 
-void insertRow_employees_table() {}
+void insertRow_employees_table() {
+}
 
 // * ================================================
 // ? ========= / `ui->Form` Events & signals ========

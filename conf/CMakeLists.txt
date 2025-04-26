@@ -37,6 +37,7 @@ set(SOURCES
   ${CMAKE_SOURCE_DIR}/../project/src/CSVGenerator.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/FaceRecognizer.cpp
   ${CMAKE_SOURCE_DIR}/../project/src/MediaPlayer.cpp
+  ${CMAKE_SOURCE_DIR}/../project/src/SerialPortManager.cpp
 )
 
 # Add header(s) files
@@ -57,6 +58,7 @@ set(HEADERS
   ${CMAKE_SOURCE_DIR}/../project/inc/CSVGenerator.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/FaceRecognizer.hpp
   ${CMAKE_SOURCE_DIR}/../project/inc/MediaPlayer.hpp
+  ${CMAKE_SOURCE_DIR}/../project/inc/SerialPortManager.hpp
 )
 
 # Add the templates files
@@ -69,7 +71,14 @@ include_directories(/usr/local/include/oracle)
 link_directories(/usr/local/lib/oracle)
 
 # Find Qt6 packages
-find_package(Qt6 REQUIRED COMPONENTS Core Gui Widgets Pdf WebEngineWidgets WebEngineCore Concurrent Charts Multimedia)
+find_package(Qt6 REQUIRED COMPONENTS
+  Core Gui Widgets
+  Pdf WebEngineWidgets WebEngineCore
+  Concurrent
+  Charts
+  Multimedia
+  SerialPort
+)
 
 # Find libcurl package
 find_package(CURL REQUIRED)
@@ -82,12 +91,16 @@ add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEMPLATES})
 
 
 target_link_libraries(${PROJECT_NAME} PRIVATE
-  Qt6::Core Qt6::Gui Qt6::Widgets Qt6::Concurrent Qt6::Pdf # Link Qt libraries
-  Qt6::WebEngineWidgets Qt6::WebEngineCore Qt6::Charts Qt6::Multimedia
-  clntsh occi                                              # Link oracle libraries
-  CURL::libcurl                                            # Link libcurl libraries
-  -lssl -lcrypto                                           # Link openssl libraries
-  ${OpenCV_LIBS}                                           # Link OpenCV libraries
+  Qt6::Core Qt6::Gui Qt6::Widgets                   # Link Qt6 libraries
+  Qt6::Pdf Qt6::WebEngineWidgets Qt6::WebEngineCore
+  Qt6::Concurrent
+  Qt6::Charts
+  Qt6::Multimedia
+  Qt6::SerialPort
+  clntsh occi                                       # Link oracle libraries
+  CURL::libcurl                                     # Link libcurl libraries
+  -lssl -lcrypto                                    # Link openssl libraries
+  ${OpenCV_LIBS}                                    # Link OpenCV libraries
 )
 
 # Add the tests subdirectory

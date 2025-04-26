@@ -89,7 +89,7 @@ void FaceRecognizer::loadIndexer(const std::string &dataDir) {
   for (const auto &entry : std::filesystem::directory_iterator(dataDir))
     if (entry.is_directory()) {
       std::string personName = entry.path().filename().string();
-      std::cout << "Processing folder:" << personName << '\n';
+      std::cout << "Indexing: " << personName << '\n';
       indexer[label] = personName, label++;
     }
 }
