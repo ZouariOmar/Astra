@@ -20,7 +20,8 @@
  * @brief Construct new RfidRecognizer::RfidRecognizer object
  */
 RfidRecognizer::RfidRecognizer()
-    : rc(SSPIN, RSTPIN) {
+    : rc(SSPIN, RSTPIN),
+      sm() {
   // Index Me :°
   byte uid[4] = {0x7E, 0x00, 0x18, 0x2};
   authorized_cards[0] = Uid(uid, "omarzouari1");
@@ -42,6 +43,7 @@ void RfidRecognizer::setup() {
   SPI.begin();                             // Init Serial Peripheral Interface
   rc.PCD_Init();                           // Init the receiver
   rc.PCD_DumpVersionToSerial();            // Show details of card reader module
+  sm.setup();
 }
 
 /**
@@ -62,9 +64,9 @@ void RfidRecognizer::recognize() {
   // notify("CARD NOT AUTHORISED", ACCESS_DENIED_LED_PIN);
   const String appMsg = listenFromInternal();
   if (appMsg.indexOf(AUTHORIZATION_SUCCESS_MSG) != -1)
-    notify(ACCESS_SUCCESS_LED_PIN);
+    notify(ACCESS_SUCCESS_LED_PIN), sm.goToAngle(90);
   else if (appMsg.indexOf(AUTHORIZATION_DENIED_MSG) != -1)
-    notify(ACCESS_DENIED_LED_PIN);
+    notify(ACCESS_DENIED_LED_PIN), sm.rotateToRight(0);
 }
 
 /**

@@ -26,6 +26,7 @@
 #include <MFRC522.h>
 
 //* Include custom header(s)
+#include "ServoManager.hpp"
 #include "Uid.hpp"
 
 //* Class prototype declaration part
@@ -42,6 +43,7 @@ public:
 
 private:
   MFRC522 rc;
+  ServoManager sm;
   Uid detectedCard,                // A single UID object to hold the detected card
       authorized_cards[MAX_CARDS]; // Store the authorized UIDs and their associated names
   inline void get_UID();

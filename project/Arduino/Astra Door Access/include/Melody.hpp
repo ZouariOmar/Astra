@@ -29,12 +29,12 @@
 class Melody {
 public:
   static constexpr int succesSound[2][3] = {
-      {NOTE_C5, NOTE_E5, NOTE_G5},
-      {150, 150, 150}};
+      {NOTE_C5, NOTE_E5, NOTE_G5}, // `succesSound` melody
+      {150, 150, 150}};            // `succesSound` durations
 
   static constexpr int failSound[2][3] = {
-      {NOTE_DS3, NOTE_D3, NOTE_CS3},
-      {200, 200, 300}};
+      {NOTE_DS3, NOTE_D3, NOTE_CS3}, // `failSound` melody
+      {200, 200, 300}};              // `failSound` durations
 
   /**
    * @fn    Melody;;play(const int [2][N], const int &)
