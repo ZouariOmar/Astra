@@ -32,8 +32,6 @@ public:
   ServoManager();
   ServoManager(int);
   void setup();
-  void rotateToRight(const int &);
-  void rotateToLeft(const int &);
   void goToAngle(const int &);
 }; // ServoManager class
 

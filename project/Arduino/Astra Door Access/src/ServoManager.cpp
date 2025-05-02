@@ -27,26 +27,6 @@ void ServoManager::setup() {
   servo.write(angle);
 }
 
-void ServoManager::rotateToRight(const int &newAngle) {
-  if (newAngle > 180)
-    return; // Safety check
-  while (angle < newAngle) {
-    angle++;
-    servo.write(angle);
-    delay(15);
-  }
-}
-
-void ServoManager::rotateToLeft(const int &newAngle) {
-  if (newAngle < 0)
-    return; // Safety check
-  while (angle > newAngle) {
-    angle--;
-    servo.write(angle);
-    delay(15);
-  }
-}
-
 void ServoManager::goToAngle(const int &newAngle) {
   if (newAngle < 0 || newAngle > 180)
     return;

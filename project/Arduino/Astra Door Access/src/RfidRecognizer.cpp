@@ -66,7 +66,7 @@ void RfidRecognizer::recognize() {
   if (appMsg.indexOf(AUTHORIZATION_SUCCESS_MSG) != -1)
     notify(ACCESS_SUCCESS_LED_PIN), sm.goToAngle(90);
   else if (appMsg.indexOf(AUTHORIZATION_DENIED_MSG) != -1)
-    notify(ACCESS_DENIED_LED_PIN), sm.rotateToRight(0);
+    notify(ACCESS_DENIED_LED_PIN), sm.goToAngle(0);
 }
 
 /**

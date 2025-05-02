@@ -89,7 +89,6 @@ find_package(OpenCV REQUIRED)
 # Add the executable target
 add_executable(${PROJECT_NAME} ${SOURCES} ${HEADERS} ${TEMPLATES})
 
-
 target_link_libraries(${PROJECT_NAME} PRIVATE
   Qt6::Core Qt6::Gui Qt6::Widgets                   # Link Qt6 libraries
   Qt6::Pdf Qt6::WebEngineWidgets Qt6::WebEngineCore
