@@ -24,11 +24,11 @@ RfidRecognizer::RfidRecognizer()
       sm() {
   // Index Me :°
   byte uid[4] = {0x7E, 0x00, 0x18, 0x2};
-  authorized_cards[0] = Uid(uid, "omarzouari1");
+  authorized_cards[0] = Uid(uid, "omardabouza8");
 
   // Index `Rayen`
   byte uid1[4] = {0x25, 0x52, 0xC1, 0x01};
-  authorized_cards[1] = Uid(uid1, "rayen97");
+  authorized_cards[1] = Uid(uid1, "rayendabouza12");
 }
 
 /**

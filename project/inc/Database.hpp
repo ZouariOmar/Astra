@@ -32,7 +32,7 @@ using namespace oracle::occi;
  */
 struct SqlParam {
   std::vector<std::pair<unsigned int, std::string>>
-      strings; // Parameters of type string
+      strings;                                        // Parameters of type string
   std::vector<std::pair<unsigned int, int>> integers; // Parameters of type int
   std::vector<std::pair<unsigned int, oracle::occi::Date>>
       dates; // Parameters of type dates
